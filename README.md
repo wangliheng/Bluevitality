@@ -9,15 +9,15 @@
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享
 - [x] ~~memcahed的README & 安装脚本~~
-- [ ] ~~mysql~~、~~nginx的安装脚本~~、mysql的主从复制，GTID，几种备份方式：Mysqldump / xtrabackup / lvm快照
+- [ ] ~~mysql~~、~~nginx的安装脚本~~、主从复制，GTID，Mysqldump / xtrabackup / lvm快照
 - [ ] galera cluster & mycat
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
 - [ ] 防火墙优化的脚本，安全加固用的（根据各个模块写一个脚本，根据提示执行优化加固用，建议和系统优化脚本在一起）
 - [ ] zabbix的userparameter百度收集汇总
 - [ ] docker的swarm流程脚本
-- [ ] NTP安装及配置脚本
-- [ ] Samba安装及配置脚本 & ~~vsftp安装配置脚本~~
+- [ ] NTP脚本
+- [ ] ~~Samba~~ & ~~vsftp~~
 - [ ] nodejs安装及配置流程说明
 - [ ] ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
@@ -29,7 +29,7 @@
 - [ ] consul 分步骤按格式存储，修改RAEDME
 - [ ] zookeeper
 - [ ] LDAP
-- [ ] PPTP的README & 脚本及配置文件
+- [ ] PPTP的README & 脚本
 - [ ] OpenVPN
 - [ ] Openstack
 - [ ] kubernets
