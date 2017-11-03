@@ -63,7 +63,7 @@ cd nginx-1.12.1/
 --prefix=${NGINX_HOME:='/usr/local/nginx'} \
 --conf-path=${NGINX_CONF:-/usr/local/nginx/nginx.conf} \
 --sbin-path=${NGINX_HOME:-'/usr/local/nginx'}/sbin/nginx \
---pid-path=/usr/local/nginx/nginx.pid \
+--pid-path=${NGINX_HOME:-'/usr/local/nginx'}/nginx.pid \
 --with-http_stub_status_module \
 --with-http_gzip_static_module \
 --with-pcre=../pcre-8.41 \

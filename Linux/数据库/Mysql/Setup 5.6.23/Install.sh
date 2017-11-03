@@ -47,7 +47,7 @@ useradd -r -c "MySQL Server" -g mysql -s /sbin/nologin mysql
 chown -R mysql:mysql $data
 
 cd $mysql_home
-scripts/mysql_install_db  --basedir=/usr/local/mysql --datadir=$data --user=mysql 
+scripts/mysql_install_db  --basedir=$mysql_home --datadir=$data --user=mysql 
 
 #备份旧的配置
 [ -f "/etc/my.cnf" ] &&  mv /etc/my.cnf /etc/my.cnf.bak
