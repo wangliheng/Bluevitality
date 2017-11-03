@@ -88,5 +88,6 @@ install -v -m755 ./sapi/fpm/php-fpm  /etc/init.d/php-fpm
 
 #PHP-FPM
 /etc/init.d/php-fpm
+echo "/etc/init.d/php-fpm" >> /etc/rc.local
 
 exit 0
