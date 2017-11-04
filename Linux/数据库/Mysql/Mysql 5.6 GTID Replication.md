@@ -49,7 +49,7 @@ mysql> grant replication slave on  *.*  to 'username'@'%' identified by 'passwor
 mysql> flush privileges;
 ```
 
-#### 将完整备份的备主库数据拷到从库
+#### 将完整备份主库数据导到从库
 ```txt
 #拷出主服务器数据
 [root@Master ~]# mysqldump -u $name -p --flush-logs --master-data=2 --single-transaction $dbname > ${dbname}.sql 
@@ -137,7 +137,8 @@ slave-net-timeout=60
 
 #### 在备服务器进行同步
 ```txt
-mysql> change master to master_host='192.168.139.132',master_user='root', master_password='123456', master_auto_position=1; 
+mysql> change master to master_host='192.168.139.132',master_user='root', master_password='123456'
+    -> master_auto_position=1; 
 mysql> start slave;
 MySQL> show global variables like'%gtid%';
 +---------------------------------+-------+
