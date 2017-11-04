@@ -32,7 +32,13 @@ fi
 ......
 ......
 ......
-
+#依内核数量并行
+NUM=$( awk '/processor/{NUM++};END{print NUM}' /proc/cpuinfo )
+if [ $NUM -gt 1 ] ;then
+    make -j $NUM
+else
+    make
+fi
 
 
 
