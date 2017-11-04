@@ -51,26 +51,21 @@ mysql> flush privileges;
 
 #### 将完整备份的备主库数据拷到从库
 ```txt
-#将主服务器加读锁
-mysql> flush tables with read lock;
-mysql> exit
-
 #拷出主服务器数据
-[root@Master ~]# mysqldump -u $username -p$password --master-data=2 --single-transaction $dbname > ${dbname}.sql 
+[root@Master ~]# mysqldump -u $name -p --flush-logs --master-data=2 --single-transaction $dbname > ${dbname}.sql 
 [root@Master ~]# scp ${dbname}.sql  root@<slave_address>:/var/lib/mysql
 
-#撤销读锁并记录日志位置
-mysql> unlock tables ;
+#记录日志位置
 MySQL> show master status;
-+------------------+----------+--------------+--------------------------------------------------+-------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB                                 | Executed_Gtid_Set |
-+------------------+----------+--------------+--------------------------------------------------+-------------------+
-| mysql-bin.000001 |      120 | 123test      | mysql,performance_schema,information_schema,test |                   |
-+------------------+----------+--------------+--------------------------------------------------+-------------------+
++------------------+----------+--------------+---------------------------------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB                            | Executed_Gtid_Set |
++------------------+----------+--------------+---------------------------------------------+-------------------+
+| mysql-bin.000001 |      120 | 123test      | mysql,performance_schema,information_schema |                   |
++------------------+----------+--------------+---------------------------------------------+-------------------+
 1 row in set (0.00 sec)
 
 
-#从服务器还原数据
+#从服务器还原数据(某些场合需要先创建数据库后在执行导入)
 [root@Slave ~]# mysqldump -u $username -p$password $dbname < ${dbname}.sql
 [root@Slave ~]# systemctl stop mysqld
 ```
