@@ -20,7 +20,7 @@ mkdir -p $..../etc
 mkdir -p $....
 
 #依赖
-yum -y install gcc gcc-c++ ncurses-devel cmake .......
+yum -y install gcc gcc-c++ ncurses-devel cmake openssl openssl-devel
 
 
 #删除旧数据
@@ -32,6 +32,8 @@ if ! id nginx &> /dev/null ; then
     useradd -M -g nginx  nginx -s /sbin/nologin
 fi
 
+#判断是否有源码包
+[ -s stunel-4.33.tar.gz ] || exit 1
 
 ......
 ......
