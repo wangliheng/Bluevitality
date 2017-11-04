@@ -34,7 +34,7 @@ cd php-5.6.30
 ./configure \
 --prefix=${PHP_HOME} \
 --with-config-file-path=${PHP_HOME}/etc \
---with-iconv=/usr/local/libiconv \
+--with-iconv=${ICONV_HOME} \
 --with-gd \
 --enable-ftp \
 --enable-gd-native-ttf \
