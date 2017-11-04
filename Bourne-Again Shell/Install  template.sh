@@ -22,6 +22,10 @@ mkdir -p $....
 #依赖
 yum -y install gcc gcc-c++ ncurses-devel cmake .......
 
+
+#删除旧数据
+rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
+
 #创建用户
 if ! id nginx &> /dev/null ; then
     groupadd nginx
