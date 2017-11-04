@@ -1,33 +1,33 @@
 #!/bin/bash
 
-#´´½¨±¸·ÝÄ¿Â¼
+#åˆ›å»ºå¤‡ä»½ç›®å½•
 DB_BACKUP_DIR="/data/db_backup"
 [[ ! -d $DB_BACKUP_DIR ]] && mkdir -p $DB_BACKUP_DIR
 
-#¶¨ÒåÊý¾Ý¿âÕÊºÅ¼°ÃÜÂë
+#å®šä¹‰æ•°æ®åº“å¸å·åŠå¯†ç 
 DB_USER="root"
 DB_PWD="paybay123"
 
-#Á¬½ÓÊý¾Ý¿â
+#è¿žæŽ¥æ•°æ®åº“
 DB_CONNECT="/usr/local/mysql/bin/mysql -hlocalhost -u${DB_USER} -p${DB_PWD}"
 
-#±¸·Ý´Ó¿âÊ±Ê¹ÓÃ......
+#å¤‡ä»½ä»Žåº“æ—¶ä½¿ç”¨......
 #DB_DUMP_CONNECT="/usr/local/mysql/bin/mysqldump -hlocalhost -u${DB_USER} -p${DB_PWD} --dump-slave=2"
 
-#±¸·ÝÊ¹ÓÃinnodbÒýÇæµÄÊý¾Ý¿â²¢ÔÚÆäÖÐ¼ÓÈë¶þ½øÖÆÈÕÖ¾µÄ±¸·ÝÆðÊ¼µã£¨½¨Òé¿ªÆô --flush-logs/-F ²ÎÊýÀ´¹ö¶¯¶þ½øÖÆÈÕÖ¾£©
+#å¤‡ä»½ä½¿ç”¨innodbå¼•æ“Žçš„æ•°æ®åº“å¹¶åœ¨å…¶ä¸­åŠ å…¥äºŒè¿›åˆ¶æ—¥å¿—çš„å¤‡ä»½èµ·å§‹ç‚¹ï¼ˆå»ºè®®å¼€å¯ --flush-logs/-F å‚æ•°æ¥æ»šåŠ¨äºŒè¿›åˆ¶æ—¥å¿—ï¼‰
 DB_DUMP_CONNECT="/usr/local/mysql/bin/mysqldump -hlocalhost -u${DB_USER} -p${DB_PWD} --single-transaction --master-data=2"
 
-#ÅÅ³ýmysql×Ô´øµÄÊý¾Ý¿â
+#æŽ’é™¤mysqlè‡ªå¸¦çš„æ•°æ®åº“
 DB_ARRAY=(`${DB_CONNECT} -N  -e "show databases" | grep -Ev "information_schema|mysql|performance_schema"`)
 #echo ${DB_ARRAY[@]}
 
-#±¸·ÝÊ£ÓàÉú²ú»·¾³ËùÐèµÄÊý¾Ý¿â
+#å¤‡ä»½å‰©ä½™ç”Ÿäº§çŽ¯å¢ƒæ‰€éœ€çš„æ•°æ®åº“
 for db in ${DB_ARRAY[@]}
 do
     backup_time=`date +%Y%m%d`
-    #±¸·Ý¸ñÊ½£º¿âÃû.Ê±¼ä.sql
+    #å¤‡ä»½æ ¼å¼ï¼šåº“å.æ—¶é—´.sql
     ${DB_DUMP_CONNECT} $db > ${DB_BACKUP_DIR}/$db.${backup_time}.sql
 done
 
-#É¾³ý±¸·ÝÊ±¼ä³¬¹ý30ÌìµÄ¿â
+#åˆ é™¤å¤‡ä»½æ—¶é—´è¶…è¿‡30å¤©çš„åº“
 find $DB_BACKUP_DIR/ -type f -mtime +30 -exec rm -f {} \;
