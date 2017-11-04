@@ -9,7 +9,7 @@
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享
 - [x] ~~memcahed的README & 安装脚本~~
-- [ ] ~~mysql~~、~~nginx~~、~~主从复制~~，GTID，Mysqldump / xtrabackup / lvm快照
+- [ ] ~~mysql~~、~~nginx~~、主从复制，~~GTID~~，Mysqldump / xtrabackup / lvm快照
 - [ ] galera cluster & mycat
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
@@ -17,7 +17,8 @@
 - [ ] zabbix的userparameter百度收集汇总
 - [ ] docker的swarm流程脚本
 - [ ] NTP脚本
-- [ ] ~~Samba~~ & ~~vsftp~~
+- [x] ~~Samba~~ & ~~vsftp~~
+- [x] ~~stunel~~
 - [ ] nodejs安装及配置流程说明
 - [ ] ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
