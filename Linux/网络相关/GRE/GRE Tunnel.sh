@@ -47,6 +47,7 @@ function B() {
     sysctl -w net.ipv4.ip_forward=1
     sysctl -p
     
+    #若需指定去往A主机的其他网段，需在B主机添加路由：ip route add 192.168.XX.0/24  via 192.168.20.1 
 }
 
 
@@ -64,3 +65,5 @@ case $1 in
 esac
 
 exit 0
+
+
