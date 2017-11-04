@@ -49,7 +49,7 @@ mysql> grant replication slave on  *.*  to 'username'@'%' identified by 'passwor
 mysql> flush privileges;
 ```
 
-#### 将完整备份主库数据导到从库
+#### 将完整备份导到从库
 ```txt
 #拷出主服务器数据
 [root@Master ~]# mysqldump -u $name -p --flush-logs --master-data=2 --single-transaction $dbname > ${dbname}.sql 
