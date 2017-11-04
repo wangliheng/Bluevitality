@@ -22,7 +22,7 @@ scp Susers.csr root@CA-IP:/ca/  #拷贝到CA进行签名
     touch /etc/pki/CA/{index.txt,serial}
     echo "01" > /etc/pki/CA/serial
     openssl ca -keyfile /etc/pki/CA/rootca.key -cert /etc/pki/CA/rootca.crt \
-    -in ./Mysql-master.csr -out ./Mysql-master.pem -days 365
+    -in ~/Mysql-master.csr -out ~/Mysql-master.pem -days 365
 ```
 
 ### 配置说明：/etc/stunnel/stunnel.conf
@@ -36,8 +36,8 @@ output=/var/log/stunnel.log
 setuid=root 
 setgid=root 
 pid=/var/run/stunnel.pid         
-cert=/etc/ssl/cert/Mysql-master.pem #证书
-key=/etc/ssl/private/Mysql-master.key #私钥
+cert=/root/Mysql-master.pem #证书
+key=/root/Mysql-master.key #私钥
 #CAfile = /etc/pki/CA/certs/rootca.crt #根证书
 [mysql] 
 accept=3306 #对本地的3306端口加密
