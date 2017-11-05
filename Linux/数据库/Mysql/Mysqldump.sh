@@ -1,0 +1,38 @@
+#!/bin/bash
+#be in common use . by wy
+
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD="123456"
+MYSQL_HOST="127.0.0.1"
+MYSQL_PORT="3306"
+BACKUP_HOME="/data/db_backup"
+
+set -e
+set -x
+
+#身份检查
+if [ $(id -u) != "0" ]; then
+    echo "error: user must be an administrator"
+    exit;
+fi
+
+mkdir -p ${BACKUP_HOME:?error}
+
+mysqldump \
+-u ${MYSQL_USERNAME} -p${MYSQL_PASSWORD} \
+-h ${MYSQL_HOST} \
+-P ${MYSQL_PORT} \
+--default-character-set=UTF8 \
+--single-transaction \
+--delete-master-logs \
+--master-data=2 \
+--all-databases \
+--add-drop-database \
+--add-drop-table \
+--flush-logs \
+--flush-privileges \
+--ignore-table=mysql.user \
+--routines \
+> ${BACKUP_HOME:?error}/mysql_db_backup.$(date +%Y%m%d).sql
+
+exit 0
