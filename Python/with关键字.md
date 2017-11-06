@@ -1,3 +1,27 @@
+### 说明
+```python
+#有些任务可能事先需要设置，事后做清理工作。对于这种场景Python的with语句提供了一种非常方便的处理方式。
+#一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据然后关闭文件句柄。
+
+#如果不用with，代码如下：
+        file = open("/tmp/foo.txt")
+        data = file.read()
+        file.close()
+
+#这有两个问题。1是可能忘记关闭文件句柄；2是文件读取数据发生异常，没有进行任何处理。下面是处理异常的加强版本：
+        file = open("/tmp/foo.txt")
+        try:
+            data = file.read()
+        finally:
+            file.close()
+            
+#虽然这段代码运行良好，但是太冗长了。这时候就是with一展身手的时候了。
+#除了有更优雅的语法，with还可以很好的处理上下文环境产生的异常。下面是with版本的代码：
+        with open("/tmp/foo.txt") as file:
+            data = file.read()
+
+#Python对with的处理还很聪明。基本思想是with所求值的对象必须有一个__enter__()方法和一个__exit__()方法。
+```
 ```python
 with open(r'somefileName') as somefile:   #with后面是个表达式，它返回的是一个上下文管理器对象
         for line in somefile:             #使用as可将此结果赋值给某个变量以方便之后操作。
@@ -32,7 +56,6 @@ with语句类似
 　　except:  
 　　finally:  
 的功能：但是with语句更简洁。而且更安全。代码量更少。  
-
 
 ### Example
 ```python
