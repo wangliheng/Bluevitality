@@ -37,7 +37,7 @@
 - [ ] kubernets
 - [ ] ELK
 - [ ] Squit & Varnish
-- [ ] VNC & NTP
+- [ ] ~~VNC~~ & NTP
 - [ ] RabbitMQ
 - [ ] Kafka
 - [ ] Zxarps
