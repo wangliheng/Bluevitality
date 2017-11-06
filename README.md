@@ -17,7 +17,6 @@
 - [ ] zabbix的userparameter百度收集汇总
 - [ ] openssl CA及服务端证书免交互生成脚本
 - [ ] docker的swarm流程脚本
-- [ ] NTP脚本
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] ~~stunel~~
 - [ ] nodejs安装及配置流程说明
