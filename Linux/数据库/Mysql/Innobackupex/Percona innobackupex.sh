@@ -161,7 +161,7 @@ esac
 
 exit 0
 
-
+# -------------------------------------------------------------------------------------
 # 常用参数：
 # --user=                   #指定数据库备份用户
 # --password=               #指定数据库备份用户密码
@@ -186,3 +186,4 @@ exit 0
 # xtrabackup_checkpoints：   #记录备份的类型、开始和结束的日志序列号
 # xtrabackup_logfile：       #备份中会开启1个log copy线程用来监控innodb日志文件（ib_logfile），若修改则复制到此文件
 # xtrabackup_binlog_info     #记录二进制日志的文件和日志点，可用于slave同步change master配置
+
