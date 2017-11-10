@@ -9,7 +9,7 @@
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享
 - [x] ~~memcahed的README & 安装脚本~~
-- [ ] ~~mysql~~、~~nginx~~、主从复制，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照
+- [ ] ~~mysql~~、~~nginx~~、主从，5.6自带的半同步复制插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照
 - [ ] galera cluster & mycat
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
