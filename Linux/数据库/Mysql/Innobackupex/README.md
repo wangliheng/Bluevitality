@@ -1,6 +1,6 @@
 #### 简介
 ```txt
-Xtrabackup是由percona提供的mysql数据库备份工具，据官方介绍这也是世界上惟一一款开源的能够对innodb和xtradb数据库进行热备的工具
+Xtrabackup是由percona提供的mysql备份工具，据官方介绍这也是惟一一款开源的能够对innodb和xtradb数据库进行热备的工具
 xtrabackup只能备份InnoDB和XtraDB两种数据引擎的数据而不能备份MyISAM数据，而innobackupex封装了xtrabackup...
 innobackupex是脚本封装，能同时处理innodb和myisam，但处理myisam时需加读锁
 最新版可从 http://www.percona.com/software/percona-xtrabackup/ 获得...
