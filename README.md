@@ -19,6 +19,7 @@
 - [ ] docker的swarm流程脚本
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] ~~stunel~~
+- [ ] chef
 - [ ] nodejs安装及配置流程说明
 - [ ] ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
