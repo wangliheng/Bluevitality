@@ -2,7 +2,7 @@
 
 - [ ] BASH 与 Python 的不断完善 （ 完善VIM的IDE环境 ）
 - [ ] sed/awk的大纲笔记
-- [ ] LVM
+- [ ] ~~LVM~~, LVM的镜像/条带
 - [ ] Quota的配置流程记录（加注释）
 - [ ] mdadm的README
 - [x] ~~php install~~
