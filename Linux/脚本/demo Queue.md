@@ -77,7 +77,7 @@ Job: level 1 job
 ...         print 'for:', next_job.description
 ...         q.task_done()
 ... 
->>> workers = [threading.Thread(target=process_job, args=(q,)),threading.Thread(target=process_job, args=(q,))]       
+>>> workers = [threading.Thread(target=process_job, args=(q,)),threading.Thread(target=process_job, args=(q,))]     
 >>> for w in workers:
 ...     w.setDaemon(True)
 ...     w.start()
@@ -91,11 +91,11 @@ for: level 10 job
 task_done()
 意味着之前入队的一个任务已经完成。由队列的消费者线程调用
 每个get()调用得到一个任务，接下来的task_done()调用告诉其所在队列该任务已处理完毕
-如果当前一个join()正在阻塞，它将在队列中的所有任务都处理完时恢复执行（即每一个由put()调用入队的任务都有一个对应的task_done()调用）
+如果当前一个join()在阻塞，它将在队列中所有任务都处理完时恢复执行（即每个由put()调用入队的任务都有对应的task_done()调用）
 
 join()
 阻塞调用线程，直到队列中的所有任务被处理掉。
-只要有数据被加入队列，未完成的任务数就会增加。当消费者线程调用task_done()（意味着有消费者取得任务并完成任务），未完成的任务数就会减少
+只要有数据被加入队列未完成的任务数就会增加。当消费者线程调用task_done()（意味着消费者取得任务并完成）未完成的任务数就会减少
 当未完成的任务数降到0，join()解除阻塞。
 
 put(item[, block[, timeout]])
