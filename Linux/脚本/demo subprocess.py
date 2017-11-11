@@ -75,3 +75,19 @@ subprocess.CalledProcessError: Command 'dfdsf' returned non-zero exit status 127
 # subprocess.check_output() 与上面两个方法类似，区别是如果当返回值为0时，直接返回输出结果，若返回值不为0则抛出异常
 # 需要说明的是该方法在python3.x中才有
 
+# demo4
+#将一个子进程的输出，作为另一个子进程的输入
+import subprocess
+child1 = subprocess.Popen(["cat","/etc/passwd"], stdout=subprocess.PIPE)
+child2 = subprocess.Popen(["grep","0:0"],stdin=child1.stdout, stdout=subprocess.PIPE)
+out = child2.communicate()
+
+# Other
+import subprocess
+child = subprocess.Popen('sleep 60',shell=True,stdout=subprocess.PIPE)
+child.poll()          #检查子进程状态
+child.kill()          #终止子进程
+child.send_signal()   #向子进程发送信号
+child.terminate()     #终止子进程
+
+
