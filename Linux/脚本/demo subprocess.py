@@ -1,32 +1,31 @@
 #!/usr/bin/env python
 
 """
-subprocess模块是从2.4版本开始引入的。主要用来取代一些旧的模块如 os.system、os.spawn*、os.popen*、commands.* 等...
-其不但可以调用外部的命令作为子进程，而且可以连接到子进程的 input/output/error 管道来获取相关的返回信息
+subprocess从2.4版本引入。主要用来取代一些旧的模块如 os.system、os.spawn*、os.popen*、commands.* 等...
+其不但可以调用外部命令作为子进程，而且可以连接到子进程的 input/output/error 管道以获取相关的返回信息
 通过标准库中的subprocess包来fork子进程并运行一个外部程序（其定义了数个创建子进程的函数，它们分别以不同方式创建子进程）
 """
 
 # demo1
 import subprocess
 """
-在一些复杂场景中，我们需要将一个进程的执行输出作为另一个进程的输入。
-在另一些场景中，我们需要先进入到某个输入环境，然后再执行一系列的指令等。这个时候就要用到Popen()
+在复杂场景中我们需要将一个进程的执行输出作为另一个进程的输入。
+在另一些场景中我们需要先进入到某个输入环境，然后再执行一系列的指令等。这时就要用 Popen()
 参数：
-args：                 shell命令，可以是字符串，或者序列类型，如list,tuple。
-bufsize：              缓冲区大小，可不用关心
-stdin,stdout,stderr：  分别表示程序的标准输入，标准输出及标准错误
-shell：                与上面方法中用法相同
+args：                 shell命令，可以是字串或序列类型如 list,tuple。
+bufsize：              缓冲区大小，可不关心
+stdin,stdout,stderr：  分别表示程序的标准输入，标准输出，标准错误
+shell：                与下面方法中用法相同
 cwd：                  设置子进程的当前目录
 env：                  指定子进程的环境变量。若 env=None 则默认从父进程继承环境变量
 universal_newlines：   不同OS的换行符不同，当该参数为true时表示使用\n作换行符
 """
 s=subprocess.Popen('ls', shell=True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-s.stdin.write('print 1 \n')
-s.stdin.write('print 2 \n')
-s.stdin.write('print 3 \n')
+s.stdin.write('test 1 \n')
+s.stdin.write('test 2 \n')
 print s.stdout.read()
 print s.stderr.read()
-print s.wait()         # 等待子进程结束。并返回执行状态 shell 0为正确
+print s.wait()         # 等待子进程结束。并返回执行状态 shell 0 为正确
 s.stdout.close()
 s.stderr.close()
 
@@ -54,7 +53,7 @@ tmpfs        tmpfs    2.8G     0  2.8G   0% /dev/shm
 # demo3
 import subprocess
 """
-subprocess.check_call()：用法与subprocess.call()类似，区别是，当返回值不为0时，直接抛出异常
+subprocess.check_call()：用法与subprocess.call()类似，区别是当返回值不为0时直接抛出异常
 """
 >>> a = subprocess.check_call('df -hT',shell=True)
 Filesystem    Type    Size  Used Avail Use% Mounted on
