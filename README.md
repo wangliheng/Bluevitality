@@ -7,7 +7,7 @@
 - [ ] mdadm的README
 - [x] ~~php install~~
 - [x] ~~mutt+mstp的脚本~~
-- [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat
+- [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat，JVM优化
 - [x] ~~memcahed的README & 安装脚本~~
 - [ ] ~~mysql~~、~~nginx~~、主从，5.6自带的半同步复制插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] galera cluster & mycat
