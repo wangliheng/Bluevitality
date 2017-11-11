@@ -21,6 +21,7 @@
 - [ ] python 3.6 安装.sh
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] stunel，PPTP的README & 脚本， shadowsock
+- [ ] tcpdump，wireshark 的md
 - [ ] chef
 - [ ] nodejs安装及配置流程说明
 - [ ] ansible的完整流程相关文件结构&README文档
