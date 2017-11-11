@@ -17,7 +17,7 @@
 - [ ] zabbix的userparameter百度收集汇总
 - [ ] ~~openssl CA及服务端证书免交互生成脚本~~ openssl 加解密相关demo
 - [ ] docker的swarm流程脚本
-- [ ] linux当前环境检测及设置脚本（py）
+- [ ] linux当前环境检测及(性能/安全)设置脚本（py）
 - [ ] python 3.6 安装.sh
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] ~~stunel~~
