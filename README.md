@@ -31,7 +31,7 @@
 - [ ] consul 分步骤按格式存储，修改RAEDME
 - [ ] zookeeper
 - [ ] LDAP
-- [ ] PPTP的README & 脚本
+- [ ] PPTP的README & 脚本， shadowsock
 - [ ] OpenVPN
 - [ ] Openstack
 - [ ] kubernets
