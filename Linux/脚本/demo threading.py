@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-from Queue import Queue
-import random,time,threading
-
 '''
 Thread                    # 表示一个线程的执行的对象
     start()               # 开始线程的执行
@@ -29,6 +26,9 @@ setprofile(func)          # 为所有线程设置一个profile函数
 '''
 
 #demo1
+from Queue import Queue
+import random,time,threading
+
 class Producer(threading.Thread):
     def __init__(self, t_name, queue):
         threading.Thread.__init__(self, name=t_name)
