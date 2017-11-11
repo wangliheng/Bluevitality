@@ -23,7 +23,7 @@ Available options:
 -decrypt        time decryption instead of encryption (only EVP).
 -mr             produce machine readable output.
 -multi n        run n benchmarks in parallel.
-[root@localhost ~]# openssl speed rsa4096
+[root@localhost ~]# openssl speed rsa4096       #指定一种加密算法进行测试
 Doing 4096 bit private rsa's for 10s: 
 1145 4096 bit private RSA's in 9.25s
 Doing 4096 bit public rsa's for 10s: 
@@ -40,15 +40,17 @@ rsa 4096 bits 0.008079s 0.000122s    123.8   8199.1
 ```bash
 #交互式加密
 [root@localhost ~]# echo "test" >> secret.txt 
-[root@localhost ~]# openssl enc -des3 -e -in secret.txt -out secret_encrypt.txt #-e 加密 -in 需加密文件 -out 加密后文件
+#-e 加密 -in 需加密文件 -out 加密后文件
+[root@localhost ~]# openssl enc -des3 -e -in secret.txt -out secret_encrypt.txt 
 enter des-ede3-cbc encryption password:                                         #输入密码
 Verifying - enter des-ede3-cbc encryption password:                             #验证输入
 [root@localhost ~]# cat secret_encrypt.txt 
 Salted__
 
-
 #交互式解密
-[root@localhost ~]# openssl enc -des3 -d -in secret_encrypt.txt -out secret.txt #-d 解密 -in 需解密文件 -out 解密后文件  
+
+#-d 解密 -in 需解密文件 -out 解密后文件
+[root@localhost ~]# openssl enc -des3 -d -in secret_encrypt.txt -out secret.txt 
 enter des-ede3-cbc decryption password:                                         #输入密码
 [root@localhost ~]# cat secret.txt 
 test
@@ -70,18 +72,26 @@ test
 ```bash
 [root@localhost ~]# cat secret.txt 
 test
-[root@localhost ~]# openssl genrsa -out private.key 1024                        #生成私钥
+
+#生成私钥
+[root@localhost ~]# openssl genrsa -out private.key 1024                       
 Generating RSA private key, 1024 bit long modulus
 .......++++++
 ...................................................++++++
 e is 65537 (0x10001)
-[root@localhost ~]# openssl rsa -in private.key -pubout -out public.key         #从私钥导出对应的公钥       
+
+#从私钥导出对应的公钥 
+[root@localhost ~]# openssl rsa -in private.key -pubout -out public.key         
 writing RSA key
 unable to load Public Key
-[root@localhost ~]# openssl rsautl -encrypt -in secret.txt -inkey public.key -pubin -out secret_encrypt.txt     #使用公钥加密
+
+#使用公钥加密
+[root@localhost ~]# openssl rsautl -encrypt -in secret.txt -inkey public.key -pubin -out secret_encrypt.txt     
 [root@localhost ~]# cat secret_encrypt.txt 
 G^Gn.1!M(cc}H^%mtdjoIHT;+t[J9;
-[root@localhost ~]# openssl rsautl -decrypt -in secret_encrypt.txt -inkey private.key -out secret.txt           #使用私钥解密
+
+#使用私钥解密
+[root@localhost ~]# openssl rsautl -decrypt -in secret_encrypt.txt -inkey private.key -out secret.txt           
 [root@localhost ~]# cat secret.txt 
 test
 ```
