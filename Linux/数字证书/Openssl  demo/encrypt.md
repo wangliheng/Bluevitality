@@ -40,6 +40,7 @@ rsa 4096 bits 0.008079s 0.000122s    123.8   8199.1
 ```bash
 #交互式加密
 [root@localhost ~]# echo "test" >> secret.txt 
+
 #-e 加密 -in 需加密文件 -out 加密后文件
 [root@localhost ~]# openssl enc -des3 -e -in secret.txt -out secret_encrypt.txt 
 enter des-ede3-cbc encryption password:                                         #输入密码
@@ -48,7 +49,6 @@ Verifying - enter des-ede3-cbc encryption password:                             
 Salted__
 
 #交互式解密
-
 #-d 解密 -in 需解密文件 -out 解密后文件
 [root@localhost ~]# openssl enc -des3 -d -in secret_encrypt.txt -out secret.txt 
 enter des-ede3-cbc decryption password:                                         #输入密码
