@@ -11,13 +11,13 @@ import subprocess
 在一些复杂场景中，我们需要将一个进程的执行输出作为另一个进程的输入。
 在另一些场景中，我们需要先进入到某个输入环境，然后再执行一系列的指令等。这个时候就要用到Popen()
 参数：
-args：     shell命令，可以是字符串，或者序列类型，如list,tuple。
-bufsize：  缓冲区大小，可不用关心
+args：                 shell命令，可以是字符串，或者序列类型，如list,tuple。
+bufsize：              缓冲区大小，可不用关心
 stdin,stdout,stderr：  分别表示程序的标准输入，标准输出及标准错误
-shell：    与上面方法中用法相同
-cwd：      设置子进程的当前目录
-env：      指定子进程的环境变量。若 env=None 则默认从父进程继承环境变量
-universal_newlines： 不同OS的换行符不同，当该参数为true时表示使用\n作换行符
+shell：                与上面方法中用法相同
+cwd：                  设置子进程的当前目录
+env：                  指定子进程的环境变量。若 env=None 则默认从父进程继承环境变量
+universal_newlines：   不同OS的换行符不同，当该参数为true时表示使用\n作换行符
 """
 s=subprocess.Popen('ls', shell=True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 s.stdin.write('print 1 \n')
