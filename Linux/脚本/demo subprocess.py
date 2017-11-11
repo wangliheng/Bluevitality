@@ -2,7 +2,8 @@
 
 """
 subprocess模块是从2.4版本开始引入的。主要用来取代一些旧的模块如 os.system、os.spawn*、os.popen*、commands.* 等...
-subprocess通过子进程来执行外部指令并通过 input/output/error 管道，获取子进程的执行的返回信息
+其不但可以调用外部的命令作为子进程，而且可以连接到子进程的 input/output/error 管道来获取相关的返回信息
+通过标准库中的subprocess包来fork子进程并运行一个外部程序（其定义了数个创建子进程的函数，它们分别以不同方式创建子进程）
 """
 
 # demo1
