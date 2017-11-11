@@ -77,7 +77,7 @@ Job: level 1 job
 ...         print 'for:', next_job.description
 ...         q.task_done()
 ... 
->>> workers = [threading.Thread(target=process_job, args=(q,)),threading.Thread(target=process_job, args=(q,))]     
+>>> workers = [threading.Thread(target=process_job, args=(q,)),threading.Thread(target=process_job, args=(q,))]
 >>> for w in workers:
 ...     w.setDaemon(True)
 ...     w.start()
@@ -96,7 +96,7 @@ task_done()
 join()
 阻塞调用线程，直到队列中的所有任务被处理掉。
 只要有数据被加入队列未完成的任务数就会增加。当消费者线程调用task_done()（意味着消费者取得任务并完成）未完成的任务数就会减少
-当未完成的任务数降到0，join()解除阻塞。
+当未完成的任务数降到0，join()解除阻塞。(join实际上意味着等到队列为空，再执行别的操作)
 
 put(item[, block[, timeout]])
 将item放入队列
@@ -112,5 +112,14 @@ get([block[, timeout]])
 
 empty()
 如果队列为空，返回True,反之返回False
+
+qsize()
+返回队列的大小
+
+full()
+如果队列满了，返回True,反之False 
+
+full
+与 maxsize 大小对应
 ```
 
