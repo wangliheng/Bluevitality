@@ -76,3 +76,30 @@ if __name__=="__main__":
         t = MyThread()
         t.setDaemon(True)    # 设置为后台线程,主线程完成时不等待子线程完成就结束
         t.start()
+
+
+#demo3 (Events)
+import threading  
+import time  
+  
+class MyThread(threading.Thread):  
+    def __init__(self, signal):  
+        threading.Thread.__init__(self) 
+        self.singal = signal                        # 初始化 
+          
+    def run(self):  
+        print "I am %s,I will sleep ..."%self.name  
+        self.singal.wait()                          # 进入等待状态
+        print "I am %s, I awake..." %self.name  
+          
+if __name__ == "__main__":
+    singal = threading.Event()                      # 初始 为 False 
+    for t in range(0, 3):  
+        thread = MyThread(singal)  
+        thread.start()  
+      
+    print "main thread sleep 3 seconds... "  
+    time.sleep(3) 
+    singal.set()                                    #　唤醒含有signal,　处于等待状态的线程  
+    
+    
