@@ -2,14 +2,14 @@
 
 - [ ] BASH 与 Python 的不断完善 （ 完善VIM的IDE环境 ）
 - [ ] sed/awk的大纲笔记
-- [ ] ~~LVM~~, LVM的镜像/条带
+- [ ] ~~LVM~~, ~~LVM的镜像~~/条带
 - [ ] Quota的配置流程记录（加注释）
 - [ ] mdadm的README
 - [x] ~~php install~~
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat
 - [x] ~~memcahed的README & 安装脚本~~
-- [ ] ~~mysql~~、~~nginx~~、主从，5.6自带的半同步复制插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照
+- [ ] ~~mysql~~、~~nginx~~、主从，5.6自带的半同步复制插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] galera cluster & mycat
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
