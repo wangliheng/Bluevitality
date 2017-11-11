@@ -1,0 +1,26 @@
+查看设备信息：
+mdadm -D /dev/md? -D/--detail
+cat /proc/mdstat
+
+创建配置文件：
+mdadm -Ds >/etc/mdadm.conf -D、--scan
+
+创建阵列：
+mdadm -C /dev/md0 -a yes -l 0 -n 3 /dev/sd{a,b,c}1
+mdadm -C /dev/md1 -a yes -l 5 -n 4 /dev/sd{a,b,c,e} -x 1 /dev/sde1
+
+添加热备硬盘：
+mdadm /dev/md0 -a /dev/sdb5 -a/--add
+
+指定阵列LEVEL5的工作设备个数（将从热备硬盘中添加）
+mdadm -G /dev/md5  -n 4
+
+模拟指定阵列下的磁盘损坏并删除（如有能力默认将自动进行恢复，查看阵列信息及状态：mdadm -D /dev/md0）
+mdadm  /dev/md0  -f  /dev/sdb --fail
+mdadm  /dev/md0 -r  /dev/sdb --remove 
+
+装配阵列（如将阵列磁盘拆下后移至其他设备时进行装配）
+mdadm -A /dev/md1 /dev/sdb5 /dev/sdb6
+
+完整删除整个阵列：
+http://blog.csdn.net/igorzhang/article/details/20695093
