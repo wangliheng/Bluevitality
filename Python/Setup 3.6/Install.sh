@@ -39,7 +39,8 @@ function move_old() {
     mv python python.bak
     mv pip pip.bak
     
-    files=(yum yum-config-manager yum-debug-restore yum-groups-manager yum-builddep yum-debug-dump yumdownloader  '/usr/bin/gnome-tweak-tool' '/usr/libexec/urlgrabber-ext-down')
+    files=(yum yum-config-manager yum-debug-restore yum-groups-manager yum-builddep yum-debug-dump yumdownloader \
+    '/usr/bin/gnome-tweak-tool' '/usr/libexec/urlgrabber-ext-down')
     for file in ${files[@]}
     do
         sed -i "s|#!/usr/bin/python|#!/usr/bin/python.bak|" 
