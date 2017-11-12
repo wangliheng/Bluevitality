@@ -18,7 +18,7 @@
 - [ ] ~~openssl CA及服务端证书免交互生成脚本~~ ~~openssl 加解密相关demo~~
 - [ ] docker的swarm流程脚本
 - [ ] linux当前环境检测及(性能/安全)设置脚本（py）
-- [ ] ~~python 3.6 安装.sh~~
+- [ ] ~~python 3.6 安装.sh~~ python环境变量的说明及目录结构
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] stunel，PPTP的README & 脚本， shadowsock
 - [ ] tcpdump，wireshark 的md
