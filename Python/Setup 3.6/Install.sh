@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# CentOS 7.3
 
 #定义...
 PYTHON_PATH="/usr/local/python3.6"
