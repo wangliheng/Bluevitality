@@ -43,7 +43,7 @@ function move_old() {
     '/usr/bin/gnome-tweak-tool' '/usr/libexec/urlgrabber-ext-down')
     for file in ${files[@]}
     do
-        sed -i "s|#!/usr/bin/python|#!/usr/bin/python.bak|" 
+        sed -i "s|#!/usr/bin/python|#!/usr/bin/python.bak|" $file
         echo "fix $file to use old python version..."
     done
     
