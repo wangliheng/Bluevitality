@@ -17,7 +17,6 @@ fi
 
 #目录
 mkdir -p $..../etc
-mkdir -p $....
 
 #依赖
 yum -y install gcc gcc-c++ ncurses-devel cmake openssl openssl-devel
@@ -45,7 +44,7 @@ if [ $NUM -gt 1 ] ;then
 else
     make
 fi
-
+make install
 
 
 exit 0
