@@ -2,9 +2,8 @@
 
 - [ ] BASH 与 Python 的不断完善 （ 完善VIM的IDE环境 ）
 - [ ] sed/awk的大纲笔记
-- [ ] ~~LVM~~, ~~LVM的镜像~~/条带
+- [ ] ~~LVM~~, ~~LVM的镜像~~/条带 ~~mdadm的README~~
 - [ ] Quota的配置流程记录（加注释）
-- [ ] mdadm的README
 - [x] ~~php install~~
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat，JVM优化
