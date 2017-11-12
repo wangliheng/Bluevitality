@@ -252,3 +252,10 @@ unused devices: <none>
 [root@localhost ~]# cat /etc/mdadm.conf 
 ARRAY /dev/md5 metadata=1.2 spares=1 name=localhost.localdomain:5 UUID=95ea9008:1f7bae13:b3bf6f23:889b03ae
 ```
+#### RAID10
+```bash
+mdadm -C /dev/md0 -l1 -n2 /dev/sdb /dev/sdc
+mdadm -C /dev/md1 -l1 -n2 /dev/sdd /dev/sde
+mdadm -C /dev/md2 -l1 -n2 /dev/sdf /dev/sdg
+mdadm -C /dev/md3 -l0 -n3 /dev/md0 /dev/md1 /dev/md2
+```
