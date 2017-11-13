@@ -1,5 +1,6 @@
+#### 例
 ```bash
-[root@localhost /]# mke2fs -t ext4 -L quota-test-volume /dev/sdb         #格式化磁盘，创建quota环境
+[root@localhost /]# mke2fs -t ext4 -L quota-test-volume /dev/sdb        #格式化磁盘，创建quota环境
 mke2fs 1.42.9 (28-Dec-2013)
 /dev/sdb is entire device, not just one partition!
 无论如何也要继续? (y,n) y
@@ -22,11 +23,11 @@ Allocating group tables: 完成
 正在写入inode表: 完成                            
 Creating journal (8192 blocks): 完成
 Writing superblocks and filesystem accounting information: 完成
-[root@localhost /]# mount -t ext4 -o usrquota,grpquota /dev/sdb /mnt     #挂载并加入Quota对用户及组限制的参数
+[root@localhost /]# mount -t ext4 -o usrquota,grpquota /dev/sdb /mnt    #挂载并加入Quota对用户及组限制的参数
 [root@localhost /]# cat >> /etc/fstab <<eof
 > /dev/sdb    /mnt    ext4    default,usrquota,grpquota 0 0
 > eof
-[root@localhost /]# quotacheck -avug     #扫描/etc/fstab中加入usrquota,grpquota参数的设备并在其根目录产生quota{user,group}
+[root@localhost /]# quotacheck -avug  #扫描/etc/fstab中加入usrquota,grpquota参数的设备并在其根目录产生quota{user,group}
 quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to \
 journaled quota to avoid running quotacheck after an unclean shutdown.
 quotacheck: Scanning /dev/sdb [/mnt] done
@@ -42,7 +43,7 @@ quotacheck: Old file not found.
 -rw------- 1 root root  6144 11月 10 20:04 aquota.group
 -rw------- 1 root root  6144 11月 10 20:04 aquota.user
 drwx------ 2 root root 16384 11月 10 19:59 lost+found
-[root@localhost /]# quotaon -avug        #启动所有支持quota.{user,group}限制的FS （针对指定目录的U/G限制：quotaon -vug /Path）
+[root@localhost /]# quotaon -avug    #启动所有支持quota.{user,group}限制的FS （针对指定目录的U/G限制：quotaon -vug /Path）
 /dev/sdb [/mnt]: group quotas turned on
 /dev/sdb [/mnt]: user quotas turned on
 ```
