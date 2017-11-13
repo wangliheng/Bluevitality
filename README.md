@@ -12,12 +12,13 @@
 - [ ] ~~mysql~~，mysql主从，5.6自带的半同步插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] ~~nginx~~、Nginx4层LB的demo
 - [ ] galera cluster & mycat
+- [ ] 阿里云API的demo
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
 - [ ] 防火墙优化的脚本，安全加固用的（根据各个模块写一个脚本，根据提示执行优化加固用，建议和系统优化脚本在一起）
-- [ ] zabbix的userparameter百度收集汇总
+- [ ] zabbix的userparameter百度收集汇总，SNMP，zabbix监控tomcat的jmx
 - [ ] ~~openssl CA及服务端证书免交互生成脚本~~ ~~openssl 加解密相关demo~~
-- [ ] docker的swarm流程脚本
+- [ ] docker的swarm流程脚本，Jenkins
 - [ ] linux当前环境检测及(性能/安全)设置脚本（py）
 - [ ] ~~python 3.6 安装.sh~~ python环境变量的说明及目录结构
 - [x] ~~Samba~~ & ~~vsftp~~
@@ -26,16 +27,16 @@
 - [ ] nodejs安装及配置流程说明
 - [ ] chef，ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
-- [ ] nodejs和mqtt的安装及相关设置，包括https
+- [ ] nodejs和mqtt的安装及相关设置，包括https，pm2，npm
 - [ ] DNS安装&配置脚本 / view
-- [ ] ISCSI & gfs & clvm
-- [ ] tcpcopy & ipref 的README
+- [ ] ISCSI & gfs & clvm，tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
 - [ ] consul 分步骤按格式存储，修改RAEDME，zookeeper
 - [ ] LDAP
 - [ ] OpenVPN
 - [ ] Openstack，kubernets，ELK，Openvswitch
 - [ ] Squit & Varnish
+- [ ] ceph
 - [ ] ~~VNC~~ & NTP
 - [ ] RabbitMQ
 - [ ] Kafka
