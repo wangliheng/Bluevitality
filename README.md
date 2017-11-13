@@ -7,7 +7,7 @@
 - [x] ~~php install~~
 - [ ] Supervisor，xinetd 的demo与readme
 - [x] ~~mutt+mstp的脚本~~
-- [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat，JVM优化
+- [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，jmx监控及zabbix监控tomcat，JVM优化，jar与jmap的demo
 - [x] ~~memcahed的README & 安装脚本~~
 - [ ] ~~mysql~~，mysql主从，5.6自带的半同步插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] ~~nginx~~、Nginx4层LB的demo
