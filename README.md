@@ -23,7 +23,7 @@
 - [ ] ~~python 3.6 安装.sh~~ python环境变量的说明及目录结构
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] stunel，PPTP的README & 脚本， shadowsock
-- [ ] python的：jinja生成配置文件的demo，sqlalchemy的常规demo
+- [ ] python的：jinja生成配置文件的demo，sqlalchemy的常规demo，disutils项目打包成模块的demo
 - [ ] tcpdump，wireshark 的md
 - [ ] nodejs安装及配置流程说明
 - [ ] chef，ansible的完整流程相关文件结构&README文档
