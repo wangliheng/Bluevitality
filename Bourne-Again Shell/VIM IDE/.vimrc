@@ -1,3 +1,5 @@
+
+#F5自动运行并分屏输出
 function! Setup_ExecNDisplay()
   execute "w"
   execute "silent !chmod +x %:p"
