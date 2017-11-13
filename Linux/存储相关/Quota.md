@@ -43,7 +43,7 @@ quotacheck: Old file not found.
 -rw------- 1 root root  6144 11月 10 20:04 aquota.group
 -rw------- 1 root root  6144 11月 10 20:04 aquota.user
 drwx------ 2 root root 16384 11月 10 19:59 lost+found
-[root@localhost /]# quotaon -avug    #启动所有支持quota.{user,group}限制的FS （针对指定目录的U/G限制：quotaon -vug /Path）
+[root@localhost /]# quotaon -avug    #启动所有支持quota.{user,group}限制的FS（针对指定的U/G限制：quotaon -vug /Path）
 /dev/sdb [/mnt]: group quotas turned on
 /dev/sdb [/mnt]: user quotas turned on
 ```
