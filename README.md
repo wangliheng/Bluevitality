@@ -22,33 +22,20 @@
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] stunel，PPTP的README & 脚本， shadowsock
 - [ ] tcpdump，wireshark 的md
-- [ ] chef
 - [ ] nodejs安装及配置流程说明
-- [ ] ansible的完整流程相关文件结构&README文档
+- [ ] chef，ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
 - [ ] nodejs和mqtt的安装及相关设置，包括https
 - [ ] DNS安装&配置脚本 / view
 - [ ] ISCSI & gfs & clvm
 - [ ] tcpcopy & ipref 的README
 - [x] ~~expect~~
-- [ ] consul 分步骤按格式存储，修改RAEDME
-- [ ] zookeeper
+- [ ] consul 分步骤按格式存储，修改RAEDME，zookeeper
 - [ ] LDAP
 - [ ] OpenVPN
-- [ ] Openstack
-- [ ] kubernets
-- [ ] ELK
+- [ ] Openstack，kubernets，ELK，Openvswitch
 - [ ] Squit & Varnish
 - [ ] ~~VNC~~ & NTP
 - [ ] RabbitMQ
 - [ ] Kafka
 - [ ] Zxarps
-- [ ] Openvswitch
-
-
-
-
-
-
-
-
