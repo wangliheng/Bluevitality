@@ -24,10 +24,10 @@ Allocating group tables: 完成
 Creating journal (8192 blocks): 完成
 Writing superblocks and filesystem accounting information: 完成
 [root@localhost /]# mount -t ext4 -o usrquota,grpquota /dev/sdb /mnt    #挂载并加入Quota对用户及组限制的参数
-[root@localhost /]# cat >> /etc/fstab <<eof
-> /dev/sdb    /mnt    ext4    default,usrquota,grpquota 0 0
+[root@localhost /]# cat >> /etc/fstab <<eof                             #对需限制的设备加入{usr,grp}quota参数
+> /dev/sdb    /mnt    ext4    default,usrquota,grpquota 0 0
 > eof
-[root@localhost /]# quotacheck -avug  #扫描/etc/fstab中加入usrquota,grpquota参数的设备并在其根目录产生quota{user,group}
+[root@localhost /]# quotacheck -avug  #扫描/etc/fstab中加入{usr,grp}quota的设备并在其根目录产生quota{user,group}
 quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to \
 journaled quota to avoid running quotacheck after an unclean shutdown.
 quotacheck: Scanning /dev/sdb [/mnt] done
