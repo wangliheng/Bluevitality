@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# 用于将数据库表结构用 对象表示出来
+# 用于将数据库表结构用对象表示出来
 
-# 导入
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -14,36 +13,31 @@ Base = declarative_base()
 
 # 定义User对象
 class User(Base):
-    # 表的名字
+    # 表名字
     __tablename__ = 'user'
     
-    # 表的结构
+    # 表结构
     id = Column(String(20), primary_key = True)
     name = Column(String(20))
     
-# 初始化数据库连接
-# 字符串表示连接信息：数据库类型+数据库驱动名称://用户名:口令@机器地址:端口号/数据库名
+# 初始化数据库连接，字串表示连接信息：数据库类型+数据库驱动名称://用户名:口令@机器地址:端口号/数据库名
 engine = create_engine('mysql+mysqlconnector://root:wangh@localhost:3306/test')
 # 创建DBSession类型
 DBSession = sessionmaker(bind = engine)
 # 初始化完成
 
-# 添加记录
 # 创建session对象
 session = DBSession()
-# 创建User对象
+# 创建User对象，添加到session
 new_user = User(id = '5', name = 'Bob')
-# 添加到session
 session.add(new_user)
 # 提交及保存到数据库
 session.commit()
 # 关闭
 session.close()
 
-# 查询记录
-# 创建session
+# 创建session并创建Query查询，filter是where条件，最后调用one 是返回为一行，all则返回所有行
 session = DBSession()
-# 创建Query查询，filter是where条件，最后调用one 是返回为一行，all则返回所有行
 user = session.query(User).filter(User.id == '5').one()
 # 打印
 print 'type: ', type(user)
