@@ -1,10 +1,8 @@
 #!/bin/bash
-
+#Tutorial.....
 
 #定义...
-var1=value
-var2=value
-var3=value
+VARIABLE="VALUE"
 
 set -e
 set -x
@@ -21,7 +19,6 @@ mkdir -p $..../etc
 #依赖
 yum -y install gcc gcc-c++ ncurses-devel cmake openssl openssl-devel
 
-
 #删除旧数据
 rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
 
@@ -33,7 +30,6 @@ fi
 
 #判断是否有源码包
 [ -s stunel-4.33.tar.gz ] || exit 1
-
 ......
 ......
 ......
