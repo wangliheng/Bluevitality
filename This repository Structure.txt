@@ -1,10 +1,12 @@
 .
 ├── Bourne-Again Shell
+│   ├── Bash History
 │   ├── Dialog
-│   └── History
+│   └── VIM IDE
 ├── Linux
 │   ├── Daemon Manage
 │   │   ├── Supervisor
+│   │   │   └── Not mine
 │   │   ├── Systemd
 │   │   └── Xinetd
 │   ├── Virtual
@@ -14,11 +16,18 @@
 │   │   └── OpenStack
 │   ├── Web Service
 │   │   ├── Apache
+│   │   │   └── Configs
 │   │   ├── Nginx
+│   │   │   ├── Configs
+│   │   │   └── Setup 1.12.1
 │   │   ├── Nodejs
 │   │   ├── PHP
+│   │   │   └── Setup 5.6.30
 │   │   ├── Squid
 │   │   ├── Tomcat
+│   │   │   ├── Directory contents
+│   │   │   ├── Redis - Session - Manager
+│   │   │   └── Setup 8.0.30
 │   │   └── Varnish
 │   ├── 压力测试
 │   │   ├── Jmeter
@@ -32,23 +41,34 @@
 │   │   ├── ISCSI
 │   │   ├── NFS
 │   │   ├── Rsync + Inotity
+│   │   │   └── setup
 │   │   ├── Rsync + Sersync
 │   │   ├── Samba
 │   │   ├── Vsftp
+│   │   │   └── config-ftp
 │   │   └── 分区脚本
 │   ├── 数字证书
 │   │   ├── Openssl  demo
 │   │   └── Setup PKI
 │   ├── 数据库
 │   │   ├── Memcache
+│   │   │   └── Setup 1.4.24
 │   │   ├── Mongodb
 │   │   ├── Mysql
+│   │   │   ├── Configs
+│   │   │   ├── Galera
+│   │   │   ├── Innobackupex
+│   │   │   ├── Mycat
+│   │   │   ├── Setup 5.6.23
+│   │   │   └── 相关脚本
 │   │   ├── Open Ldap
 │   │   ├── Oracle
 │   │   └── Redis
+│   │       └── conf
 │   ├── 时间同步
 │   ├── 服务发现
 │   │   ├── Consul
+│   │   │   └── 软件
 │   │   └── Zookeeper
 │   ├── 消息队列
 │   │   └── RabbitMQ
@@ -59,6 +79,9 @@
 │   │   ├── Mutt + mstmp
 │   │   ├── Rsyslog
 │   │   └── Zabbix
+│   │       ├── Base Templates
+│   │       ├── Monitor LVS Status
+│   │       └── Zabbix_agentd.d
 │   ├── 网络相关
 │   │   ├── GRE
 │   │   ├── Hydra
@@ -68,17 +91,46 @@
 │   │   └── Stunnel-有问题
 │   ├── 脚本
 │   │   ├── DDOS Demo
+│   │   │   ├── Demo
+│   │   │   └── 八表哥
+│   │   ├── Demo Paramiko
+│   │   ├── Socket File Transfer
+│   │   ├── 反向 SHELL
 │   │   ├── 批处理脚本汇总
+│   │   │   ├── 一分钟打造绿色版备份同步工具
+│   │   │   ├── 全盘禁止运行指定程序
+│   │   │   ├── 去除或恢复XP、Win7、Win8桌面快捷方式小箭头工具
+│   │   │   ├── 右键菜单
+│   │   │   ├── 合并文本
+│   │   │   ├── 备份文件
+│   │   │   ├── 字符串处理
+│   │   │   ├── 快速清理垃圾文件安装修改版
+│   │   │   ├── 批处理弹窗提示
+│   │   │   ├── 提示窗口
+│   │   │   ├── 改IP和MAC
+│   │   │   ├── 教程
+│   │   │   ├── 文件备份器
+│   │   │   ├── 文件替换能手
+│   │   │   ├── 注册表
+│   │   │   ├── 用日期管理你的文件
+│   │   │   ├── 窗口设置
+│   │   │   └── 第三方工具
 │   │   ├── 系统状态分析
+│   │   │   └── Sys init Scripts
 │   │   └── 银行网点终端巡检
 │   ├── 自动化
 │   │   └── Ansible
 │   ├── 软件包管理
 │   │   └── Rpmbuild
+│   │       └── specs - example
 │   ├── 防火墙
 │   └── 高可用
 │       ├── DRBD
+│       │   ├── drbd.d
+│       │   └── soft
 │       ├── HAproxy
+│       │   ├── configs
+│       │   └── 安装脚本
 │       ├── Heartbeat
 │       ├── Keepalive
 │       └── LVS
@@ -87,28 +139,57 @@
 │   │   └── Install Python 3.6
 │   ├── BeautifulSoup
 │   │   └── BeautifulSoup 4 文档翻译
+│   │       ├── _build
+│   │       └── _static
 │   ├── Echarts
 │   │   ├── Line
 │   │   └── Time_Week_Value
 │   ├── Flask
 │   │   ├── Demo 1
+│   │   │   ├── 00_Flask
+│   │   │   ├── 01_Hello
+│   │   │   ├── 02_Flask-Script
+│   │   │   ├── 03_JinjiaModel
+│   │   │   ├── 04_Flask-Bootstrap
+│   │   │   ├── 05_Flask-Moment
+│   │   │   ├── 06_Flask-Wtf
+│   │   │   ├── 07_Flask-SQLAlchemy
+│   │   │   ├── 08_Flask-Migrate
+│   │   │   └── 09_Flask-Mail
 │   │   ├── Demo 2
+│   │   │   └── templates
 │   │   ├── Example
 │   │   ├── Myself
+│   │   │   ├── web_show
+│   │   │   └── web_ show 随机
 │   │   ├── Simple Blog
+│   │   │   └── app
 │   │   └── 简单的背单词实现（摘）
+│   │       ├── app
+│   │       └── images
 │   ├── Paramiko
 │   ├── Request
 │   ├── Spider！
 │   │   ├── 其他人的 Spider
+│   │   │   ├── DouBan
+│   │   │   ├── LaGou
+│   │   │   ├── TouTiao
+│   │   │   ├── XiaoHua
+│   │   │   ├── XiaoHua2
+│   │   │   └── ZhiHu1
 │   │   ├── 基金爬虫
+│   │   │   └── templates
 │   │   └── 简单的爬虫 demo（带注释）
 │   ├── SqlAlchemy
 │   ├── 常用库及第三方包的笔记（摘）
 │   │   └── packages
+│   │       ├── imgs
+│   │       └── scikit_learn
 │   └── 爬虫项目
 └── Tmp
     ├── Chrome Bookmarks
     ├── English
     │   └── Improve
     └── Tools
+
+192 directories
