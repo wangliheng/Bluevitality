@@ -42,5 +42,6 @@ else
 fi
 make install
 
+echo "Script Execution Time： $SECONDS"
 
 exit 0
