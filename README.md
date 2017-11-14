@@ -12,7 +12,7 @@
 - [ ] ~~mysql~~，mysql主从，5.6自带的半同步插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] ~~nginx~~、Nginx4层LB的demo
 - [ ] galera cluster & mycat
-- [ ] 阿里云API的demo
+- [ ] 阿里云API的demo，阿里云赛门铁克免费CA的申请流程
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
 - [ ] 防火墙优化的脚本，安全加固用的（根据各个模块写一个脚本，根据提示执行优化加固用，建议和系统优化脚本在一起）
