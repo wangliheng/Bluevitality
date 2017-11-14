@@ -12,6 +12,7 @@ if ! id www 2> /dev/null; then
 fi 
 
 #依赖
+yum -y install epel-release 
 yum -y install gd gd-devel php-gd zlib zlib-devel openssl openssl-devel libxml2 libxml2-devel libjpeg \
 libjpeg-devel libpng libpng-devel libmcrypt php-mcrypt libmcrypt libmcrypt-devel curl-devel mhash mcrypt \
 libxslt-devel freetype-devel 
