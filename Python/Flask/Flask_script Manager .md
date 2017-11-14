@@ -1,3 +1,4 @@
+这个Manager说简单些就是在python xxxxx.py 语句后面可以指定其代码内定义的函数名及一些参数来运行（提供SHELL）
 ### Demo1
 ```python
 #-*-coding:utf8-*-  
