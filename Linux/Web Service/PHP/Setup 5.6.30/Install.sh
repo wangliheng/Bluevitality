@@ -1,6 +1,9 @@
 #!/bin/bash
 
 PHP_HOME="/usr/local/php-5.6"
+PHP_BIN_HOME="${PHP_HOME}/bin"
+PHP_SBIN_HOME="${PHP_HOME}/sbin"
+PHP_CONF_PATH="${PHP_HOME}/etc"
 ICONV_HOME="/usr/local/libiconv"
 
 set -e
@@ -34,20 +37,50 @@ cd $p
 tar jxvf php-5.6.30.tar.bz2
 cd php-5.6.30
 ./configure \
---prefix=${PHP_HOME} \
---with-config-file-path=${PHP_HOME}/etc \
---with-iconv=${ICONV_HOME} \
+--prefix="${PHP_HOME}" \
+--bindir="${PHP_BIN_HOME}" \
+--sbindir="${PHP_SBIN_HOME}" \
+--with-config-file-path="${PHP_CONF_PATH}" \
+--with-iconv="${ICONV_HOME}" \
+--with-xsl \
+--with-pear \
+--with-mcrypt \
+--with-curl \
 --with-gd \
+--with-mysql=mysqlnd \
+--with-openssl \
+--with-pcre-regex \
+--with-libdir=lib \
+--with-libxml-dir \
+--with-mysqli=shared,mysqlnd \
+--with-pdo-mysql=shared,mysqlnd \
+--with-pdo-sqlite \
+--with-png-dir \
+--with-jpeg-dir \
+--with-zlib \
+--with-xmlrpc \
 --enable-ftp \
 --enable-gd-native-ttf \
 --enable-mysqlnd \
---with-mysql=mysqlnd \
---with-pdo-mysql=mysqlnd \
---with-openssl \
+--enable-bcmath \
 --enable-mbstring \
 --enable-fpm \
---with-mcrypt \
---with-curl \
+--enable-sockets \
+--enable-zip \
+--enable-inline-optimization \
+--enable-shared \
+--enable-libxml \
+--enable-xml \
+--enable-shmop \
+--enable-sysvsem \
+--enable-mbregex \
+--enable-pcntl \
+--enable-soap \
+--enable-session \
+--enable-opcache \
+--enable-maintainer-zts \
+--enable-fileinfo \
+--enable-fpm \
 --enable-sockets
 CPU_NUM=$(cat /proc/cpuinfo | grep processor | wc -l)
 if [ $CPU_NUM -gt 1 ];then
@@ -70,7 +103,7 @@ sed -i 's/;date.timezone =/date.timezone = Asia\/Shanghai /g' /etc/php.ini
 sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g' /etc/php.ini
 sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php.ini
 
-#adjust php-fpm
+#adjust php-fpm 
 mkdir -p /var/log/php
 cp -rf  ${PHP_HOME}/etc/php-fpm.conf.default /etc/php-fpm.conf
 sed -i 's,user = nobody,user=www,g'   /etc/php-fpm.conf
@@ -83,10 +116,14 @@ sed -i 's,;pid = run/php-fpm.pid,pid = run/php-fpm.pid,g'   /etc/php-fpm.conf
 sed -i 's,;error_log = log/php-fpm.log,error_log = /var/log/php/php-fpm.log,g'   /etc/php-fpm.conf
 sed -i "s,;slowlog = .*,slowlog = /var/log/php/php.log.slow,g"  /etc/php-fpm.conf
 
-ln -v /etc/php-fpm.conf ${PHP_HOME}/etc/php-fpm.conf
+ln -sv /etc/php-fpm.conf ${PHP_HOME}/etc/php-fpm.conf
 
 #self start
 install -v -m755 ./sapi/fpm/php-fpm  /etc/init.d/php-fpm
+
+#环境变量
+echo "export PATH=${PHP_BIN_HOME}:${PHP_SBIN_HOME}:$PATH" >> /etc/profile
+source /etc/profile
 
 #PHP-FPM
 /etc/init.d/php-fpm
