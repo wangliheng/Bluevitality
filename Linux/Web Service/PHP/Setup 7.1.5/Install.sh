@@ -130,7 +130,6 @@ make install
 [ -f /etc/php-fpm.conf ] && mv /etc/php-fpm.conf /etc/php-fpm.conf.bak
 [ -f /etc/www.conf ] && mv /etc/www.conf /etc/www.conf.bak
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 改
 #adjust php.ini
 cp -rf ./php.ini-production /etc/php.ini
 sed -i "s#; extension_dir = \"\.\/\"#extension_dir = \"${PHP_HOME}/lib/php/extensions/no-debug-zts-20160303/\"#"  /etc/php.ini
