@@ -30,9 +30,9 @@ app.config['SECRET_KEY'] = "a complex string"
 def index():  
     form = NameForm()  
     if form.validate_on_submit():  
-        old_name=session.get('name')  
-        if old_name is not None and old_name != form.name.data:  
-            flash('name has been changed')  
+        old_name=session.get('name')                             #从会话中提取name值
+        if old_name is not None and old_name != form.name.data:  #将提取的name与表单的name比较
+            flash('name has been changed')     #不同则flash()
             return redirect(url_for('index'))  #返回view function自身的地址(在当前登陆页面提示一个消息)...
         session['name']=form.name.data  
         return render_template('index.html',form=form)  
