@@ -25,7 +25,7 @@
 ```txt
 CentOS 7 版本开始以后服务的管理是通过 systemd 进行的，它用来启动守护进程并且它已经成为大多数发行版的标准配置
 它的设计目标是为系统的启动和管理提供一套完整的解决方案。（Systemd 取代了initd，成为OS的第1个进程，其PID为1）
-Systemd默认从"/etc/systemd/system/*"读配置，但里面大部分都是软链接，指向了 "/usr/lib/systemd/system/" 真正的配置存放在这里
+Systemd默认从"/etc/systemd/system/*"读配置，但里面大部分都是软链接，指向了 "/usr/lib/systemd/system/" 真正的配置在这里
 配置文件大部分位于于 /usr/lib/systemd/system/ 目录，但 Red Hat 官方指出该目录主要是原本软件提供的设置，不建议修改！
 因此，要设置的配置文件位置应置于 /etc/systemd/system/
 
