@@ -31,6 +31,11 @@ Red Hat 9.0 使用的网络守护进程是 xinted（eXtended InterNET daemon）�
 原则上任何系统服务都可以使用xinetd，然而最适合的应该是那些常用的网络服务，同时这个服务的请求数和频繁度不会太高
 像DNS和Apache就不适合采用这种方式，而像FTP、Telnet、SSH等就适合使用xinetd模式
 
+配置文件：
+  xinetd的配置文件是/etc/xinetd.conf，但是它只包括几个默认值及/etc/xinetd.d目录中的配置文件。
+  如果要启用或禁用某项xinetd服务，编辑位于/etc/xinetd.d目录中的配置文件。
+  例如，disable属性被设为yes，表示该项服务已禁用；disable属性被设为no，表示该项服务已启用。
+
 优点：
   1) 强大的存取控制功能
   — 内置对恶意用户和善意用户的差别待遇设定。
