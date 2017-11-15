@@ -58,7 +58,7 @@ Systemd 默认从/etc/systemd/system/读取配置。但里面大部分都是符�
 #### 重读systemd的配置文件
 `systemctl daemon-reload`
 
-#### 摘
+#### 操作demo
 ```txt
 Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位）：
     Service unit：   系统服务
