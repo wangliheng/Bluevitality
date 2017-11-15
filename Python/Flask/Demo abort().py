@@ -1,4 +1,6 @@
-from flask import abort
+from flask import Flask,render_template,abort
+
+app = Flask(__name__)
  
 @app.route('/error')
 def error():
@@ -13,3 +15,6 @@ def page_not_found(error):
     
 #此时，当再次遇到404错误时，即会调用”page_not_found()”函数，其返回”404.html”的模板页。第二个参数代表错误代码。
 
+if __name__ == '__main__':
+    app.debug = True
+    app.run('0.0.0.0',80)
