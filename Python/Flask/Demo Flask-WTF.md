@@ -1,4 +1,4 @@
-#### code
+#### View function
 ```python
 app = Flask(__name__)  
 app.config['SECRET_KEY'] = "a complex string"  
@@ -16,12 +16,12 @@ class loginForm(Form):
 def index():  
     form = loginForm()                #表单类实例  
     if form.validate_on_submit():     #如果验证通过  
-        name = form.name.data         #获取表单name字段的值  
+        name = form.name.data         #获取表单name字段的值给name
         form.name.data = ''
     return render_template('index.html', form = form)  
     
 ```
-#### model
+#### Template model
 ```python
 <h1> Login <h1>
 <form method="post" action="...">  
@@ -33,7 +33,7 @@ def index():
     {{ form.submit() }}  
 </form>  
 ```
-#### Demo
+#### Example
 ```python
 #表单代码
 from flask_wtf import Form
