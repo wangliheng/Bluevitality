@@ -18,3 +18,4 @@ def del(post_id):
 # url_for('user', name='john', _external=True) 的返回结果是 http://localhost:5000/user/john  (_external=True 返回绝对地址)
 # url_for('index', page=2) 的返回结果是 /?page=2。 (函数可将任何额外的参数添加查询字符串中)
 
+# url_for 也可以在模板中使用
