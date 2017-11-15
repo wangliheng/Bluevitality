@@ -1,27 +1,27 @@
 #Example 1
 def cookies_login():
-    name = request.args.get("username", False)
-    password = request.args.get("password", False)
+    name = request.args.get("username", False)          #获取get请求参数 ?username=xxx 的值
+    password = request.args.get("password", False)      #获取get请求参数 ?password=xxx 的值
 
     if not password == "password" or not name:
-        abort(401)
+        abort(401)                                      #需要交给 @app.errorhandler(401) 处理
 
-    resp = make_response("You are now authorized")
-    resp.set_cookie("username", name)
-    return resp
+    resp = make_response("You are now authorized")      #定制 response
+    resp.set_cookie("username", name)                   #定制的内容
+    return resp                                         #返回
 
 
 #Example 2
 def session_login():
     name = request.args.get("username", False)
     password = request.args.get("password", False)
-    print name, password
+    
     if not password == "password" or not name:
         abort(401)
 
-    resp = make_response("You are now authorized")
-    session['username'] = name
-    session['login-time'] = datetime.now()
+    resp = make_response("You are now authorized")      #定制 response
+    session['username'] = name                          #让会话携带特定的KEY与VALUE
+    session['login-time'] = datetime.now()              #...
     return resp
 
 
