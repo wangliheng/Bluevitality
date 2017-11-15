@@ -18,7 +18,14 @@
 #   </p>  
  
 #视图函数中，通过session获取name字段的数值，如果我们两次提交的数值不一致，就是flash一个name has been changed的消息
- 
+
+from flask.ext.wtf import Form  
+from wtforms import StringField, SubmitField  
+from wtforms.validators import Required  
+
+app = Flask(__name__)  
+app.config['SECRET_KEY'] = "a complex string" 
+
 @app.route('/',methods=['GET','POST'])  
 def index():  
     form = NameForm()  
