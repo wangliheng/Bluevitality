@@ -6,7 +6,7 @@
 ├── coredump.conf
 ├── journald.conf
 ├── logind.conf
-├── system
+├── system      # <--- 配置文件存放位置：/etc/systemd/system
 │   ├── basic.target.wants
 │   ├── dbus-org.freedesktop.NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
 │   ├── dbus-org.freedesktop.nm-dispatcher.service -> /usr/lib/systemd/system/NetworkManager-dispatcher.service
@@ -21,3 +21,383 @@
 ├── user
 └── user.conf
 ```
+#### 备忘
+```txt
+CentOS 7 版本开始以后服务的管理是通过 systemd 进行的，它用来启动守护进程，已成为大多数发行版的标准配置
+它的设计目标是，为系统的启动和管理提供一套完整的解决方案。Systemd 取代了initd，成为OS的第1个进程（PID = 1）
+Systemd 默认从/etc/systemd/system/读取配置。但里面大部分都是符号链接，指向/usr/lib/systemd/system/，真正的配置存放在这
+配置文件大部分位于于 /usr/lib/systemd/system/ 目录，但 Red Hat 官方指出该目录主要是原本软件提供的设置，不建议修改！
+而要修改的位置应置于 /etc/systemd/system/ 目录...
+
+
+软件提供方释出的默认配置文件路径：
+    /usr/lib/systemd/system/XXX.service
+
+用户自定义的默认配置文件路径：
+    /etc/systemd/system/XXX.service.d/custom.conf
+    即在"/etc/systemd/system/"下创建与配置文件同名的目录，但是要加 .d 的扩展。然后在该目录下创建配置文件...
+    在这个目录下的文件会"累加其他设置"进入 /usr/lib/systemd/system/XXX.service 内
+
+相依服务的链接：（启动之前）
+    /etc/systemd/system/XXX.service.requires/*
+    即启动 XXX.service 之前需事先启动哪些服务
+    
+相依服务的链接：（启动之后）
+    /etc/systemd/system/XXX.service.wants/*
+    即启动 XXX.service 之后最好再加上这目录下面建议的服务
+
+    
+关于Target文件： 
+Target 就是一个 Unit 组，包含许多相关的 Unit 。
+启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。
+从这个意义上说，Target 这个概念类似于"状态点"，启动某个 Target 就好比启动到某种状态。
+
+启动脚本的位置：
+以前是/etc/init.d目录，符号链接到不同的 RunLevel 目录 （比如/etc/rc3.d、/etc/rc5.d等）
+现在则存放在/lib/systemd/system和/etc/systemd/system目录。
+```
+#### /etc/systemd/Example.service
+```conf
+[Unit]                                          #与执行服务相依性有关
+Description=XXXXX server daemon                 #描述
+Documentation= ....                             #文档地址
+After=network.target sshd-keygen.service        #若指定的 Unit 也要启动则必须在本 Unit 之前启动
+Before=                                         #若指定的 Unit 也要启动则必须在本 Unit 之后启动
+Requires=                                       #强依赖：本 Unit 依赖的其他服务（若没运行则当前Unit不启动）
+Wants=sshd-keygen.service                       #若依赖：本 Unit 配合的其他服务（若没运行不会启动失败）
+BindsTo=                                        #与Requires类似，其定的 Unit 若退出会导致当前 Unit 停止
+Conflicts=                                      #这里指定的 Unit 不能与当前 Unit 同时运行
+Condition                                       #当前 Unit 运行必须满足的条件，否则不会运行
+Assert                                          #当前 Unit 运行必须满足的条件，否则会报启动失败
+
+[Service]                                       #与实际执行的指令参数有关
+Type=forking                                    #启动方式：（forking是后台运行）
+#PrivateTmp=True                                #给服务分配独立的临时空间
+EnvironmentFile=/etc/sysconfig/sshd             #指定环境变量（文件内部是key=value键值，可用$key形式在当前配置中获取）
+ExecStartPre=...                                #启动当前服务之前执行的命令
+ExecStart=/usr/sbin/sshd -D $OPTIONS            #启动服务的脚本（此处的 $OPTIONS 即从EnvironmentFile获取的KEY值  ）
+ExecStartPost=...                               #启动当前服务之后执行的命令
+ExecReload=/bin/kill -HUP $MAINPID              #重启服务的脚本
+ExecStop=...                                    #停止当前服务时执行的命令
+ExecStopPost=...                                #停止当其服务之后执行的命令
+KillMode=process                                #   
+Restart=on-failure                              #定义何种情况下自动重启当前服务，可能的值包括always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog
+RestartSec=42s                                  #自动重启当前服务间隔的秒数
+TimeoutSec=                                     #定义 Systemd 停止当前服务之前等待的秒数
+RemainAfterExit=
+
+[Install]                                       #说明其要放置在哪个 target 下
+WantedBy=multi-user.target                      #表示该服务所在的 Target，本Unit在enable时符号链接会放入/etc/systemd/system目录下以 Target 名 + .wants后缀构成的子目录中
+Also                                            #当前 Unit 激活（enable）时同时激活的其他 Unit
+Alias                                           #当前 Unit 可用于启动的别名
+
+#说明：
+使用 1, yes, true, on     代表启动，
+使用 0, no, false, off    代表关闭
+
+After和Before字段只涉及启动顺序，不涉及依赖关系（设置依赖关系，需使用Wants字段和Requires字段。）
+
+抑制错误：
+所有的启动设置之前，都可以加上一个连词号（-），表示"抑制错误"，即发生错误的时候，不影响其他命令的执行
+比如，EnvironmentFile=-/etc/sysconfig/sshd，就表示即使/etc/sysconfig/sshd文件不存在，也不会抛出错误
+
+TYPE说明：
+    Type=simple：    默认值，启动的进程为主进程
+    Type=forking：   以fork()方式启动，此时父进程将会退出，子进程将成为主进程
+    Type=oneshot：   类似于simple，但只执行一次，Systemd 会等它执行完才启动其他服务
+    Type=dbus：      当前服务通过D-Bus启动（类似于simple，但会等待 D-Bus 信号后启动）
+    Type=notify：    当前服务启动完毕，会通知Systemd，再继续往下执行（类似于simple，启动结束后会发出通知信号然后 Systemd 再启动其他服务）
+    Type=idle：      若有其他任务执行完毕，当前服务才会运行（类似于simple，但是要等到其他任务都执行完，才会启动该服务）
+
+KillMode说明：
+    control-group：  当前控制组里面的所有子进程，都会被杀掉（默认）
+    process：        只杀主进程
+    mixed：          主进程将收到 SIGTERM 信号，子进程收到 SIGKILL 信号
+    none：           没有进程会被杀掉，只是执行服务的 stop 命令。
+```
+#### 重读systemd的配置文件
+`systemctl daemon-reload`
+
+#### 摘
+```txt
+Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位）：
+    Service unit：   系统服务
+    Target unit：    多个 Unit 构成的一个组
+    Device Unit：    硬件设备
+    Mount Unit：     文件系统的挂载点
+    Automount Unit： 自动挂载点
+    Path Unit：      文件或路径
+    Scope Unit：     不是由 Systemd 启动的外部进程
+    Slice Unit：     进程组
+    Snapshot Unit：  Systemd 快照，可以切回某个快照
+    Socket Unit：    进程间通信的 socket
+    Swap Unit：      swap 文件
+    Timer Unit：     定时器
+
+[root@study ~]# systemctl [command] [unit]
+command 主要有：
+start     ：立刻启动后面接的 unit
+stop      ：立刻关闭后面接的 unit
+restart   ：立刻关闭后启动后面接的 unit，亦即执行 stop 再 start 的意思
+reload    ：不关闭后面接的 unit 的情况下，重新载入配置文件，让设置生效
+enable    ：设置下次开机时，后面接的 unit 会被启动
+disable   ：设置下次开机时，后面接的 unit 不会被启动
+status    ：目前后面接的这个 unit 的状态，会列出有没有正在执行、开机默认执行否、登录等信息等！
+is-active ：目前有没有正在运行中
+is-enable ：开机时有没有默认要启用这个 unit
+
+范例一：看看目前 atd 这个服务的状态为何？
+[root@study ~]# systemctl status atd.service
+atd.service - Job spooling tools
+   Loaded: loaded （/usr/lib/systemd/system/atd.service; enabled）
+   Active: active （running） since Mon 2015-08-10 19:17:09 CST; 5h 42min ago
+ Main PID: 1350 （atd）
+   CGroup: /system.slice/atd.service
+           └─1350 /usr/sbin/atd -f
+
+Aug 10 19:17:09 study.centos.vbird systemd[1]: Started Job spooling tools.
+# 重点在第二、三行喔～
+# Loaded：这行在说明，开机的时候这个 unit 会不会启动，enabled 为开机启动，disabled 开机不会启动
+# Active：现在这个 unit 的状态是正在执行 （running） 或没有执行 （dead）
+# 后面几行则是说明这个 unit 程序的 PID 状态以及最后一行显示这个服务的登录文件信息！
+# 登录文件信息格式为：“时间” “讯息发送主机” “哪一个服务的讯息” “实际讯息内容”
+# 所以上面的显示讯息是：这个 atd 默认开机就启动，而且现在正在运行的意思！
+
+范例二：正常关闭这个 atd 服务
+[root@study ~]# systemctl stop atd.service
+[root@study ~]# systemctl status atd.service
+atd.service - Job spooling tools
+   Loaded: loaded （/usr/lib/systemd/system/atd.service; enabled）
+   Active: inactive （dead） since Tue 2015-08-11 01:04:55 CST; 4s ago
+  Process: 1350 ExecStart=/usr/sbin/atd -f $OPTS （code=exited, status=0/SUCCESS）
+ Main PID: 1350 （code=exited, status=0/SUCCESS）
+
+Aug 10 19:17:09 study.centos.vbird systemd[1]: Started Job spooling tools.
+Aug 11 01:04:55 study.centos.vbird systemd[1]: Stopping Job spooling tools...
+Aug 11 01:04:55 study.centos.vbird systemd[1]: Stopped Job spooling tools.
+# 目前这个 unit 下次开机还是会启动，但是现在是没在运行的状态中！同时，
+# 最后两行为新增加的登录讯息，告诉我们目前的系统状态喔！
+
+[root@study ~]# systemctl [command] [--type=TYPE] [--all]
+command:
+    list-units      ：依据 unit 列出目前有启动的 unit。若加上 --all 才会列出没启动的。
+    list-unit-files ：依据 /usr/lib/systemd/system/ 内的文件，将所有文件列表说明。
+--type=TYPE：就是之前提到的 unit type，主要有 service, socket, target 等
+
+范例一：列出系统上面有启动的 unit
+[root@study ~]# systemctl
+UNIT                      LOAD   ACTIVE SUB       DESCRIPTION
+proc-sys-fs-binfmt_mis... loaded active waiting   Arbitrary Executable File Formats File System
+sys-devices-pc...:0:1:... loaded active plugged   QEMU_HARDDISK
+sys-devices-pc...0:1-0... loaded active plugged   QEMU_HARDDISK
+sys-devices-pc...0:0-1... loaded active plugged   QEMU_DVD-ROM
+.....（中间省略）.....
+vsftpd.service            loaded active running   Vsftpd ftp daemon
+.....（中间省略）.....
+cups.socket               loaded failed failed    CUPS Printing Service Sockets
+.....（中间省略）.....
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+
+141 loaded units listed. Pass --all to see loaded but inactive units, too.
+To show all installed unit files use 'systemctl list-unit-files'.
+# 列出的项目中，主要的意义是：
+# UNIT   ：项目的名称，包括各个 unit 的类别 （看扩展名）
+# LOAD   ：开机时是否会被载入，默认 systemctl 显示的是有载入的项目而已喔！
+# ACTIVE ：目前的状态，须与后续的 SUB 搭配！就是我们用 systemctl status 观察时，active 的项目！
+# DESCRIPTION ：详细描述啰
+# cups 比较有趣，因为刚刚被我们玩过，所以 ACTIVE 竟然是 failed 的喔！被玩死了！ ^_^
+# 另外，systemctl 都不加参数，其实默认就是 list-units 的意思！
+
+范例二：列出所有已经安装的 unit 有哪些？
+[root@study ~]# systemctl list-unit-files
+UNIT FILE                                   STATE
+proc-sys-fs-binfmt_misc.automount           static
+dev-hugepages.mount                         static
+dev-mqueue.mount                            static
+proc-fs-nfsd.mount                          static
+.....（中间省略）.....
+systemd-tmpfiles-clean.timer                static
+
+336 unit files listed.
+
+[root@study ~]# systemctl list-units --type=target --all
+UNIT                   LOAD   ACTIVE   SUB    DESCRIPTION
+basic.target           loaded active   active Basic System
+cryptsetup.target      loaded active   active Encrypted Volumes
+emergency.target       loaded inactive dead   Emergency Mode
+final.target           loaded inactive dead   Final Step
+getty.target           loaded active   active Login Prompts
+graphical.target       loaded active   active Graphical Interface
+local-fs-pre.target    loaded active   active Local File Systems （Pre）
+local-fs.target        loaded active   active Local File Systems
+multi-user.target      loaded active   active Multi-User System
+network-online.target  loaded inactive dead   Network is Online
+network.target         loaded active   active Network
+nss-user-lookup.target loaded inactive dead   User and Group Name Lookups
+paths.target           loaded active   active Paths
+remote-fs-pre.target   loaded active   active Remote File Systems （Pre）
+remote-fs.target       loaded active   active Remote File Systems
+rescue.target          loaded inactive dead   Rescue Mode
+shutdown.target        loaded inactive dead   Shutdown
+slices.target          loaded active   active Slices
+sockets.target         loaded active   active Sockets
+sound.target           loaded active   active Sound Card
+swap.target            loaded active   active Swap
+sysinit.target         loaded active   active System Initialization
+syslog.target          not-found inactive dead   syslog.target
+time-sync.target       loaded inactive dead   System Time Synchronized
+timers.target          loaded active   active Timers
+umount.target          loaded inactive dead   Unmount All Filesystems
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+
+26 loaded units listed.
+To show all installed unit files use 'systemctl list-unit-files'.
+
+[root@study ~]# systemctl poweroff  系统关机
+[root@study ~]# systemctl reboot    重新开机
+[root@study ~]# systemctl suspend   进入暂停模式
+[root@study ~]# systemctl hibernate 进入休眠模式
+[root@study ~]# systemctl rescue    强制进入救援模式
+[root@study ~]# systemctl emergency 强制进入紧急救援模式
+
+查看相依性
+[root@study ~]# systemctl list-dependencies [unit] [--reverse]
+选项与参数：
+--reverse ：反向追踪谁使用这个 unit 的意思！
+
+查看特定target下的服务
+[root@study ~]# systemctl list-dependencies graphical.target
+graphical.target
+├─accounts-daemon.service
+├─gdm.service
+├─network.service
+├─rtkit-daemon.service
+├─systemd-update-utmp-runlevel.service
+└─multi-user.target
+  ├─abrt-ccpp.service
+  ├─abrt-oops.service
+.....（下面省略）.....
+
+查看特定服务的配置文件
+[root@localhost /]# systemctl cat atd.service
+# /usr/lib/systemd/system/atd.service
+[Unit]
+Description=Job spooling tools
+After=syslog.target systemd-user-sessions.service
+
+[Service]
+EnvironmentFile=/etc/sysconfig/atd
+ExecStart=/usr/sbin/atd -f $OPTS
+IgnoreSIGPIPE=no
+
+[Install]
+WantedBy=multi-user.target
+
+查看启动耗时： systemd-analyze
+查看每个服务的启动耗时：    systemd-analyze blame
+显示瀑布状的启动过程流：    systemd-analyze critical-chain
+显示指定服务的启动流： systemd-analyze critical-chain atd.service
+
+显示当前主机的信息：  hostnamectl
+设置主机名：  hostnamectl set-hostname rhel7
+
+查看本地化设置：    localectl
+设置本地化参数：    localectl set-locale LANG=en_GB.utf8 && localectl set-keymap en_GB
+
+查看当前时区设置：   timedatectl
+显示所有可用的时区：  timedatectl list-timezones           
+设置当前时区：     
+timedatectl set-timezone America/New_York
+timedatectl set-time YYYY-MM-DD
+timedatectl set-time HH:MM:SS
+
+
+列出所有可用单元：   systemctl list-unit-files 
+列出所有运行中单元：  systemctl list-units
+列出所有失败单元：   systemctl –failed
+检查某个单元（如 crond.service）是否启用：     systemctl is-enabled crond.service
+列出所有服务： systemctl list-unit-files –type=service
+列出当前使用的运行等级：    systemctl get-default
+启动运行等级5，即图形模式：  systemctl isolate runlevel5.target 或：   systemctl isolate graphical.target
+设置多用户模式为默认运行等级：    systemctl set-default runlevel3.target
+
+重启、停止、挂起、休眠系统或使系统进入混合睡眠：
+systemctl reboot
+systemctl halt
+systemctl suspend
+systemctl hibernate
+systemctl hybrid-sleep
+
+启动、重启、停止、重载服务以及检查服务（如 httpd.service）状态：
+systemctl start httpd.service
+systemctl restart httpd.service
+systemctl stop httpd.service
+systemctl reload httpd.service
+systemctl status httpd.service
+
+激活服务并在开机时启用或禁用服务（即系统启动时自动启动mysql.service服务）：
+systemctl is-active mysql.service
+systemctl enable mysql.service
+systemctl disable mysql.service
+
+使用systemctl命令杀死服务：
+systemctl kill crond
+
+列出所有系统挂载点：
+systemctl list-unit-files –type=mount
+
+挂载、卸载、重新挂载、重载系统挂载点并检查系统中挂载点状态：
+systemctl start tmp.mount
+systemctl stop tmp.mount
+systemctl restart tmp.mount
+systemctl reload tmp.mount
+systemctl status tmp.mount
+
+列出所有可用系统套接口：
+systemctl list-unit-files –type=socket
+
+检查某个服务的所有配置细节：
+systemctl show mysql
+
+等级说明：
+Runlevel 0 : 关闭系统
+Runlevel 1 : 救援，维护模式
+Runlevel 3 : 多用户，无图形系统
+Runlevel 4 : 多用户，无图形系统
+Runlevel 5 : 多用户，图形化系统
+Runlevel 6 : 关闭并重启机器
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
