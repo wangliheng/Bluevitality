@@ -3,7 +3,7 @@
 pip install mysql-python
 pip install flask-sqlalchemy
 ```
-#### 相关示例Python代码 (文件名hello.py)
+#### 相关示例Python代码 （文件名：hello.py）
 ```python
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
