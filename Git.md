@@ -124,8 +124,10 @@
 对标签详细设置其名字及说明以便区分：     
 `git tag -a v3.0 -m "tag info..." 3a1f237`     
 删除特定标签：     
-`git tag -d v1.0`    
-   
+`git tag -d v1.0`    
+切换到指定的tag：  
+`git checkout <Tagname>`
+
 用版本库中的文件替换暂存区中的文件：   
 `git reset HEAD -- filename`   
 版本库，暂存区，工作区全部一致，撤回到某个提交点：   
