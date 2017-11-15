@@ -7,12 +7,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/test'
 db = SQLAlchemy(app)
 
 class User(db.Model):
+	
 	id = db.Column(db.Integer,primary_key=True)
 	username = db.Column(db.String(32),unique=True)
 	password = db.Column(db.String(32))
+	
 	def __init__(self,username,password):
 		self.username = username
 		self.password = password
+		
 	def add(self):
 		try:
 			db.session.add(self)
@@ -23,6 +26,7 @@ class User(db.Model):
 			return e
 		finally:
 			return 0
+		
 	def isExisted(self):
 		temUser=User.query.filter_by(username=self.username,password=self.password).first()
 		if temUser is None:
@@ -47,10 +51,10 @@ class Role(db.Model):
 
     users = db.relationship('User',backref='role')	#一对多
 #这句话比较复杂，仔细读下面的话：
-#0.添加到Role模型中的users属性代表这个关系的面向对象视角。对于一个Role类的实例，其users属性将返回与角色相关联的用户组成的列表。
+#添加到Role模型中的users属性代表这个关系的面向对象视角。对于一个Role类的实例，其users属性将返回与角色相关联的用户组成的列表
 #db.Relationship()
 #第1个参数表明这个关系的另一端是哪个模型（类）。如果模型类尚未定义可使用字串形式指定。
-#第2个参数backref，将向User类中添加一个role属性，从而定义反向关系。这属性可替代role_id访问Role模型，此时获取的是模型对象而不是外键的值
+#第2个参数backref将向User类中添加role属性，从而定义反向关系。这属性可替代role_id访问Role模型，此时获取的是模型对象而不是外键的值
 
 # Example 3 一对一关系
 # Role表
