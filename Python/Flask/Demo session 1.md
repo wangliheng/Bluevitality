@@ -31,9 +31,9 @@ def internal_server_error(e):
 def index():  
     form = NameForm()                           #实例化表单类
     if form.validate_on_submit():               #若表单验证通过
-        session['name'] = form.name.data        #存入会话
-        return redirect(url_for('index'))       #重定向到特定视图的URL
-    return render_template('index.html', form=form, name=session.get('name'))   #
+        session['name'] = form.name.data        #存入会话给name
+        return redirect(url_for('index'))       #重定向到特定视图的URL
+    return render_template('index.html', form=form, name=session.get('name'))   #从会话获取name的值给模板的name变量
   
 if __name__ == '__main__':  
     manager.run()  
