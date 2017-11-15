@@ -4,38 +4,37 @@
 /etc/systemd/
 ├── bootchart.conf
 ├── coredump.conf
-├── journald.conf
+├── journald.conf      # <--- 日志相关设置
 ├── logind.conf
-├── system      # <--- 配置文件存放位置：/etc/systemd/system
+├── system      # <--- 配置文件存放位置（/etc/systemd/system）
 │   ├── basic.target.wants
 │   ├── dbus-org.freedesktop.NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
 │   ├── dbus-org.freedesktop.nm-dispatcher.service -> /usr/lib/systemd/system/NetworkManager-dispatcher.service
-│   ├── default.target -> /lib/systemd/system/multi-user.target
+│   ├── default.target -> /lib/systemd/system/multi-user.target      # <--- 启动级别
 │   ├── default.target.wants
 │   ├── getty.target.wants
-│   ├── multi-user.target.wants
+│   ├── multi-user.target.wants      # <--- 
 │   ├── sockets.target.wants
 │   ├── sysinit.target.wants
 │   └── system-update.target.wants
-├── system.conf
+├── system.conf      # <--- 
 ├── user
 └── user.conf
 ```
 #### 备忘
 ```txt
-CentOS 7 版本开始以后服务的管理是通过 systemd 进行的，它用来启动守护进程，已成为大多数发行版的标准配置
-它的设计目标是，为系统的启动和管理提供一套完整的解决方案。Systemd 取代了initd，成为OS的第1个进程（PID = 1）
-Systemd 默认从/etc/systemd/system/读取配置。但里面大部分都是符号链接，指向/usr/lib/systemd/system/，真正的配置存放在这
+CentOS 7 版本开始以后服务的管理是通过 systemd 进行的，它用来启动守护进程并且它已经成为大多数发行版的标准配置
+它的设计目标是为系统的启动和管理提供一套完整的解决方案。（Systemd 取代了initd，成为OS的第1个进程，其PID为1）
+Systemd默认从"/etc/systemd/system/*"读配置，但里面大部分都是软链接，指向了 "/usr/lib/systemd/system/" 真正的配置存放在这里
 配置文件大部分位于于 /usr/lib/systemd/system/ 目录，但 Red Hat 官方指出该目录主要是原本软件提供的设置，不建议修改！
-而要修改的位置应置于 /etc/systemd/system/ 目录...
-
+因此，要设置的配置文件位置应置于 /etc/systemd/system/
 
 软件提供方释出的默认配置文件路径：
     /usr/lib/systemd/system/XXX.service
 
 用户自定义的默认配置文件路径：
     /etc/systemd/system/XXX.service.d/custom.conf
-    即在"/etc/systemd/system/"下创建与配置文件同名的目录，但是要加 .d 的扩展。然后在该目录下创建配置文件...
+    即在"/etc/systemd/system/"下创建与配置文件同名的目录，但其后缀要加".d"的扩展。然后在该目录下创建配置文件...
     在这个目录下的文件会"累加其他设置"进入 /usr/lib/systemd/system/XXX.service 内
 
 相依服务的链接：（启动之前）
@@ -47,9 +46,9 @@ Systemd 默认从/etc/systemd/system/读取配置。但里面大部分都是符�
     即启动 XXX.service 之后最好再加上这目录下面建议的服务
 
 关于Target文件： 
-    Target 就是一个 Unit 组，包含许多相关的 Unit 。
-    启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。
-    从这个意义上说，Target 这个概念类似于"状态点"，启动某个 Target 就好比启动到某种状态。
+    Target 就是一个 Unit 组，包含许多相关的 Unit 配置...
+    启动某个 Target 时，Systemd 就会启动里面所有的 Unit。
+    从这个意义上说，Target 类似于"状态点"，启动某个 Target 就好比启动到某种状态
 
 启动脚本的位置：
     以前是/etc/init.d目录，符号链接到不同的 RunLevel 目录 （比如/etc/rc3.d、/etc/rc5.d等）
@@ -60,7 +59,7 @@ Systemd 默认从/etc/systemd/system/读取配置。但里面大部分都是符�
 
 #### 操作demo
 ```txt
-Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位）：
+Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位），下面是常见的 Unit：
     Service unit：   系统服务
     Target unit：    多个 Unit 构成的一个组
     Device Unit：    硬件设备
@@ -72,21 +71,21 @@ Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位�
     Snapshot Unit：  Systemd 快照，可以切回某个快照
     Socket Unit：    进程间通信的 socket
     Swap Unit：      swap 文件
-    Timer Unit：     定时器
+    Timer Unit：     定时器（常见于控制服务的工作时间段）
 
 [root@study ~]# systemctl [command] [unit]
 command 主要有：
-start     ：立刻启动后面接的 unit
-stop      ：立刻关闭后面接的 unit
-restart   ：立刻关闭后启动后面接的 unit，亦即执行 stop 再 start 的意思
-reload    ：不关闭后面接的 unit 的情况下，重新载入配置文件，让设置生效
-enable    ：设置下次开机时，后面接的 unit 会被启动
-disable   ：设置下次开机时，后面接的 unit 不会被启动
-status    ：目前后面接的这个 unit 的状态，会列出有没有正在执行、开机默认执行否、登录等信息等！
-is-active ：目前有没有正在运行中
-is-enable ：开机时有没有默认要启用这个 unit
+start       ：立刻启动后面接的 unit
+stop        ：立刻关闭后面接的 unit
+restart     ：立刻关闭后启动后面接的 unit，亦即 stop 再 start
+reload      ：不关闭后面接的 unit 的情况下重新载入配置文件，让设置生效
+enable      ：设置开机时，后面接的 unit 会被启动
+disable     ：设置开机时，后面接的 unit 不被启动
+status      ：目前后面接的这个 unit 的状态，会列出有没有正在执行、开机默认执行否、登录等信息等！...
+is-active   ：判断目前有没有正在运行
+is-enable   ：判断开机时有没有默认要启用此 unit
 
-范例一：看看目前 atd 这个服务的状态为何？
+范例一：查看目前 atd 服务的状态
 [root@study ~]# systemctl status atd.service
 atd.service - Job spooling tools
    Loaded: loaded （/usr/lib/systemd/system/atd.service; enabled）
@@ -96,7 +95,6 @@ atd.service - Job spooling tools
            └─1350 /usr/sbin/atd -f
 
 Aug 10 19:17:09 study.centos.vbird systemd[1]: Started Job spooling tools.
-# 重点在第二、三行喔～
 # Loaded：这行在说明，开机的时候这个 unit 会不会启动，enabled 为开机启动，disabled 开机不会启动
 # Active：现在这个 unit 的状态是正在执行 （running） 或没有执行 （dead）
 # 后面几行则是说明这个 unit 程序的 PID 状态以及最后一行显示这个服务的登录文件信息！
@@ -122,7 +120,7 @@ Aug 11 01:04:55 study.centos.vbird systemd[1]: Stopped Job spooling tools.
 command:
     list-units      ：依据 unit 列出目前有启动的 unit。若加上 --all 才会列出没启动的。
     list-unit-files ：依据 /usr/lib/systemd/system/ 内的文件，将所有文件列表说明。
---type=TYPE：就是之前提到的 unit type，主要有 service, socket, target 等
+--type=TYPE：就是之前提到的 unit 类型，主要有 service, socket, target 等
 
 范例一：列出系统上面有启动的 unit
 [root@study ~]# systemctl
@@ -238,78 +236,108 @@ IgnoreSIGPIPE=no
 [Install]
 WantedBy=multi-user.target
 
+显示瀑布状的启动过程流：（不加 unit 参数则从 multi-user.target 开始）
+[root@localhost system]#  systemd-analyze critical-chain atd.service
+The time after the unit is active or started is printed after the "@" character.
+The time the unit takes to start is printed after the "+" character.
+
+atd.service @3.332s
+└─systemd-user-sessions.service @3.251s +74ms
+  └─basic.target @3.245s
+    └─sockets.target @3.245s
+      └─dbus.socket @3.245s
+        └─sysinit.target @3.245s
+          └─systemd-update-utmp.service @3.241s +3ms
+            └─auditd.service @3.221s +19ms
+              └─systemd-tmpfiles-setup.service @3.216s +3ms
+                └─rhel-import-state.service @3.208s +7ms
+                  └─local-fs.target @3.206s
+                    └─boot.mount @312ms +373ms
+                      └─local-fs-pre.target @311ms
+                        └─lvm2-monitor.service @87ms +223ms
+                          └─lvm2-lvmetad.service @100ms
+                            └─lvm2-lvmetad.socket @86ms
+                              └─-.slice
+
+显示当前主机的信息：
+[root@localhost system]#  hostnamectl
+   Static hostname: localhost.localdomain
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: b8e1402695064c25b019e5bce00d3714
+           Boot ID: bedf722bfbb14d48b4bd1f5d75fc8e18
+    Virtualization: vmware
+  Operating System: CentOS Linux 7 (Core)
+       CPE OS Name: cpe:/o:centos:centos:7
+            Kernel: Linux 3.10.0-514.26.2.el7.x86_64
+      Architecture: x86-64
+
+设置主机名：  hostnamectl set-hostname rhel7
 查看启动耗时： systemd-analyze
 查看每个服务的启动耗时：    systemd-analyze blame
-显示瀑布状的启动过程流：    systemd-analyze critical-chain
-显示指定服务的启动流： systemd-analyze critical-chain atd.service
-
-显示当前主机的信息：  hostnamectl
-设置主机名：  hostnamectl set-hostname rhel7
-
 查看本地化设置：    localectl
 设置本地化参数：    localectl set-locale LANG=en_GB.utf8 && localectl set-keymap en_GB
 
 查看当前时区设置：   timedatectl
 显示所有可用的时区：  timedatectl list-timezones           
 设置当前时区：     
-timedatectl set-timezone America/New_York
-timedatectl set-time YYYY-MM-DD
-timedatectl set-time HH:MM:SS
-
+    timedatectl set-timezone America/New_York
+    timedatectl set-time YYYY-MM-DD
+    timedatectl set-time HH:MM:SS
 
 列出所有可用单元：   systemctl list-unit-files 
 列出所有运行中单元：  systemctl list-units
-列出所有失败单元：   systemctl –failed
 检查某个单元（如 crond.service）是否启用：     systemctl is-enabled crond.service
-列出所有服务： systemctl list-unit-files –type=service
+列出所有服务：     systemctl list-unit-files –type=service
 列出当前使用的运行等级：    systemctl get-default
-启动运行等级5，即图形模式：  systemctl isolate runlevel5.target 或：   systemctl isolate graphical.target
-设置多用户模式为默认运行等级：    systemctl set-default runlevel3.target
+设置多用户模式为默认等级：    systemctl set-default runlevel3.target
+启动运行等级5，即图形模式：  systemctl isolate runlevel5.target 或： systemctl isolate graphical.target
 
 重启、停止、挂起、休眠系统或使系统进入混合睡眠：
-systemctl reboot
-systemctl halt
-systemctl suspend
-systemctl hibernate
-systemctl hybrid-sleep
+    systemctl reboot
+    systemctl halt
+    systemctl poweroff
+    systemctl suspend
+    systemctl hibernate
+    systemctl hybrid-sleep
 
 启动、重启、停止、重载服务以及检查服务（如 httpd.service）状态：
-systemctl start httpd.service
-systemctl restart httpd.service
-systemctl stop httpd.service
-systemctl reload httpd.service
-systemctl status httpd.service
+    systemctl start httpd.service
+    systemctl stop httpd.service
+    systemctl restart httpd.service
+    systemctl reload httpd.service
+    systemctl status httpd.service
 
 激活服务并在开机时启用或禁用服务（即系统启动时自动启动mysql.service服务）：
-systemctl is-active mysql.service
-systemctl enable mysql.service
-systemctl disable mysql.service
+    systemctl is-active mysql.service
+    systemctl enable mysql.service
+    systemctl disable mysql.service
 
 使用systemctl命令杀死服务：
-systemctl kill crond
+    systemctl kill crond
 
 列出所有系统挂载点：
-systemctl list-unit-files –type=mount
+    systemctl list-unit-files –type=mount
 
 挂载、卸载、重新挂载、重载系统挂载点并检查系统中挂载点状态：
-systemctl start tmp.mount
-systemctl stop tmp.mount
-systemctl restart tmp.mount
-systemctl reload tmp.mount
-systemctl status tmp.mount
+    systemctl start tmp.mount
+    systemctl stop tmp.mount
+    systemctl restart tmp.mount
+    systemctl reload tmp.mount
+    systemctl status tmp.mount
 
 列出所有可用系统套接口：
-systemctl list-unit-files –type=socket
+    systemctl list-unit-files –type=socket
 
 检查某个服务的所有配置细节：
-systemctl show mysql
+    systemctl show mysql
 
 等级说明：
-Runlevel 0 : 关闭系统
-Runlevel 1 : 救援，维护模式
-Runlevel 3 : 多用户，无图形系统
-Runlevel 4 : 多用户，无图形系统
-Runlevel 5 : 多用户，图形化系统
-Runlevel 6 : 关闭并重启机器
-
+    Runlevel 0  : 关闭系统
+    Runlevel 1  : 救援，维护模式
+    Runlevel 2  : 多用户，无NFS
+    Runlevel 3  : 多用户，无图形系统
+    Runlevel 4  : 多用户，无图形系统
+    Runlevel 5  : 多用户，图形化系统
+    Runlevel 6  : 关闭并重启机器
 ```
