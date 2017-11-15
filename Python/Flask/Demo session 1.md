@@ -15,33 +15,42 @@ manager = Manager(app)
 bootstrap = Bootstrap(app)  
 moment = Moment(app)  
   
-  
 class NameForm(Form):  
     name = StringField('What is your name?', validators=[Required()])  
     submit = SubmitField('Submit')  
- 
  
 @app.errorhandler(404)  
 def page_not_found(e):  
     return render_template('404.html'), 404  
  
- 
 @app.errorhandler(500)  
 def internal_server_error(e):  
     return render_template('500.html'), 500  
- 
- 
+  
 @app.route('/', methods=['GET', 'POST'])  
 def index():  
-    form = NameForm()  
-    if form.validate_on_submit():  
-        session['name'] = form.name.data  
-        return redirect(url_for('index'))  
-    return render_template('index.html', form=form, name=session.get('name'))  
-  
-  
+    form = NameForm()                           #实例化表单类
+    if form.validate_on_submit():               #若表单验证通过
+        session['name'] = form.name.data        #存入会话
+        return redirect(url_for('index'))       #重定向到特定视图的URL
+    return render_template('index.html', form=form, name=session.get('name'))   #
+  
 if __name__ == '__main__':  
     manager.run()  
+```
+#### templates\index.html 
+```python
+{% extends "base.html" %}  
+{% import "bootstrap/wtf.html" as wtf %}  
+  
+{% block title %}Flasky{% endblock %}  
+  
+{% block page_content %}  
+<div class="page-header">  
+    <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>  
+</div>  
+{{ wtf.quick_form(form) }}  
+{% endblock %}  
 ```
 #### templates\base.html  
 ```python
@@ -85,20 +94,6 @@ if __name__ == '__main__':
 {% block scripts %}  
 {{ super() }}  
 {{ moment.include_moment() }}  
-{% endblock %}  
-```
-#### templates\index.html 
-```python
-{% extends "base.html" %}  
-{% import "bootstrap/wtf.html" as wtf %}  
-  
-{% block title %}Flasky{% endblock %}  
-  
-{% block page_content %}  
-<div class="page-header">  
-    <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>  
-</div>  
-{{ wtf.quick_form(form) }}  
 {% endblock %}  
 ```
 
