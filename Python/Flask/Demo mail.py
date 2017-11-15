@@ -8,7 +8,7 @@ app.config.update(
     MAIL_PASSWORD = '**********',MAIL_DEBUG = True
 )
 
-mail = Mail(app)
+mail = Mail(app)        #顺便从app.config中获取配置并执行一些实例化...
 
 @app.route('/')
 def index():
