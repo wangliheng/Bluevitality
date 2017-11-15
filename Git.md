@@ -124,7 +124,7 @@
 对标签详细设置其名字及说明以便区分：     
 `git tag -a v3.0 -m "tag info..." 3a1f237`     
 删除特定标签：     
-`git tag -d v1.0`     
+`git tag -d v1.0`  
 切换到指定的tag：  
 `git checkout <Tagname>`
 
