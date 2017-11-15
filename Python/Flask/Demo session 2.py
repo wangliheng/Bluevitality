@@ -1,3 +1,4 @@
+#Example 1
 from flask import Flask, session, redirect, url_for, escape, request
 
 app = Flask(__name__)
@@ -28,3 +29,27 @@ def logout():
 
 # set the secret key.  keep this really secret:
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+
+#Example 2
+from flask import Flask,session,redirect,url_for,request,render_template
+app = Flask(__name__)
+app.secret_key='123'    #配置secret_key,否则不能实现session对话
+@app.route('/')
+def index():
+    if session.get('username') == 'wanghao' and session.get('password') == '123':
+        return "你已经登陆"
+    msg="没有登陆"
+    return render_template('from_login.html')
+
+@app.route("/login",methods=["POST","GET"])
+def login():
+    if request.method=='POST':
+        session['username']=request.form['username']
+        session['password']=request.form['password']
+        return redirect(url_for('index'))
+    return '123'
+
+if __name__ == '__main__':
+    app.debug=True
+    app.run(port=7998)
