@@ -1,7 +1,3 @@
-[root@localhost tmp]# python
-Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
-Type "help", "copyright", "credits" or "license" for more information.
 >>> import hashlib
 >>> encrypt=hashlib.sha512()
 >>> encrypt.update(bytes('被加密的数据'))
