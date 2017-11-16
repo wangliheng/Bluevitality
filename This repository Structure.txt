@@ -42,7 +42,8 @@
 │   │   ├── GFS
 │   │   ├── Glusterfs
 │   │   ├── ISCSI
-│   │   │   └── Setup
+│   │   │   ├── Setup
+│   │   │   └── 收集的一点资料
 │   │   ├── NFS
 │   │   ├── Rsync + Inotity
 │   │   │   └── setup
@@ -219,4 +220,4 @@
     │   └── Improve
     └── Tools
 
-219 directories
+220 directories
