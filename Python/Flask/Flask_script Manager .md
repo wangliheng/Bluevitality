@@ -1,17 +1,21 @@
-这个Manager说简单些就是在python xxxxx.py 语句后面可以指定其代码内定义的函数名及一些参数来运行（提供SHELL）
+这个Manager说简单些就是在python xxxxx.py 后面可指定其代码内定义的函数名及一些参数来运行（提供SHELL）
 ### Demo1
 ```python
-#-*-coding:utf8-*-  
+#!/usr/bin/env python
+#coding=utf-8
+
+from flask import Flask
 from flask_script import Manager  
-from flask_script import Command  
-from debug import app  
-  
+from flask_script import Command 
+
+app=Flask(__name__)
+ 
 manager = Manager(app)  
 
 @manager.command  
 def hello():  
-    'hello world'  
-    print 'hello world'  
+    'This is help info'  
+    print 'Hello ~'  
   
 if __name__ == '__main__':  
     manager.run()  
@@ -29,9 +33,19 @@ if __name__ == '__main__':
 ```
 ```bash
 #执行如下命令：
-root@localhost ~]# python manager.py hello
-> hello world
+[root@localhost /]# python py 
+usage: py [-?] {hello,shell,runserver} ...
 
+positional arguments:
+  {hello,shell,runserver}
+    hello               This is help info
+    shell               Runs a Python shell inside Flask application context.
+    runserver           Runs the Flask development server i.e. app.run()
+
+optional arguments:
+  -?, --help            show this help message and exit
+[root@localhost /]# python py hello
+Hello ~
 ```
 
 #### Demo2
