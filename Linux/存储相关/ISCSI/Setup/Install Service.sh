@@ -11,7 +11,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 #删除旧数据
-rm -rf  $( rpm -ql scsi-target-utils | grep 'etc' )
+yum -y remove scsi-target-utils
 
 #依赖
 yum -y install epel-release gcc gcc-c++ cmake kernel-devel openssl openssl-devel
@@ -31,15 +31,18 @@ function disable_sec() {
     sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
     systemctl disable firewalld #or firewall-cmd --add-service=iscsi-target --permanent && firewall-cmd-reload
     systemctl stop firewalld
-} 
+} 2> /dev/null
 
 function start_serv() {
+    #若存在旧的进程先干掉
+    kill -9 $(ps -ef | grep tgtd | grep -v grep | awk '{print $2}') || :
+
     systemctl enable tgtd.service
     systemctl start tgtd.service
     systemctl status tgtd.service
 }
 
-
+#run...
 disable_sec || :
 start_serv
 
