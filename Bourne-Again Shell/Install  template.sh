@@ -7,6 +7,9 @@ VARIABLE="VALUE"
 set -e
 set -x
 
+# source /etc/init.d/functions
+# echo_success,echo_failure,echo_passed,echo_warning
+
 #身份检查
 if [ $(id -u) != "0" ]; then
     echo "error: user must be an administrator"
