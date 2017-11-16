@@ -17,7 +17,7 @@ fi
 mkdir -p $..../etc
 
 #依赖
-yum -y install gcc gcc-c++ ncurses-devel cmake openssl openssl-devel
+yum -y install epel-release gcc gcc-c++ cmake kernel-devel openssl openssl-devel rpm-build
 
 #删除旧数据
 rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
