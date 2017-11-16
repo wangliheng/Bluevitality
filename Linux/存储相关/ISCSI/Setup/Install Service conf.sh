@@ -26,7 +26,7 @@ fi
     systemctl start tgtd && systemctl status tgtd || exit 1
 }
 
-#写入配置
+#写入配置 (加入一个'Target')
 cp /etc/tgt/targets.conf /etc/tgt/targets.conf.$(date '+%F').${RANDOM}.bak
 cat >> /etc/tgt/targets.conf <<eof
 <target ${TARGET_LUN_NAME}>
@@ -48,7 +48,7 @@ eof
 
 #重读配置
 function reload_serv() {
-    systemctl restart tgtd && systemctl status tgtd || exit 1
+    systemctl reload tgtd && systemctl status tgtd || exit 1
     
     #输出target信息
     clear ; tgt-admin --show
