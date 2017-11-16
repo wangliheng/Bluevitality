@@ -1,46 +1,38 @@
-from datetime import datetime  
-from flask import flash,render_template,session,redirect,url_for,current_app
-from . import main  
-from .forms import NameForm  
-from .. import db  
-from ..models import User  
-from .. import mail  
-from ..email import msg 
-from flask_login import login_user,logout_user,current_user,login_required
+"""
+新建管理实体
+ogin_manager = LoginManager()
  
+绑定当前应用
+login_manager.setup_app(app)
  
-@main.route('/',methods=['GET','POST'])  
-def index():  
-    form=NameForm()  
-    if form.validate_on_submit():
-        user=User.query.filter_by(username=form.name.data).first()  
-        if user is None:  
-            user = User(username=form.name.data,password=form.password.data)  
-            db.session.add(user)
-            flash('add a user')
-        else:
-            if user.confirm_password(form.password.data) is True:
-                flash('password is right')
-            else:
-                flash('password is not right')
-    return render_template('index.html',form=form)  
-
-@main.route('/login',methods=['GET','POST'])
-def login():
-    form=NameForm()
-    user=User.query.filter_by(username=form.name.data).first()
-    if form.validate_on_submit():
-        if user is not None and user.confirm_password(form.password.data):
-            if current_user.is_authenticated:
-                logout_user()
-                flash('User Logout')
-            else:
-                login_user(user,True)
-                flash('User Login')
-    return render_template('login.html',form=form)
-
-@main.route('/loginrq',methods=['GET','POST'])
+同步用户信息
+@login_manager.user_loader
+def load_user(userid):
+    return User.get(userid)       #如果userId不存在返回None，不要抛异常，返回None后该用户信息会自动从session中删除 (这里写ORM的..)
+ 
+使用
+@app.route("/settings")
 @login_required
-def loginrq():
-    return 'I''m a private url'
-    
+def settings():
+    pass
+
+登出
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()                  #...
+    return redirect(somewhere)
+ 
+用户model必须实现的接口如下
+ is_authenticated()
+ is_active()
+ is_anonymous()
+ get_id()       #返回的需要是一个unicode
+ 
+注：
+1：可以通过 current_user 获取当前登陆用户信息（login提供的全局变量）
+2：有些地方（比如修改密码）方法上需要加上fresh_login_required而不是login_required
+   两者的区别在于前者必须是用户手动登陆，后者还包含了cookie自动登陆的情况
+"""
+
+..............
