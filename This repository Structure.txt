@@ -2,7 +2,8 @@
 ├── Bourne-Again Shell
 │   ├── Bash History
 │   ├── Dialog
-│   └── VIM IDE
+│   ├── VIM IDE
+│   └── 收集的...（备忘）
 ├── Linux
 │   ├── Daemon Manage
 │   │   ├── Supervisor
@@ -15,13 +16,15 @@
 │   │   ├── Docker
 │   │   ├── kubernets
 │   │   ├── KVM
+│   │   │   └── 资料
 │   │   └── OpenStack
 │   ├── Web Service
 │   │   ├── Apache
 │   │   │   └── Configs
 │   │   ├── Nginx
 │   │   │   ├── Configs
-│   │   │   └── Setup 1.12.1
+│   │   │   ├── Setup 1.12.1
+│   │   │   └── 一些资料
 │   │   ├── Nodejs
 │   │   ├── PHP
 │   │   │   ├── Setup 5.6.30
@@ -32,6 +35,7 @@
 │   │   │   ├── Redis - Session - Manager
 │   │   │   └── Setup 8.0.30
 │   │   └── Varnish
+│   │       └── 一些资料
 │   ├── 压力测试
 │   │   ├── Jmeter
 │   │   └── Tcpcopy
@@ -47,7 +51,8 @@
 │   │   │   └── 收集的一点资料
 │   │   ├── NFS
 │   │   ├── Rsync + Inotity
-│   │   │   └── setup
+│   │   │   ├── Configs
+│   │   │   └── Setup
 │   │   ├── Rsync + Sersync
 │   │   ├── Samba
 │   │   ├── Vsftp
@@ -66,6 +71,7 @@
 │   │   │   ├── Innobackupex
 │   │   │   ├── Mycat
 │   │   │   ├── Setup 5.6.23
+│   │   │   ├── 一些资料
 │   │   │   └── 相关脚本
 │   │   ├── Open Ldap
 │   │   ├── Oracle
@@ -89,6 +95,7 @@
 │   │       ├── Monitor LVS Status
 │   │       └── Zabbix_agentd.d
 │   ├── 网络相关
+│   │   ├── DHCP
 │   │   ├── GRE
 │   │   ├── Hydra
 │   │   ├── OpenvSwitch
@@ -134,12 +141,16 @@
 │   └── 高可用
 │       ├── DRBD
 │       │   ├── drbd.d
-│       │   └── soft
+│       │   ├── Softs
+│       │   └── 一些资料
 │       ├── HAproxy
 │       │   ├── configs
+│       │   ├── 一些资料
 │       │   └── 安装脚本
 │       ├── Heartbeat
 │       ├── Keepalive
+│       │   ├── Check Scripts
+│       │   └── 一些资料
 │       └── LVS
 ├── Python
 │   ├── 3.6 Environment
@@ -221,4 +232,4 @@
     │   └── Improve
     └── Tools
 
-221 directories
+232 directories
