@@ -31,7 +31,7 @@
 - [ ] Rsyslog & ~~logrotate~~
 - [ ] nodejs和mqtt的安装及相关设置，包括https，pm2，npm
 - [ ] DNS安装&配置脚本 / view
-- [ ] ISCSI & gfs & clvm，tcpcopy & ipref 的README与sh
+- [ ] ~~ISCSI~~ & gfs & clvm，tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
 - [ ] consul 分步骤按格式存储，修改RAEDME，zookeeper
 - [ ] LDAP
