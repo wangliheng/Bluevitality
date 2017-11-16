@@ -42,6 +42,17 @@ else
 fi
 make install
 
+
+#关闭SELINUX与防火墙
+function disable_sec() {
+    setenforce 0
+    sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
+    systemctl disable firewalld #or firewall-cmd--permanent --add-port=XXX/tcp && firewall-cmd-reload
+    systemctl stop firewalld
+}
+
+disable_sec
+
 echo "Script Execution Time： $SECONDS"
 
 exit 0
