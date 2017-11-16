@@ -50,28 +50,40 @@ Hello ~
 
 #### Demo2
 ```python
-#-*-coding:utf8-*-  
+#!/usr/bin/env python
+#coding=utf-8
+
+from flask import Flask
 from flask_script import Manager  
-from debug import app  
-  
+
+app=Flask(__name__)
 manager = Manager(app)  
- 
-@manager.option('-n', '--name', dest='name', help='Your name', default='world')  
-@manager.option('-u', '--url', dest='url', default='www.csdn.com')  
-def hello(name, url):  
-    'hello world or hello <setting name>'  
-    print 'hello', name  
-    print url  
+
+
+@manager.option('-n', '--name', dest='name', help='Your name', default='None')  
+@manager.option('-u', '--url', dest='url', default='www.baidu.com')
+def hello(name,url):  
+    'This is help info'  
+    print 'your name: %s url: %s' % (name,url)  
   
 if __name__ == '__main__':  
-    manager.run()  
+    manager.run()   
 ```
 ```bash
 #运行方式如下：
-root@localhost ~]# python manager.py hello
-> hello world
-> www.csdn.com
-root@localhost ~]# python manager.py hello -n sissiy -u www.sissiy.com
-> hello sissiy
-> www.sissiy.com
+[root@localhost /]# python py
+usage: py [-?] {hello,shell,runserver} ...
+
+positional arguments:
+  {hello,shell,runserver}
+    hello               This is help info
+    shell               Runs a Python shell inside Flask application context.
+    runserver           Runs the Flask development server i.e. app.run()
+
+optional arguments:
+  -?, --help            show this help message and exit
+[root@localhost /]# python py hello -n wangyu
+your name: wangyu url: www.baidu.com
+[root@localhost /]# python py hello -n wangyu --url www.666.com
+your name: wangyu url: www.666.com
 ```
