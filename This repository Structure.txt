@@ -39,9 +39,10 @@
 │   │   └── Bind View
 │   ├── 存储相关
 │   │   ├── Ceph
-│   │   ├── GFS
 │   │   ├── Glusterfs
 │   │   ├── ISCSI
+│   │   │   ├── CLVM
+│   │   │   ├── GFS
 │   │   │   ├── Setup
 │   │   │   └── 收集的一点资料
 │   │   ├── NFS
@@ -220,4 +221,4 @@
     │   └── Improve
     └── Tools
 
-220 directories
+221 directories
