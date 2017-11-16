@@ -23,8 +23,8 @@ if __name__ == '__main__':
 # OR：
 #class Hello(Command):  
 #    'hello world'  
-#    def run(self):  
-#        print 'hello world'  
+#    def run(self):      #这里的函数名必须为run() 它被manager来调用执行...
+#        print 'hello world'  
 #  
 #manager.add_command('hello', Hello())  
   
