@@ -79,6 +79,9 @@ tgtadm --lld iscsi --op new --mode target --tid 1 -T iqn.2013-05.com.xxxxx:tsan.
 向某ID为[id]的设备上添加一个新的LUN，其号码为[lun]，且此设备供给initiator。[path]是块设备路径，此设备也可以是raid或lvm。lun0被系统预留
 tgtadm --lld [driver] --op new --mode=logicalunit --tid=[id] --lun=[lun] --backing-store [path]
 
+目标接受任何发起者：
+tgtadm --lld iscsi --op bind --mode target --tid 1 -I ALL
+
 显示所有或某个特定的target:
 tgtadm --lld [driver] --op show --mode target [--tid=[id]]
 
@@ -110,6 +113,9 @@ tgtadm --lld iscsi --op new  --mode account --user christina --password 123456
 tgtadm --lld iscsi --op show --mode account
 tgtadm --lld iscsi --op bind --mode account --tid 1 --user christina --outgoing
 tgtadm --lld iscsi --op show --mode target
+
+生成服务器端的配置文件：
+tgt-admin --dump > targets.conf
 ```
 
 #### iscsiadm
