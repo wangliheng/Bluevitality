@@ -5,8 +5,8 @@
 SERVER_ADDRESS="192.168.139.137"
 SERVER_PORT="3260"
 
-USE_AUTH=1                      #是否启用认证? 0 or 1
-INITIATOR_USERNAME="yanfa"      #账号密码
+USE_AUTH=1                      #启用认证? 0 or 1
+INITIATOR_USERNAME="yanfa"      #
 INITIATOR_PASSWORD="123456"     #
 
 set -e
@@ -60,11 +60,11 @@ node.startup = automatic
 node.session.auth.authmethod = CHAP				
 node.session.auth.username = ${INITIATOR_USERNAME}
 node.session.auth.password = ${INITIATOR_PASSWORD}
-node.session.timeo.replacement_timeout = 20     #超时时间
+node.session.timeo.replacement_timeout = 20
 eof
 }
 
-#输出target端提供的设备：（会自动保存记录）
+#输出Target端提供的设备：（将保存发现记录）
 iscsiadm -m discovery -t sendtargets -p ${SERVER_ADDRESS}:${SERVER_PORT} --discover
 
 #启动服务，依discovery模块发现的信息进行挂载
@@ -79,19 +79,3 @@ start_serv
 echo "Script Execution Time： $SECONDS"
 
 exit 0
-
-# ---------------------------------------------------------------------------------------
-#其它常用命令：
-#在initiator端显示发现的target主机： 	iscsiadm -m node
-#在initiator端显示已经建立的target连接：iscsiadm -m session
-#在initiator端断开与指定target的连接：	iscsiadm -m node iqn.2013-09.com.inter.10.1:test-target  -u
-#在initiator端连接指定target： 			iscsiadm -m node iqn.2013-09.com.inter.10.1:test-target  [-l/--login]
-#在initiator端退出所有登录的连接：		iscsiadm -m node --logoutall=all
-#在initiator端命令方式连接/登录：		iscsiadm -m node -T <target-name> -p <ip-address>:<port> --login
-#在initiator端命令方式验证登录：		iscsiadm -m node -T LUN_NAME -o update --name node.session.auth.authmethod --value=CHAP
-#                                       iscsiadm -m node -T LUN_NAME -o update --name node.session.auth.username --value=<user>
-#                                       iscsiadm -m node -T LUN_NAME -o update --name node.session.auth.password --value=<passwd>
-#
-#在target端创建账号：				    tgtadm --lld iscsi -m account -o new --user <username> --password <password>
-#在target端将账号绑定到指定的target：	tgtadm --lld iscsi -m account -o bind --tid 1 --user <username>
-#在target端删除一个账号：			    tgtadm --lld iscsi -m account -o delete --user <username>
