@@ -17,12 +17,4 @@ $JAVA_OPTS
 -XX:NewSize=256m
 -XX:NewRatio=4 
 -XX:SurvivorRatio=8
--XX:+AggressiveOpts 
--XX:+UseBiasedLocking
--XX:+UseConcMarkSweepGC 
--XX:+ScavengeBeforeFullGC
--XX:+PrintGCDetails 
--XX:+PrintGCTimeStamps 
--Xloggc:../logs/performance_gc.log
--XX:+HeapDumpOnOutOfMemoryError 
--XX:HeapDumpPath=../logs/performance_heapdump.hprof"
+-XX:+AggressiveOpts"
