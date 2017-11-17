@@ -57,7 +57,7 @@ function disable_sec() {
         chkconfig iptables off --level 235
         service iptables stop
     fi
-}
+} 2> /dev/null
 
 disable_sec
 
