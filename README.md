@@ -24,7 +24,7 @@
 - [ ] ~~python 3.6 安装.sh~~ python环境变量的说明及目录结构
 - [x] ~~Samba~~ & ~~vsftp~~
 - [x] stunel，PPTP的README & 脚本， shadowsock
-- [ ] python的：jinja生成配置文件的demo（过滤器，流程控制，对象，宏），~~sqlalchemy的常规demo~~，disutils项目打包成模块的demo，sockerserver
+- [ ] python的：~~jinja生成配置文件的demo（过滤器，流程控制，对象，宏）~~，~~sqlalchemy的常规demo~~，disutils项目打包成模块的demo，sockerserver
 - [ ] tcpdump，wireshark 的md
 - [ ] nodejs安装及配置流程说明
 - [ ] chef，ansible的完整流程相关文件结构&README文档
@@ -39,7 +39,7 @@
 - [ ] Openstack，kubernets，ELK，Openvswitch
 - [ ] Squit & Varnish
 - [ ] ceph
-- [ ] ~~VNC~~ & NTP
+- [X] ~~VNC~~ & ~~NTP~~
 - [ ] RabbitMQ
 - [ ] Kafka
 - [ ] Zxarps
