@@ -1,6 +1,5 @@
 #!/bin/bash
 
-jdk_rpm_file="jdk-8u77-linux-x64.rpm"
 tomcat_tar_file="apache-tomcat-8.0.30.tar.gz"
 tomcat_dir="apache-tomcat-8.0.30"
 tomcat_install_dir="/usr/local/tomcat/"
