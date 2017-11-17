@@ -1,3 +1,12 @@
+#### iSCSI 工作流程
+```txt
+当iSCSI主机应用程序发出数据读写请求后，操作系统会生成一个相应的SCSI命令
+该SCSI命令在iSCSI Initiator层被封装成iSCSI消息包并通过TCP/IP传送到设备侧
+设备侧的iSCSI Target层会解开iSCSI消息包，得到SCSI命令的内容，然后传送给SCSI设备执行
+设备执行SCSI命令后的响应，在经过设备侧iSCSI Target层时被封装成iSCSI响应PDU，通过TCP/IP网络传送给主机的iSCSI Initiator层
+Initiator会从iSCSI响应PDU里解析出SCSI响应并传送给操作系统
+操作系统再响应给应用程序。
+```
 #### initiator 与 Target 间的交互
 ```txt
 语法格式：
