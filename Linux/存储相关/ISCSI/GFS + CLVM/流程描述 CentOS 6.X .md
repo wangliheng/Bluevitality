@@ -25,7 +25,7 @@ eof
 ```
 #### Luci设置页面
 ```txt
-![cmd-mar-logo](https://raw.githubusercontent.com/bluevitality/Bluevitality/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL1.png)
+![cmd-mar-logo](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL1.png)
 ![cmd-mar-logo](https://raw.githubusercontent.com/bluevitality/Bluevitality/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL2.png)
 ![cmd-mar-logo](https://raw.githubusercontent.com/bluevitality/Bluevitality/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL3.png)
 ![cmd-mar-logo](https://raw.githubusercontent.com/bluevitality/Bluevitality/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL4.png)
