@@ -69,7 +69,7 @@ eof
 #输出Target端提供的设备：（将保存发现记录）
 iscsiadm -m discovery -t sendtargets -p ${SERVER_ADDRESS}:${SERVER_PORT} --discover
 
-#进行login操作（在需对C端验证的环境下执行）
+#进行login操作
 #iscsiadm -m node -l
 
 #启动服务，依discovery模块发现的信息进行挂载
