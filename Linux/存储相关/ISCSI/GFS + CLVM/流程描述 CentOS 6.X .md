@@ -25,11 +25,11 @@ eof
 ```
 #### Luci设置页面
 ```txt
-![1](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL1.png)
-![2](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL2.png)
-![3](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL3.png)
-![4](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL4.png)
-![5](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20%2B%20CLVM/Images/URL5.png)
+![1](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20+%20CLVM/Images/URL1.png?raw=true)
+![2](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20+%20CLVM/Images/URL2.png?raw=true)
+![3](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20+%20CLVM/Images/URL3.png?raw=true)
+![4](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20+%20CLVM/Images/URL4.png?raw=true)
+![5](https://github.com/bluevitality/Bluevitality/blob/master/Linux/%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3/ISCSI/GFS%20+%20CLVM/Images/URL5.png?raw=true)
 ```
 
 #### 创建完之后
