@@ -24,13 +24,11 @@ eof
 [root@localhost ~]# service ricci start
 ```
 #### Luci设置页面
-```txt
-![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL1.png)
-![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL2.png)
-![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL3.png)
-![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL4.png)
-![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL5.png)
-```
+  ![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL1.png)
+  ![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL2.png)
+  ![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL3.png)
+  ![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL4.png)
+  ![png](https://github.com/bluevitality/Bluevitality/raw/master/Linux/存储相关/ISCSI/GFS%20%2B%20CLVM/Images/URL5.png)
 
 #### 创建完之后
 ```bash
