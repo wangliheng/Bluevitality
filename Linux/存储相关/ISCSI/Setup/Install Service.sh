@@ -1,5 +1,6 @@
 #!/bin/bash
-#Tutorial.....
+# Environment CentOS 7.3
+# Author: inmoonlight@163.com
 
 set -e
 set -x
@@ -34,9 +35,7 @@ function disable_sec() {
 } 2> /dev/null
 
 function start_serv() {
-    #若存在旧的进程先干掉
-    kill -9 $(ps -ef | grep tgtd | grep -v grep | awk '{print $2}') || :
-
+    kill -9 $(ps -ef | grep tgtd | grep -v grep | awk '{print $2}') || :    #若存在旧的进程先干掉
     systemctl enable tgtd.service
     systemctl start tgtd.service
     systemctl status tgtd.service
@@ -49,6 +48,6 @@ start_serv
 #echo "/usr/sbin/tgtd start" >> /etc/rc.local
 #chmod a+x /etc/rc.local
 
-echo -e "\nScript Execution Time： $SECONDS"
+echo -e "\033[32m\n\nScript Execution Time： ${SECONDS}s\033[0m"
 
 exit 0
