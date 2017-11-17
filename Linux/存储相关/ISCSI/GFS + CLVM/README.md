@@ -1,9 +1,10 @@
 #### GFS2
 ```txt
-GFS（Global File System）自己以本地文件系统的形式出现。
-多个Linux机器通过网络共享存储设备，每一台机器都可以将网络共享磁盘看作是本地磁盘
-如果某台机器对 某个文件执行了写操作，则后来访问此文件的机器就会读到写以后的结果。
-可以根据对性能或是可扩展性，或者以经济性多个原则进行不同方案的部署。
+是一个基于GFS的先进的集群文件系统，GFS（Global File System）自己以本地文件系统的形式出现。
+能够同步每台主机的集群文件系统的metadata，能够进行文件锁的管理，并且必须要redhat cluster suite(RHCS)支持
+GFS2可以grow，进行容量的调整（这是在CLVM的基础上进行的）
+多个服务器通过网络共享存储设备，每台机器都将网络共享的磁盘看作本地的，若某设备对某文件执行写操作则后来访问此文件的机器会读到结果
+可以根据对性能或是可扩展性，或者以经济性多个原则进行不同方案的部署
 
 GFS 主要组件：
   集群卷管理
@@ -16,12 +17,6 @@ LUCI： 是基于web的集群配置方式，通过luci可轻松的搭建一个�
 CLVM： Cluster逻辑卷管理，是LVM的扩展，这种扩展允许cluster中的机器使用LVM来管理共享存储
 CMAN： 分布式集群管理器
 ```
-### GFS2
-```txt
-是一个基于GFS的先进的集群文件系统
-能够同步每台主机的集群文件系统的metadata，能够进行文件锁的管理，并且必须要redhat cluster suite(RHCS)支持
-GFS2可以grow，进行容量的调整,不过这是在LVM基础上。
-```
 #### CMAN
 ```txt
 Cluster Manager 简称CMAN
@@ -33,7 +28,7 @@ CMAN通过监视集群节点提供一个法定节点数（quorum）。当集群�
 CMAN通过监控集群中节点来确定各节点的成员关系
 当集群中的成员关系发生改变，CMAN会通架构中其它组件来进行相应的调整
 ```
-#### rgmanager
+#### Rgmanager
 ```txt
 RHCS通过rgmanager来管理集群服务，rgmanager运行在每个集群节点上，在服务器上对应的进程为clurgmgrd
 RHCS 的核心组件为 cman & rgmanager 其中cman为基于openais的“集群基础架构层”，rgmanager为资源管理器。
