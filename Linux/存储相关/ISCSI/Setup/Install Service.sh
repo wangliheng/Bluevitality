@@ -32,6 +32,8 @@ function disable_sec() {
     sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
     systemctl disable firewalld #or firewall-cmd --add-service=iscsi-target --permanent && firewall-cmd-reload
     systemctl stop firewalld
+    systemctl disable iptables
+    systemctl stop iptables
 } 2> /dev/null
 
 function start_serv() {
