@@ -48,7 +48,7 @@
 │   │   │   ├── CLVM
 │   │   │   ├── GFS
 │   │   │   ├── Setup
-│   │   │   └── 收集的一点资料
+│   │   │   └── 一些资料
 │   │   ├── NFS
 │   │   ├── Rsync + Inotity
 │   │   │   ├── Configs
