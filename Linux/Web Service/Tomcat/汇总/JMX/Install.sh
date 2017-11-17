@@ -27,7 +27,7 @@ cp -af ${JMXREMOTE_PASS_FILE} ${JMXREMOTE_PASS_FILE%\.*}    #移除tompalte后�
 cp -af ${JMXREMOTE_PASS_FILE%\.*} ${JMXREMOTE_ACCESS_FILE}  ${TOMCAT_CONF_PATH}
 
 
-chmod 755 ${TOMCAT_CONF_PATH}/jmxremote.*
+chmod 600 ${TOMCAT_CONF_PATH}/jmxremote.*
 
 x=`mktemp`
 cat > $x <<eof
