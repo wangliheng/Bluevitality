@@ -45,8 +45,7 @@
 │   │   ├── Ceph
 │   │   ├── Glusterfs
 │   │   ├── ISCSI
-│   │   │   ├── CLVM
-│   │   │   ├── GFS
+│   │   │   ├── GFS + CLVM
 │   │   │   ├── Setup
 │   │   │   └── 一些资料
 │   │   ├── NFS
@@ -233,4 +232,4 @@
     │   └── Improve
     └── Tools
 
-233 directories
+232 directories
