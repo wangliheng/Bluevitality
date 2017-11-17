@@ -79,7 +79,6 @@
 │   │   ├── Oracle
 │   │   └── Redis
 │   │       └── conf
-│   ├── 时间同步
 │   ├── 服务发现
 │   │   ├── Consul
 │   │   │   └── 软件
@@ -100,6 +99,7 @@
 │   │   ├── DHCP
 │   │   ├── GRE
 │   │   ├── Hydra
+│   │   ├── NTP
 │   │   ├── OpenvSwitch
 │   │   ├── PPTP
 │   │   ├── SSH
