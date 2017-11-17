@@ -12,7 +12,7 @@ set -x
 
 #身份检查
 if [ $(id -u) != "0" ]; then
-    echo "error: user must be an administrator"  echo_failure
+    echo "error: user must be an administrator"
     exit;
 fi
 
