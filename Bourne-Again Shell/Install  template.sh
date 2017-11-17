@@ -1,13 +1,14 @@
 #!/bin/bash
-# CentOS 7.3 ...
+# Environment CentOS 7.3
+# Author: inmoonlight@163.com
+
+#source /etc/init.d/functions   # echo_success,echo_failure,echo_passed,echo_warning
 
 #定义...
 USERNAME="XXX"          #@27-31
 
 set -e
 set -x
-
-source /etc/init.d/functions   # echo_success,echo_failure,echo_passed,echo_warning
 
 #身份检查
 if [ $(id -u) != "0" ]; then
