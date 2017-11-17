@@ -41,7 +41,9 @@ function disable_sec() {
     sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
     systemctl disable firewalld #or firewall-cmd--permanent --add-port=3260/tcp && firewall-cmd-reload
     systemctl stop firewalld
-} 
+    systemctl disable iptables
+    systemctl stop iptables
+} 2> /dev/null
 
 disable_sec || :
 
