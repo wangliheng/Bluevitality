@@ -45,10 +45,8 @@ else
 fi
 make install
 
-
 #关闭SELINUX与防火墙
 function disable_sec() {
-
     if [ -x /usr/bin/systemctl ] ; then
         #CentOS 7.X
         setenforce 0 ; sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
@@ -58,7 +56,7 @@ function disable_sec() {
         #CentOS 6.X
         chkconfig iptables off --level 235
         service iptables stop
-        
+    fi
 }
 
 disable_sec
