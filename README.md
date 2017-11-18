@@ -26,7 +26,7 @@
 - [x] stunel，PPTP的README & 脚本， shadowsock
 - [ ] python的：~~jinja生成配置文件的demo（过滤器，流程控制，对象，宏）~~，~~sqlalchemy的常规demo~~，disutils项目打包成模块的demo，sockerserver
 - [ ] tcpdump，wireshark 的md
-- [ ] nodejs安装及配置流程说明
+- [x] ~~nodejs安装及配置流程说明~~
 - [ ] chef，ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
 - [ ] nodejs和mqtt的安装及相关设置，包括https，pm2，npm
