@@ -35,6 +35,14 @@ eof
 node -v #版本
 npm -v  #包管理器（查看配置：npm config ls -l，包安装路径：npm config ls -l | grep prefix）
 
+#使用阿里云的NPM源
+function change_registry() {
+    npm install -gd express --registry=http://registry.npm.taobao.org
+    npm config set registry http://registry.npm.taobao.org
+}
+
+change_registry
+
 npm install npm -g  #升级npm
 npm install pm2 -g  #进程管理
 
