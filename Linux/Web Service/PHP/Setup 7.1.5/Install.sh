@@ -23,7 +23,7 @@ fi
 yum -y install epel-release 
 yum -y install gd gd-devel php-gd zlib zlib-devel openssl openssl-devel libxml2 libxml2-devel libjpeg \
 libjpeg-devel libpng libpng-devel php-mcrypt  curl-devel mhash mcrypt libmcrypt libmcrypt-devel \
-libxslt-devel freetype-devel
+libxslt-devel freetype-devel bzip2
 
 #检查本地安装包
 [[ -s php-7.1.5.tar.bz2 ]] || exit 1
