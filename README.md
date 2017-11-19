@@ -17,7 +17,7 @@
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
 - [ ] 防火墙优化的脚本，安全加固用的（根据各个模块写一个脚本，根据提示执行优化加固用，建议和系统优化脚本在一起）
-- [ ] zabbix的userparameter目录结构整理及规范格式的README，SNMP，zabbix监控tomcat的jmx
+- [ ] zabbix的userparameter目录结构整理及规范格式的各片段README，SNMP，zabbix监控tomcat的jmx
 - [x] ~~openssl CA及服务端证书免交互生成脚本~~ ~~openssl 加解密相关demo~~
 - [ ] docker的swarm流程脚本，Jenkins
 - [ ] linux当前环境检测及(性能/安全)设置脚本（py）
