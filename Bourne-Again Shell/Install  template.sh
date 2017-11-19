@@ -47,9 +47,9 @@ make install
 
 #关闭SELINUX与防火墙
 function disable_sec() {
+    setenforce 0 ; sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
     if [ -x /usr/bin/systemctl ] ; then
         #CentOS 7.X
-        setenforce 0 ; sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
         systemctl disable firewalld #or firewall-cmd--permanent --add-port=XXX/tcp && firewall-cmd-reload
         systemctl stop firewalld
     else
