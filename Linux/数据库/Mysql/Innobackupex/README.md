@@ -35,8 +35,8 @@ innobackupex在后台线程不断追踪InnoDB的日志文件，然后复制InnoD
 --apply-log               日志回滚
 --incremental=            增量备份，后跟增量备份路径
 --incremental-basedir=    增量备份，指上次增量备份路径
---redo-only               合并全备和增量备份数据文件
---copy-back               将备份数据复制到数据库，数据库目录要为空
+--redo-only               合并全备和增量备份数据文件（增量还原时其指定的是最初的全备路径）
+--copy-back               将备份数据复制到数据库，数据库目录要为空
 --no-timestamp            生成备份文件不以时间戳为目录名
 --stream=                 指定流的格式做备份,--stream=tar,将备份文件归档
 --remote-host=user@ip DST_DIR     备份到远程主机
