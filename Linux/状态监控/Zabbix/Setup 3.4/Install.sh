@@ -70,7 +70,7 @@ cd /usr/local/zabbix_3.4/etc
 sed -i 's/# DBHost=.*/DBHost=localhost/g' zabbix_server.conf 
 sed -i 's/^DBName=.*/DBName=zabbix/g' zabbix_server.conf
 sed -i 's/^DBUser=.*/DBUser=zabbix/g' zabbix_server.conf
-sed -i 's/# DBPassword=.*/DBPassword=zbpass/g' zabbix_server.conf
+sed -i 's/# DBPassword=.*/DBPassword=123456/g' zabbix_server.conf
 sed -i 's|# AlertScriptsPath=.*|AlertScriptsPath=/usr/local/zabbix_3.4/AlertScripts|g' zabbix_server.conf
 
 #agent
