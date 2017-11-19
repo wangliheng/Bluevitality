@@ -2,8 +2,6 @@
 # Environment CentOS 7.3
 # Author: inmoonlight@163.com
 
-#source /etc/init.d/functions   # echo_success,echo_failure,echo_passed,echo_warning
-
 #定义...
 USERNAME="XXX"          #@27-31
 
@@ -16,6 +14,12 @@ if [ $(id -u) != "0" ]; then
     exit;
 fi
 
+#add user
+if ! id ${USERNAME} &> /dev/null ; then
+    groupadd ${USERNAME}
+    useradd -M -g ${USERNAME} ${USERNAME:?'Undefined ...'} -s /sbin/nologin
+fi
+
 #目录
 mkdir -p $..../etc
 
@@ -24,12 +28,6 @@ yum -y install epel-release gcc gcc-c++ cmake kernel-devel openssl openssl-devel
 
 #erase old file and config ...
 rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
-
-#add user
-if ! id ${USERNAME} &> /dev/null ; then
-    groupadd ${USERNAME}
-    useradd -M -g ${USERNAME} ${USERNAME:?'Undefined ...'} -s /sbin/nologin
-fi
 
 #using local
 [ -s stunel-4.33.tar.gz ] || exit 1
