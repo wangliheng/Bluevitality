@@ -22,7 +22,7 @@ if ! id nginx &> /dev/null ; then
 fi
 
 #依赖
-yum -y install gcc gcc-c++ zlib-devel make
+yum -y install gcc gcc-c++ zlib-devel make perl perl-devel 
 
 function _install() {
     #yum -y install openssl-devel pcre-devel
