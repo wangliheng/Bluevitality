@@ -30,11 +30,11 @@ innobackupex在后台线程不断追踪InnoDB的日志文件，然后复制InnoD
 --port=                   指定数据库端口
 --host=                   指定备份主机
 --socket=                 指定socket文件路径
---databases=              备份指定数据库,多个空格隔开，如--databases="dbname1 dbname2",不加备份所有库
---defaults-file=          指定my.cnf配置文件
---apply-log               日志回滚
---incremental=            增量备份，后跟增量备份路径
---incremental-basedir=    增量备份，指上次增量备份路径
+--databases=              备份指定数据库,多个空格隔开，如--databases="dbname1 dbname2"（默认情况下备份所有库）
+--defaults-file=          指定my.cnf配置文件路径
+--apply-log               日志回滚（利用其记录的事物日志信息使数据恢复到同一时间点上一致的状态）
+--incremental=            增量备份，后跟增量备份路径
+--incremental-basedir=    增量备份，指上次增量备份路径（即：以哪个时间点的备份数据做本次增量的基础）
 --redo-only               合并全备和增量备份数据文件（增量还原时其指定的是最初的全备路径）
 --copy-back               将备份数据复制到数据库，数据库目录要为空
 --no-timestamp            生成备份文件不以时间戳为目录名
