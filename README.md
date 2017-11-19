@@ -29,7 +29,7 @@
 - [x] ~~nodejs安装及配置流程说明~~
 - [ ] chef，ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~
-- [ ] nodejs和mqtt的安装及相关设置，包括https，pm2，npm
+- [ ] ~~nodejs~~和mqtt的安装及相关设置，~~包括https，pm2，npm~~
 - [ ] DNS安装&配置脚本 / view
 - [ ] ~~ISCSI~~ ~~& gfs & clvm~~（仅流程），tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
