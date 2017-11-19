@@ -16,9 +16,7 @@
 	rsync_sevip=192.168.126.156				#Rsync服务ip
 	rsync_module=rsync					#Rsync服务模块名称(需要与serv_pub_module的值相同)
 
-#----------------------------------------------------------------------------------------------------------------------
 
-#define sofrware function ...
 function install_rsync() {
 
 	tar zxf rsync-3.1.1.tar.gz && cd rsync-3.1.1
