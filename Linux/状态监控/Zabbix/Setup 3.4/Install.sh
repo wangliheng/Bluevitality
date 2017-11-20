@@ -134,7 +134,8 @@ systemctl enable mariadb
 #自启
 echo "/etc/init.d/zabbix_server start" >> /etc/rc.local
 echo "/etc/init.d/zabbix_agentd start" >> /etc/rc.local
-echo "/usr/local/zabbix_3.4/sbin/zabbix_java/startup.sh" >> /etc/rc.local 
+echo "/usr/local/zabbix_3.4/sbin/zabbix_java/startup.sh" >> /etc/rc.local
+echo "setenforce 0" >> /etc/rc.local
 
 #关闭SELINUX与防火墙
 function disable_sec() {
