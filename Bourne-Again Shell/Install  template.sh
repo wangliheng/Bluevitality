@@ -24,7 +24,7 @@ fi
 mkdir -p $..../etc
 
 #depend
-yum -y install epel-release gcc gcc-c++ cmake kernel-devel openssl openssl-devel
+yum -y install epel-release gcc gcc-c++ cmake kernel-devel openssl openssl-devel net-tools vim
 
 #erase old file and config ...
 rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
