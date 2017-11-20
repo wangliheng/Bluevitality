@@ -96,10 +96,8 @@
 │   │   ├── Mutt + mstmp
 │   │   ├── Rsyslog
 │   │   └── Zabbix
-│   │       ├── Base Templates
-│   │       ├── Monitor LVS Status
-│   │       ├── Setup 3.4
-│   │       └── Zabbix_agentd.d
+│   │       ├── Configs
+│   │       └── Setup 3.4
 │   ├── 网络相关
 │   │   ├── DHCP
 │   │   ├── GRE
@@ -240,4 +238,4 @@
     │   └── Improve
     └── Tools
 
-240 directories
+238 directories
