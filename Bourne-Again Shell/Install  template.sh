@@ -60,7 +60,7 @@ function disable_sec() {
 disable_sec
 
 echo 'xxxxxxxxxxxxxx' >> /etc/rc.local
-chmod a+x /etc/rc.local
+chmod +x /etc/rc.d/rc.local
 
 echo -e "\nScript Execution Time： \033[32m${SECONDS}s\033[0m"
 
