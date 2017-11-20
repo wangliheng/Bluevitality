@@ -1,5 +1,7 @@
 #### 说明
 ```txt
+编译安装 zabbix server 时需要加上：--enable-java 以支持jmx监控！...
+
 首先要了解一下对应关系：
   1. zabbix_server开启java poller
   2. zabbx_java开启JavaGateway，端口为10052
