@@ -1,3 +1,13 @@
+#### 说明
+```txt
+首先要了解一下对应关系：
+  1. zabbix_server开启java poller
+  2. zabbx_java开启JavaGateway，端口为10052
+  3. Tomcat JMX默认开启12345提供性能数据
+
+数据获取：
+java poller <--> JavaGateway:10052 <--> Tomcat:12345.
+```
 #### Zabbix Server端
 ```bash
 #JavaGateway服务器地址，zabbix-server与zabbix_java_gateway在同台服务器
