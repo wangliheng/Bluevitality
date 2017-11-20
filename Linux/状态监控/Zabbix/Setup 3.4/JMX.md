@@ -5,6 +5,7 @@
 [root@localhost ~]# sed -i "s/# JavaGatewayPort=.*/JavaGatewayPort=10052/g" /usr/local/zabbix_3.4/etc/zabbix_server.conf
 #设置javaGateway抓取数据的进程数，当设置为0时表示不具有抓取java信息的能力
 [root@localhost ~]# sed -i "s/# StartJavaPollers=.*/StartJavaPollers=6/g" /usr/local/zabbix_3.4/etc/zabbix_server.conf
+[root@localhost ~]# /etc/init.d/zabbix_server restart
 
 [root@localhost ~]# echo LISTEN_IP="0.0.0.0" >> /usr/local/zabbix_3.4/sbin/zabbix_java/settings.sh 
 [root@localhost ~]# echo LISTEN_PORT=10052 >> /usr/local/zabbix_3.4/sbin/zabbix_java/settings.sh 
@@ -13,6 +14,8 @@
 [root@localhost ~]# /usr/local/zabbix_3.4/sbin/zabbix_java/startup.sh
 [root@localhost ~]# netstat -atupnl | grep 10052
 tcp6       0      0 :::10052                :::*                    LISTEN      1734/java
+
+[root@localhost ~]# #建议重启一下zabbix服务
 ```
 
 #### 在Tomcat端开启JVM监控
