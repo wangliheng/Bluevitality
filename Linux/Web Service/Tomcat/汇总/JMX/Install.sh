@@ -7,7 +7,7 @@ TOMCAT_CONF_PATH="/usr/local/tomcat/conf"
 MONITORROLE_PASSWORD="QAZzaq123"
 CONTROLROLE_PASSWORD="QAZzaq456"
 
-#JMX
+#JMX(监听在本机的哪个接口，用于配合Zabbix的JMX)
 HOST="192.168.139.137"
 PORT="6789"
 
