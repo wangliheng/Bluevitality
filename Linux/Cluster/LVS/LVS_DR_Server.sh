@@ -2,11 +2,13 @@
 
 . /etc/rc.d/init.d/functions
 
-VIP=192.168.0.30
 VIP_INTERFACE="eth0"
+VIP=192.168.0.30
+PORT=80
+
 REALSERVER_IP1=192.168.0.21
 REALSERVER_IP2=192.168.0.22
-PORT=80
+
 
 case "$1" in
     start)           
@@ -19,9 +21,9 @@ case "$1" in
         /sbin/iptables -Z
         /sbin/ipvsadm -C
     
-        /sbin/ipvsadm -A -t $VIP:80 -s wlc
-        /sbin/ipvsadm -a -t $VIP:80 -r $REALSERVER_IP1 -g -w 1
-        /sbin/ipvsadm -a -t $VIP:80 -r $REALSERVER_IP2 -g -w 2
+        /sbin/ipvsadm -A -t ${VIP}:${PORT} -s wlc
+        /sbin/ipvsadm -a -t ${VIP}:${PORT} -r $REALSERVER_IP1 -g -w 1
+        /sbin/ipvsadm -a -t ${VIP}:${PORT} -r $REALSERVER_IP2 -g -w 1
         /bin/touch /var/lock/ipvsadm &> /dev/null
     ;; 
 
