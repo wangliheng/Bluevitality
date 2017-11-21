@@ -5,6 +5,21 @@
 │   ├── VIM IDE
 │   └── 收集的...（备忘）
 ├── Linux
+│   ├── Cluster
+│   │   ├── DRBD
+│   │   │   ├── drbd.d
+│   │   │   ├── Softs
+│   │   │   └── 一些资料
+│   │   ├── HAproxy
+│   │   │   ├── configs
+│   │   │   ├── 一些资料
+│   │   │   └── 安装脚本
+│   │   ├── Heartbeat
+│   │   ├── Keepalive
+│   │   │   ├── Check Scripts
+│   │   │   └── 一些资料
+│   │   ├── LVS
+│   │   └── RHCS
 │   ├── Daemon Manage
 │   │   ├── Supervisor
 │   │   │   └── Configs
@@ -143,22 +158,7 @@
 │   ├── 软件包管理
 │   │   └── Rpmbuild
 │   │       └── specs - example
-│   ├── 防火墙
-│   └── 集群
-│       ├── DRBD
-│       │   ├── drbd.d
-│       │   ├── Softs
-│       │   └── 一些资料
-│       ├── HAproxy
-│       │   ├── configs
-│       │   ├── 一些资料
-│       │   └── 安装脚本
-│       ├── Heartbeat
-│       ├── Keepalive
-│       │   ├── Check Scripts
-│       │   └── 一些资料
-│       ├── LVS
-│       └── RHCS
+│   └── 防火墙
 ├── Python
 │   ├── 3.6 Environment
 │   │   └── Install Python 3.6
