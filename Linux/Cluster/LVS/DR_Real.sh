@@ -7,7 +7,7 @@ start)
        ifconfig lo:0 $SNS_VIP netmask 255.255.255.255 broadcast $SNS_VIP
        /sbin/route add -host $SNS_VIP dev lo:0
        echo "1" >/proc/sys/net/ipv4/conf/lo/arp_ignore  #仅响应本接口的ARP（因lo口非本地接口所以实现了对VIP的ARP静默）
-       echo "2" >/proc/sys/net/ipv4/conf/lo/arp_announce #
+       echo "2" >/proc/sys/net/ipv4/conf/lo/arp_announce #仅相应收到ARP请求的网卡的MAC（实现排除对本机其他接口的MAC响应）
        echo "1" >/proc/sys/net/ipv4/conf/all/arp_ignore
        echo "2" >/proc/sys/net/ipv4/conf/all/arp_announce
        sysctl -p >/dev/null 2>&1
