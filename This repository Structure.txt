@@ -144,7 +144,7 @@
 │   │   └── Rpmbuild
 │   │       └── specs - example
 │   ├── 防火墙
-│   └── 高可用
+│   └── 集群
 │       ├── DRBD
 │       │   ├── drbd.d
 │       │   ├── Softs
