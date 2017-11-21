@@ -33,12 +33,12 @@
 - [ ] DNS安装&配置脚本 / view
 - [ ] ~~ISCSI~~ ~~& gfs & clvm~~（仅流程），tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
-- [ ] consul 分步骤按格式存储，修改RAEDME，zookeeper
+- [ ] consul 分步骤按格式存储，修改RAEDME
+- [ ] hadoop，storm，spark，zookeeper
+- [ ] Openstack，kubernets，ELK，Openvswitch，ceph
 - [ ] LDAP
 - [ ] OpenVPN
-- [ ] Openstack，kubernets，ELK，Openvswitch
 - [ ] Squit & Varnish
-- [ ] ceph
 - [X] ~~VNC~~ & ~~NTP~~
 - [ ] RabbitMQ
 - [ ] Kafka
