@@ -11,9 +11,9 @@
 │   │   │   ├── Softs
 │   │   │   └── 一些资料
 │   │   ├── HAproxy
-│   │   │   ├── configs
-│   │   │   ├── 一些资料
-│   │   │   └── 安装脚本
+│   │   │   ├── Configs
+│   │   │   ├── Setup 1.6.7
+│   │   │   └── 一些资料
 │   │   ├── Heartbeat
 │   │   ├── Keepalive
 │   │   │   ├── Check Scripts
@@ -86,6 +86,7 @@
 │   │   ├── Memcache
 │   │   │   └── Setup 1.4.24
 │   │   ├── Mongodb
+│   │   │   └── 一些资料
 │   │   ├── Mysql
 │   │   │   ├── Configs
 │   │   │   ├── Galera
@@ -239,4 +240,4 @@
     │   └── Improve
     └── Tools
 
-239 directories
+240 directories
