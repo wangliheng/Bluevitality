@@ -2,6 +2,7 @@
 
 - [ ] BASH 与 Python 的不断完善 （ 完善VIM的IDE环境 ）
 - [ ] sed/awk的大纲笔记，Git备忘优化排版，优化例子
+- [ ] 抽时间，快速复习一遍.....
 - [ ] ~~LVM~~, ~~LVM的镜像~~/条带 ~~mdadm的README~~
 - [x] ~~Quota的配置流程记录（加注释）~~
 - [x] ~~php 5.6 & 7.1 install~~
