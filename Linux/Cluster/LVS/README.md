@@ -90,15 +90,11 @@ yum install -y ipvsadm
 
 # 前端 director 设置
 echo 1 > /proc/sys/net/ipv4/ip_forward
-# 关闭 icmp 重定向
-echo 0 > /proc/sys/net/ipv4/conf/all/send_redirects
-echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
-echo 0 > /proc/sys/net/ipv4/conf/eth0/send_redirects
-echo 0 > /proc/sys/net/ipv4/conf/eth1/send_redirects
-# 设置 nat
-iptables -t nat -F
-iptables -t nat -X
-iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j MASQUERADE
+
+# 设置 nat （实验环境的设置，当实际环境为NAT时此步骤跳过）
+# iptables -t nat -F
+# iptables -t nat -X
+# iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j MASQUERADE
 
 ipvsadm -C
 ipvsadm -A -t 172.16.254.200:80 -s wrr
