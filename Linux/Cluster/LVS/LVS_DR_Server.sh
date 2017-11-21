@@ -3,8 +3,8 @@
 . /etc/rc.d/init.d/functions
 
 VIP=192.168.0.30
-RIP1=192.168.0.21
-RIP2=192.168.0.22
+REALSERVER_IP1=192.168.0.21
+REALSERVER_IP2=192.168.0.22
 PORT=80
 
 case "$1" in
@@ -20,8 +20,8 @@ start)
   /sbin/ipvsadm -C
 
   /sbin/ipvsadm -A -t $VIP:80 -s wlc
-  /sbin/ipvsadm -a -t $VIP:80 -r $RIP1 -g -w 1
-  /sbin/ipvsadm -a -t $VIP:80 -r $RIP2 -g -w 2
+  /sbin/ipvsadm -a -t $VIP:80 -r $REALSERVER_IP1 -g -w 1
+  /sbin/ipvsadm -a -t $VIP:80 -r $REALSERVER_IP2 -g -w 2
   /bin/touch /var/lock/subsys/ipvsadm &> /dev/null
 ;; 
 
