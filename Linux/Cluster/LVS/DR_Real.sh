@@ -1,8 +1,6 @@
 #!/bin/bash
  
 SNS_VIP=10.0.2.245
-
-/etc/rc.d/init.d/functions
  
 case "$1" in
 start)
