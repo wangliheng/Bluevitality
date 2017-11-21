@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. /etc/rc.d/init.d/functions
-
 VIP_INTERFACE="eth0"
 VIP=192.168.0.30
 PORT=80
