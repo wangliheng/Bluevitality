@@ -35,12 +35,11 @@
 - [ ] ~~ISCSI~~ ~~& gfs & clvm~~（仅流程），tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
 - [ ] consul 分步骤按格式存储，修改RAEDME
-- [ ] hadoop，storm，spark，zookeeper
+- [ ] hadoop，storm，spark，zookeeper，Kafka，reducemap，hdfs
 - [ ] Openstack，kubernets，ELK，Openvswitch，ceph
 - [ ] LDAP
 - [ ] OpenVPN
 - [ ] Squit & Varnish
 - [X] ~~VNC~~ & ~~NTP~~
 - [ ] RabbitMQ
-- [ ] Kafka
 - [ ] Zxarps
