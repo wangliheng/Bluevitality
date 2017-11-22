@@ -6,6 +6,7 @@
 - [ ] ~~LVM~~, ~~LVM的镜像~~/条带 ~~mdadm的README~~
 - [x] ~~Quota的配置流程记录（加注释）~~
 - [x] ~~php 5.6 & 7.1 install~~
+- [ ] keepalived配置文件注释完成，haproxy脚本，lvs完善，drbd，eartbeat
 - [x] ~~Supervisor，xinetd 的demo与readme~~，~~Flask相关的gunicorn和manage的md或sh~~ systemd的@与.timer.target的说明
 - [x] ~~mutt+mstp的脚本~~
 - [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，~~jmx监控~~及zabbix监控tomcat，~~JVM优化，jar与jmap的demo~~
