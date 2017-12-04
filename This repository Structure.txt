@@ -27,7 +27,7 @@
 │   │   │   └── Configs
 │   │   └── Xinetd
 │   │       └── Configs
-│   ├── Kernel
+│   ├── Linux Kernel
 │   ├── Virtual
 │   │   ├── Docker
 │   │   ├── kubernets
