@@ -22,6 +22,7 @@ xxx.src.rpm
 [root@localhost ~]# tree rpmbuild                               #RPM包的制作车间（遵循一定的目录结构规范）
 rpmbuild
 ├── BUILD                                         #解压后的文件所在（创建RPM时将自动在此目录执行某些操作）
+├── BUILDROOT                                     #凡在此目录生成的文件必须做进rpm否则报错（可在install阶段事先删除）
 ├── RPMS                                          #存放制作完成后的二进制包（含以各平台命名的子目录及对应包）
 ├── SOURCES                                       #原材料位置，如源码包，文档...
 ├── SPECS                                         #存放管理rpm制作过程的描述文件（含宏及各阶段的定义和脚本等...）
@@ -49,6 +50,8 @@ BuildRoot:      %{_topdir}/BUILDROOT              # make install 时使�
 BuildRequires:  gcc,automake,binutils             # 制作时依赖的软件
 Requires:       logrotate                         # 安装时依赖的软件
 
+%define   MACORS_NAME   VALUE                     # 用户自定义的SPEC宏，引用：%{MACORS_NAME}
+
 %description                                      # rpm -qi xxx.rpm
 Fill in the details about the package here
 ......
@@ -56,28 +59,66 @@ Fill in the details about the package here
 %prep                                             # 准备阶段
 %setup -q                                         # 建议用"%setup -q"替代"%prep"的内容（此宏能够自动完成解压和cd）
 
-
 %build                                            # 编译阶段
-%configure
+%configure                                        # rpmbuild --showrc | grep configure
 make %{?_smp_mflags}
 
-
-%install                                          # 安装阶段
-rm -rf $RPM_BUILD_ROOT
-%make_install
+%install                                          # 安装阶段（在此阶段可实现删除不需要加入rpm包的文件）
+rm -rf $RPM_BUILD_ROOT                            # 来自于宏定义，查看： rpmbuild --showrc | grep RPM_BUILD_ROOT
+%make_install                                     # 相当于 %{__make} install DESTDIR=%{?buildroot}
 
 %clean                                            # 安装完成后的清理阶段
 rm -fr %{buildroot}                               
 
 %files                                            # 文件阶段
+%defattr(-, root, root, 0755)                     # 定义其下方对象的默认权限（-,user,group,perm）
+%doc %{pecl_docdir}/%{pecl_name}                  # 指明文档文件，不指目标路径则位于/usr/share/doc/name-verion
+%config(noreplace) %{_sysconfdir}/%{name}.conf    # 指明配置文件，此处设置位于：/etc/<name>.conf
+/usr/local/bin/xxx                                # 将整个目录包含进rpm包中
+%dir %attr(0755, redis, root) %{_localstatedir}/lib/%{name}
+
+
 %doc
 
+%pre                                              # 在执行RPM的安装命令之前执行的shell脚本（脚本段可留空）
 
+%post                                             # 安装之后执行
 
-%changelog                                        # 版本变更日志
+%preun                                            # 卸载之前执行
+
+%postun                                           # 写在之后执行
+
+%preun                                            # 脚本段，定义卸载前的动作，如杀掉进程.....
+
+%changelog                                        # 变更日志（下面是摘来的例子）
+* date +"%a %b %d %Y"  修改人  <邮箱>  本次版本-License修订号
+- XXXXX ......
+
+* Mon Aug 16 2010 Silas Sewell <inmoonlight@163.com> - 1.2.6-2
+- Don't compress man pages
+- Use patch to fix redis.conf
+
+* Tue Jul 06 2010 Silas Sewell <inmoonlight@163.com> - 1.2.6-1
+- Initial package
 ```
 #### 构建
-```bash
+```txt
+rpmbuild：
+    -bl          检查spec中的%file段来查看文件是否齐全
+    -ba          建立二进制包&源码
+    -bb          建立二进制包
+    -bp          执行到 prep 阶段
+    -bc          执行到 build 阶段
+    -bi          执行到 install 阶段
+
+制作：    
+    cd /usr/src/redhat/SPECS/
+    rpmbuild -ba nginx.spec
+    将生成：/usr/src/redhat/RPMS/i386/nginx-1.2.1-1.el5.ngx.i386.rpm
+    
+src.rpm格式是rpm源码包，查看内容：    rpm2cpio filename.src.rpm | cpio -t
+展开src.rpm格式文件内的SPEC文件：    rpm2cpio filename.src.rpm | cpio -id
+使用src.rpm格式的文件制作成rpm包：    rpmbuild --rebuild filename.src.rpm  (默认将制作好的rpm包放至用户制作车间)
 ```
 
 #### 软件包所属类别
