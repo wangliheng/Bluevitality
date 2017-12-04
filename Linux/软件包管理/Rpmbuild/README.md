@@ -21,8 +21,7 @@ xxx.src.rpm
 [root@localhost ~]# rpmdev-setuptree                            #生成~/rpmbuild及子目录
 [root@localhost ~]# tree rpmbuild                               #RPM包的制作车间（遵循一定的目录结构规范）
 rpmbuild
-├── BUILD                                         #解压后的文件所在（创建RPM时将自动在此目录执行某些操作）
-├── BUILDROOT                                     #凡在此目录生成的文件必须做进rpm否则报错（可在install阶段事先删除）
+├── BUILD                                         #解压后的文件所在（创建RPM时将自动在此目录执行某些操作）                                 
 ├── RPMS                                          #存放制作完成后的二进制包（含以各平台命名的子目录及对应包）
 ├── SOURCES                                       #原材料位置，如源码包，文档...
 ├── SPECS                                         #存放管理rpm制作过程的描述文件（含宏及各阶段的定义和脚本等...）
@@ -46,9 +45,12 @@ Source0:        %{name}.xxx                       # 明确说明�
 Source1:        xxxxx                             # 默认将SOURCES下的源文件在rpmbuild的BUILD目录进行解压缩操作
 Source2:        xxxxx
 
-BuildRoot:      %{_topdir}/BUILDROOT              # make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）
+BuildRoot:      %{_topdir}/%{name}-%{version}-%{release}-root
+# make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）
+#凡在此目录生成的文件必须做进rpm否则报错（可在install阶段先删除）
+                                                  
 BuildRequires:  gcc,automake,binutils             # 制作时依赖的软件
-Requires:       logrotate                         # 安装时依赖的软件
+Requires:       logrotate,xxx,xxx                 # 安装时依赖的软件
 
 %define   MACORS_NAME   VALUE                     # 用户自定义的SPEC宏，引用：%{MACORS_NAME}
 
