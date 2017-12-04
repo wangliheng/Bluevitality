@@ -104,9 +104,9 @@ rm -fr %{buildroot}
 #### 构建
 ```txt
 rpmbuild：
-    -bl          检查spec中的%file段来查看文件是否齐全
-    -ba          建立二进制包&源码
-    -bb          建立二进制包
+    -bl          检查spec中的%file段来查看文件是否齐全（检查有没有未被引入rpm包的文件）
+    -ba          建立二进制格式rpm包&源码包
+    -bb          建立二进制格式rpm包
     -bp          执行到 prep 阶段
     -bc          执行到 build 阶段
     -bi          执行到 install 阶段
