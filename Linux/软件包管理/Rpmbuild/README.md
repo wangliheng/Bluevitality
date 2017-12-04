@@ -86,6 +86,7 @@ rm -fr %{buildroot}
 %config(noreplace) %{_sysconfdir}/%{name}.conf    # 指明配置文件，此处设置位于%{BuildRoot}的：/etc/<name>.conf
 /usr/local/bin/xxx                                # 将整个目录包含进rpm包中（此处的'/'即从从%{BuildRoot}开始的/）
 %dir %attr(0755, redis, root) /lib/%{name}        # 引入空目录
+%attr(0755,root,root) /etc/rc.d/init.d/daemon     # 引入启动脚本（%attr用来明确定义单个文件的属性）
 
 
 %doc
