@@ -32,19 +32,22 @@ rpmbuild
 [root@localhost SPECS]# rpmdev-newspec -o Name-version.spec     #生成默认的SPEC模板
 Name-version.spec created; type minimal, rpm version >= 4.11.
 [root@localhost SPECS]# cat Name-version.spec 
-Name:           Name-version
-Version:        
-Release:        1%{?dist}
-Summary:        
+Name:           Name                              # 查询此处定义RPM的信息：rpm -qi xxx.rpm
+Version:                                          #
+Release:        1%{?dist}                         #
+Summary:                                          #
+Group:          Applications/Databases
 
 License:        
 URL:            
 Source0:        
+Source1:
+Source2:
 
 BuildRequires:  
 Requires:       
 
-%description
+%description                                      # rpm -qi xxx.rpm
 
 
 %prep
@@ -67,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+```
+#### 构建
+```bash
 ```
 
 #### 软件包所属类别
