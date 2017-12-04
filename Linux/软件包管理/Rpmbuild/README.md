@@ -31,45 +31,50 @@ rpmbuild
 [root@localhost ~]# cd rpmbuild/SPECS/
 [root@localhost SPECS]# rpmdev-newspec -o Name-version.spec     #生成默认的SPEC模板
 Name-version.spec created; type minimal, rpm version >= 4.11.
-[root@localhost SPECS]# cat Name-version.spec 
-Name:           Name                              # 查询此处定义RPM的信息：rpm -qi xxx.rpm
-Version:                                          #
-Release:        1%{?dist}                         #
-Summary:                                          #
-Group:          Applications/Databases
+[root@localhost SPECS]# cat Name-version.spec     # 示例 demo（k:v中的key可以%{key}的形式在spec中多次引用..）
+Name:           Name                              # 查询此处定义RPM的信息：rpm -qi xxx.rpm
+Version:        x.x.x                             #
+Release:        1%{?dist}                         # "?": 即若存在dist宏（el5,el6,centos...）则替换
+Summary:        A brief description of the package
+Group:          Applications/Server
+Distribution:   Linux                             # 发行版系列 
+License:        GPLv2
+Vender:         bluevitality <inmoonlight@163.com>
+URL:            https://github.com/bluevitality
+Source0:        %{name}.xxx                       # 明确说明源文件，默认将基于rpmbuild的SOURCES目录查找
+Source1:        xxxxx                             # 默认将SOURCES下的源文件在rpmbuild的BUILD目录进行解压缩操作
+Source2:        xxxxx
 
-License:        
-URL:            
-Source0:        
-Source1:
-Source2:
-
-BuildRequires:  
-Requires:       
+BuildRoot:      %{_topdir}/BUILDROOT              # make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）
+BuildRequires:  gcc,automake,binutils             # 制作时依赖的软件
+Requires:       logrotate                         # 安装时依赖的软件
 
 %description                                      # rpm -qi xxx.rpm
+Fill in the details about the package here
+......
+
+%prep                                             # 准备阶段
+%setup -q                                         # 建议用"%setup -q"替代"%prep"的内容（此宏能够自动完成解压和cd）
 
 
-%prep
-%setup -q
-
-
-%build
+%build                                            # 编译阶段
 %configure
 make %{?_smp_mflags}
 
 
-%install
+%install                                          # 安装阶段
 rm -rf $RPM_BUILD_ROOT
 %make_install
 
+%clean                                            # 安装完成后的清理阶段
+rm -fr %{buildroot}                               
 
-%files
+%files                                            # 文件阶段
 %doc
 
 
 
-%changelog
+%changelog                                        # 版本变更日志
 ```
 #### 构建
 ```bash
