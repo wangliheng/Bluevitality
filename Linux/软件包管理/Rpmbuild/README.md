@@ -31,9 +31,9 @@ rpmbuild
 [root@localhost ~]# cd rpmbuild/SPECS/
 [root@localhost SPECS]# rpmdev-newspec -o Name-version.spec     #生成默认的SPEC模板
 Name-version.spec created; type minimal, rpm version >= 4.11.
-[root@localhost SPECS]# cat Name-version.spec     # 示例 demo（k:v中的key可以%{key}的形式在spec中多次引用..）
+[root@localhost SPECS]# cat Name-version.spec     # 示例 demo（k:v中的key可以%{key}的形式在spec中全局多引用..）
 Name:           Name                              # 查询此处定义RPM的信息：rpm -qi xxx.rpm
-Version:        x.x.x                             #
+Version:        x.x.x                             # 版本需严格匹配（%setup -q将自动使用这些宏进行一系列解压和cd操作）
 Release:        1%{?dist}                         # "?": 即若存在dist宏（el5,el6,centos...）则替换
 Summary:        A brief description of the package
 Group:          Applications/Server
@@ -49,8 +49,13 @@ BuildRoot:      %{_topdir}/%{name}-%{version}-%{release}-root
 # make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）
 #凡在此目录生成的文件必须做进rpm否则报错（可在install阶段先删除）
                                                   
-BuildRequires:  gcc,automake,binutils             # 制作时依赖的软件
-Requires:       logrotate,xxx,xxx                 # 安装时依赖的软件
+BuildRequires:  gcc,automake,binutils,pcre-devel  # 制作时依赖的软件
+Requires:       openssl,xxx,xxx                   # 安装时依赖的软件
+
+Require(pre):                                     # 执行脚本时的依赖
+Require(post):
+Require(preun):
+Require(postun):
 
 %define   MACORS_NAME   VALUE                     # 用户自定义的SPEC宏，引用：%{MACORS_NAME}
 
@@ -62,12 +67,14 @@ Fill in the details about the package here
 %setup -q                                         # 建议用"%setup -q"替代"%prep"的内容（此宏能够自动完成解压和cd）
 
 %build                                            # 编译阶段
+export DESTDIR=%{BuildRoot}
 %configure                                        # rpmbuild --showrc | grep configure
 make %{?_smp_mflags}
 
 %install                                          # 安装阶段（在此阶段可实现删除不需要加入rpm包的文件）
 rm -rf $RPM_BUILD_ROOT                            # 来自于宏定义，查看： rpmbuild --showrc | grep RPM_BUILD_ROOT
 %make_install                                     # 相当于 %{__make} install DESTDIR=%{?buildroot}
+%{__install} -p -d -m 0755 %{BuildRoot}/var/x     # 创建空目录
 
 %clean                                            # 安装完成后的清理阶段
 rm -fr %{buildroot}                               
@@ -75,9 +82,9 @@ rm -fr %{buildroot}
 %files                                            # 文件阶段
 %defattr(-, root, root, 0755)                     # 定义其下方对象的默认权限（-,user,group,perm）
 %doc %{pecl_docdir}/%{pecl_name}                  # 指明文档文件，不指目标路径则位于/usr/share/doc/name-verion
-%config(noreplace) %{_sysconfdir}/%{name}.conf    # 指明配置文件，此处设置位于：/etc/<name>.conf
-/usr/local/bin/xxx                                # 将整个目录包含进rpm包中
-%dir %attr(0755, redis, root) %{_localstatedir}/lib/%{name}
+%config(noreplace) %{_sysconfdir}/%{name}.conf    # 指明配置文件，此处设置位于%{BuildRoot}的：/etc/<name>.conf
+/usr/local/bin/xxx                                # 将整个目录包含进rpm包中（此处的'/'即从从%{BuildRoot}开始的/）
+%dir %attr(0755, redis, root) /lib/%{name}        # 引入空目录
 
 
 %doc
