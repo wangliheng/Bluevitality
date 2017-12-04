@@ -75,6 +75,7 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT                            # 来自于宏定义，查看： rpmbuild --showrc | grep RPM_BUILD_ROOT
 %make_install                                     # 相当于 %{__make} install DESTDIR=%{?buildroot}
 %{__install} -p -d -m 0755 %{BuildRoot}/var/x     # 创建空目录
+%{__install} -p -D -m 0755 %{Source1} %{BuildRoot}/etc/rc.d/init.d/daemon
 
 %clean                                            # 安装完成后的清理阶段
 rm -fr %{buildroot}                               
