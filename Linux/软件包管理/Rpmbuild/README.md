@@ -46,7 +46,7 @@ Source1:        xxxxx                             # 默认将SO
 Source2:        xxxxx
 
 BuildRoot:      %{_topdir}/%{name}-%{version}-%{release}-root
-# make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）
+# make install 时使用的虚拟根路径！（对OS不进行实际的安装操作）变量 $RPM_BUILD_ROOT 即对宏："%{BuildRoot}"的引用
 #凡在此目录生成的文件必须做进rpm否则报错（可在install阶段先删除）
                                                   
 BuildRequires:  gcc,automake,binutils,pcre-devel  # 制作时依赖的软件
