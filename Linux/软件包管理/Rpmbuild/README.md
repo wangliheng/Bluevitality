@@ -52,8 +52,8 @@ BuildRoot:      %{_topdir}/%{name}-%{version}-%{release}-root
 BuildRequires:  gcc,automake,binutils,pcre-devel  # 制作时依赖的软件
 Requires:       openssl,xxx,xxx                   # 安装时依赖的软件
 
-Require(pre):                                     # 执行脚本时的依赖
-Require(post):
+Require(pre):   bash >= 3.0                       # 执行脚本时的依赖
+Require(post):  python(flask) >= x.x              # 可指定依赖于特定语言的某个模块并指定依赖版本
 Require(preun):
 Require(postun):
 
