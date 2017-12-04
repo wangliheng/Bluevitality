@@ -28,35 +28,8 @@ nmcli：
 [root@localhost rules.d]# nmcli device status                   #得到网络设备状态
 设备         类型      状态    CONNECTION  
 eno16777736  ethernet  连接的  eno16777736 
-lo           loopback  未管理  --
-[root@localhost rules.d]# nmcli device show                     #得到设备信息
-GENERAL.设备:                           eno16777736
-GENERAL.类型:                           ethernet
-GENERAL.硬盘:                           00:0C:29:AD:AB:AE
-GENERAL.MTU:                            1500
-GENERAL.状态:                           100 (连接的)
-GENERAL.CONNECTION:                     eno16777736
-GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/0
-WIRED-PROPERTIES.容器:                  开
-IP4.地址[1]:                            192.168.0.3/24
-IP4.网关:                               192.168.0.2
-IP4.DNS[1]:                             192.168.0.2
-IP4.域[1]:                              localdomain
-IP6.地址[1]:                            fe80::20c:29ff:fead:abae/64
-IP6.网关:                               
-
-GENERAL.设备:                           lo
-GENERAL.类型:                           loopback
-GENERAL.硬盘:                           00:00:00:00:00:00
-GENERAL.MTU:                            65536
-GENERAL.状态:                           10 (未管理)
-GENERAL.CONNECTION:                     --
-GENERAL.CON-PATH:                       --
-IP4.地址[1]:                            127.0.0.1/8
-IP4.网关:                               
-IP6.地址[1]:                            ::1/128
-IP6.网关:                      
-[root@localhost rules.d]# nmcli device show eno16777736         #得到特定设备的详情
+lo           loopback  未管理  --         
+[root@localhost rules.d]# nmcli device show eno16777736         #得到特定设备的详情（属性）
 GENERAL.设备:                           eno16777736
 GENERAL.类型:                           ethernet
 GENERAL.硬盘:                           00:0C:29:AD:AB:AE
@@ -75,21 +48,13 @@ IP6.网关:
 名称         UUID                                  类型            设备        
 eno16777736  5630b9e3-7cd4-4488-8a42-d0c2c817f2ba  802-3-ethernet  eno16777736 
 eno16777736  91fc2077-5bfe-445e-8b5e-8d939a966189  802-3-ethernet  -- 
-[root@localhost rules.d]# nmcli connection show eno16777736     #得到特定连接的详情
+[root@localhost rules.d]# nmcli connection show eno16777736     #得到特定连接的详情（属性）
 connection.id:                          eno16777736
 connection.uuid:                        5630b9e3-7cd4-4488-8a42-d0c2c817f2ba
 connection.interface-name:              eno16777736
 connection.type:                        802-3-ethernet
 connection.autoconnect:                 no
-connection.autoconnect-priority:        0
-connection.timestamp:                   1512426780
-connection.read-only:                   no
-connection.permissions:                 
-connection.zone:                        --
-connection.master:                      --
-connection.slave-type:                  --
-connection.autoconnect-slaves:          -1 (default)
-connection.secondaries:                 
+.................略
 connection.gateway-ping-timeout:        0
 connection.metered:                     未知
 802-3-ethernet.port:                    --
@@ -125,22 +90,14 @@ ipv6.dns-search:
 ipv6.addresses:                         
 ipv6.gateway:                           --
 ipv6.routes:                            
-ipv6.route-metric:                      -1
-ipv6.ignore-auto-routes:                no
-ipv6.ignore-auto-dns:                   no
-ipv6.never-default:                     no
-ipv6.may-fail:                          yes
-ipv6.ip6-privacy:                       -1 (未知)
-ipv6.dhcp-send-hostname:                yes
+.................略
 ipv6.dhcp-hostname:                     --
 GENERAL.名称:                           eno16777736
 GENERAL.UUID:                           5630b9e3-7cd4-4488-8a42-d0c2c817f2ba
 GENERAL.设备:                           eno16777736
 GENERAL.状态:                           已激活
 GENERAL.默认:                           是
-GENERAL.DEFAULT6:                       否
-GENERAL.VPN:                            否
-GENERAL.ZONE:                           --
+.................略
 GENERAL.DBUS-PATH:                      /org/freedesktop/NetworkManager/ActiveConnection/0
 GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/Settings/1
 GENERAL.SPEC 对象:                      /
@@ -149,13 +106,7 @@ IP4.地址[1]:                            192.168.0.3/24
 IP4.网关:                               192.168.0.2
 IP4.DNS[1]:                             192.168.0.2
 IP4.域[1]:                              localdomain
-DHCP4.选项[1]:                          requested_domain_search = 1
-DHCP4.选项[2]:                          requested_nis_domain = 1
-DHCP4.选项[3]:                          requested_time_offset = 1
-DHCP4.选项[4]:                          requested_broadcast_address = 1
-DHCP4.选项[5]:                          requested_rfc3442_classless_static_routes = 1
-DHCP4.选项[6]:                          requested_classless_static_routes = 1
-DHCP4.选项[7]:                          requested_domain_name = 1
+.................略
 DHCP4.选项[8]:                          expiry = 1514572087
 DHCP4.选项[9]:                          domain_name = localdomain
 DHCP4.选项[10]:                         next_server = 192.168.0.254
@@ -165,17 +116,8 @@ DHCP4.选项[13]:                         requested_subnet_mask = 1
 DHCP4.选项[14]:                         dhcp_lease_time = 2161800
 DHCP4.选项[15]:                         routers = 192.168.0.2
 DHCP4.选项[16]:                         ip_address = 192.168.0.3
-DHCP4.选项[17]:                         requested_static_routes = 1
-DHCP4.选项[18]:                         requested_interface_mtu = 1
-DHCP4.选项[19]:                         requested_nis_servers = 1
-DHCP4.选项[20]:                         requested_wpad = 1
-DHCP4.选项[21]:                         requested_ntp_servers = 1
-DHCP4.选项[22]:                         requested_domain_name_servers = 1
-DHCP4.选项[23]:                         domain_name_servers = 192.168.0.2
-DHCP4.选项[24]:                         requested_ms_classless_static_routes = 1
-DHCP4.选项[25]:                         requested_routers = 1
-DHCP4.选项[26]:                         subnet_mask = 255.255.255.0
-DHCP4.选项[27]:                         network_number = 192.168.0.0
+.................略
+DHCP4.选项[27]:                         network_number = 192.168.0.0
 DHCP4.选项[28]:                         requested_host_name = 1
 DHCP4.选项[29]:                         dhcp_server_identifier = 192.168.0.254
 IP6.地址[1]:                            fe80::20c:29ff:fead:abae/64
@@ -186,13 +128,7 @@ connection.uuid:                        91fc2077-5bfe-445e-8b5e-8d939a966189
 connection.interface-name:              eno16777736
 connection.type:                        802-3-ethernet
 connection.autoconnect:                 no
-connection.autoconnect-priority:        0
-connection.timestamp:                   0
-connection.read-only:                   no
-connection.permissions:                 
-connection.zone:                        --
-connection.master:                      --
-connection.slave-type:                  --
+.................略
 connection.autoconnect-slaves:          -1 (default)
 connection.secondaries:                 
 connection.gateway-ping-timeout:        0
@@ -201,8 +137,7 @@ connection.metered:                     未知
 802-3-ethernet.speed:                   0
 802-3-ethernet.duplex:                  --
 802-3-ethernet.auto-negotiate:          yes
-802-3-ethernet.mac-address:             --
-802-3-ethernet.cloned-mac-address:      --
+.................略
 802-3-ethernet.mac-address-blacklist:   
 802-3-ethernet.mtu:                     自动
 802-3-ethernet.s390-subchannels:        
@@ -215,12 +150,7 @@ ipv4.dns:
 ipv4.dns-search:                        
 ipv4.addresses:                         
 ipv4.gateway:                           --
-ipv4.routes:                            
-ipv4.route-metric:                      -1
-ipv4.ignore-auto-routes:                no
-ipv4.ignore-auto-dns:                   no
-ipv4.dhcp-client-id:                    --
-ipv4.dhcp-send-hostname:                yes
+.................略
 ipv4.dhcp-hostname:                     --
 ipv4.never-default:                     no
 ipv4.may-fail:                          yes
@@ -231,16 +161,51 @@ ipv6.addresses:
 ipv6.gateway:                           --
 ipv6.routes:                            
 ipv6.route-metric:                      -1
-ipv6.ignore-auto-routes:                no
-ipv6.ignore-auto-dns:                   no
-ipv6.never-default:                     no
-ipv6.may-fail:                          yes
+.................略
 ipv6.ip6-privacy:                       -1 (未知)
 ipv6.dhcp-send-hostname:                yes
 ipv6.dhcp-hostname:                     --
+[root@localhost rules.d]# nmcli device wifi list                    #WIFI list
+*  SSID              MODE    CHAN  RATE    SIGNAL  BARS  SECURITY
+    netdatacomm_local  Infra  6    54 MB/s  37      ▂▄__  WEP
+*  F1                Infra  11    54 MB/s  98      ▂▄▆█  WPA1
+    LoremCorp          Infra  1    54 MB/s  62      ▂▄▆_  WPA2 802.1X
+    Internet          Infra  6    54 MB/s  29      ▂___  WPA1
+    HPB110a.F2672A    Ad-Hoc  6    54 MB/s  22      ▂___  -- 
 ```
 
-#### 备忘
-```txt
+#### connection
+```bash
+[root@localhost ~]# localectl set-locale LANG=en_US.utf8            #改为英文CLI环境
+[root@localhost ~]#  nmcli device show eno16777736                  #查看接口详细信息（查看接口属性）
+GENERAL.DEVICE:                         eno16777736
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         00:0C:29:AD:AB:AE
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     eno16777736
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/0
+WIRED-PROPERTIES.CARRIER:               on
+IP4.ADDRESS[1]:                         192.168.0.3/24
+IP4.GATEWAY:                            192.168.0.2
+IP4.DNS[1]:                             192.168.0.2
+IP4.DOMAIN[1]:                          localdomain
+IP6.ADDRESS[1]:                         fe80::20c:29ff:fead:abae/64
+IP6.GATEWAY:       
+[root@localhost ~]# nmcli connection modify eno16777736 +ipv4.addresses 172.16.100.1/26   #修改接口属性(+|-| )
+[root@localhost ~]# nmcli connection up eno16777736                                       #刷新设置
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/1)
+[root@localhost ~]# nmcli device show eno16777736 | grep IP4.ADDRESS                      #查看
+IP4.ADDRESS[1]:                         192.168.0.3/24
+IP4.ADDRESS[2]:                         172.16.100.1/26
+
+[root@localhost ~]# nmcli connection down eno1677736      #禁用与启用设备地址
+[root@localhost ~]# nmcli connection up eno1677736 
+
+#添加更多的DNS，注意：要使用额外的+符号，并且要是+ipv4.dns，而不是ip4.dns。
+[root@localhost ~]# nmcli connection modify "static" +ipv4.dns 8.8.8.8
+
+#总结
+[root@localhost ~]# nmcli connection modify <interface> [+|-] setting.property value      #设置链接属性
 
 ```
