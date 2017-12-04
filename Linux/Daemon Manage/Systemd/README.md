@@ -341,3 +341,26 @@ atd.service @3.332s
     Runlevel 5  : 多用户，图形化系统
     Runlevel 6  : 关闭并重启机器
 ```
+#### hostnamectl
+```bash
+# hostnamectl：
+#    status
+#    set-hostname <name>
+
+[root@localhost ~]# hostnamectl status
+   Static hostname: localhost.localdomain
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: a0d4da63906a4a5f97671a27a749c0e3
+           Boot ID: b9e60e318211441f9a77bfc17b9003e5
+    Virtualization: vmware
+  Operating System: CentOS Linux 7 (Core)
+       CPE OS Name: cpe:/o:centos:centos:7
+            Kernel: Linux 3.10.0-327.el7.x86_64
+      Architecture: x86-64
+[root@localhost ~]# cat /etc/centos-release
+CentOS Linux release 7.2.1511 (Core) 
+[root@localhost ~]# hostnamectl set-hostname test           #设置主机名
+[root@localhost ~]# hostname
+test
+```
