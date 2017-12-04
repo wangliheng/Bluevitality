@@ -14,7 +14,7 @@
 - [ ] ~~mysql~~，~~mysql主从~~，5.6自带的半同步插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] ~~nginx~~、~~Nginx4层LB的demo~~，mysql多实例
 - [ ] galera cluster & mycat
-- [ ] rpm 和 yum 的原理 目录 参数 全部总结细化 & rpmbuild 重新整理
+- [ ] rpm 和 yum 的原理 目录 参数 全部总结细化 & ~~rpmbuild 重新整理~~
 - [ ] 阿里云API的demo，阿里云赛门铁克免费CA的申请流程
 - [ ] mysql命令收集，归纳，整理 ---> .md
 - [ ] 系统内核的优化脚本，要按用途分类进行设置，并提供手动设置和提示的功能！
