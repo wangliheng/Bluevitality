@@ -11,22 +11,21 @@ xxx.src.rpm
   带有src后缀的rpm不是编译好的二进制程序
   其内部包含了源程序代码与SPEC文件!...
   需要使用rpmbuild命令将其编译为适合当前平台的rpm包之后再进行Install
-  
 ```
 
 #### 准备
 ```bash
 [root@localhost ~]# yum -y install rpmdevtools pcre-devel       #包含rpmbuild，rpmdev-newspec，rpmdev-setuptree
-[root@localhost ~]# cat ~/.rpmmacros                            #指定RPM包制作的车间目录（定义'%_topdir'宏）
+[root@localhost ~]# cat ~/.rpmmacros                            #宏文件，此处指定RPM包制作的车间目录：'%_topdir'
 %_topdir %(echo $HOME)/rpmbuild
 [root@localhost ~]# rpmdev-setuptree                            #生成~/rpmbuild及子目录
 [root@localhost ~]# tree rpmbuild                               #RPM包的制作车间（遵循一定的目录结构规范）
 rpmbuild
-├── BUILD                                                       #解压后的文件所在
-├── RPMS                                                        #存放rpmbuild制作的二进制包
-├── SOURCES                                                     #存放原材料，如源码包，文档...
-├── SPECS                                                       #存放管理rpm制作过程的描述文件
-└── SRPMS                                                       #存放rpmbuild制作的源码包
+├── BUILD                                         #解压后的文件所在（创建RPM时将自动在此目录执行某些操作）
+├── RPMS                                          #存放制作完成后的二进制包（含以各平台命名的子目录及对应包）
+├── SOURCES                                       #原材料位置，如源码包，文档...
+├── SPECS                                         #存放管理rpm制作过程的描述文件（含宏及各阶段的定义和脚本等...）
+└── SRPMS                                         #存放制作完成后的src格式rpm包（如：xxx.src.rpm，其没有平台依赖）
 
 5 directories, 0 files
 [root@localhost ~]# cd rpmbuild/SPECS/
