@@ -162,3 +162,34 @@ User Interface/Desktops（用户界面/桌面）
 User Interface/X （用户界面/X窗口）
 User Interface/X Hardware Support （用户界面/X硬件支持）
 ```
+#### macros
+```txt
+	%{_sysconfdir}        	/etc
+	%{_prefix}            	/usr
+	%{_exec_prefix}       %{_prefix}
+	%{_bindir}            	%{_exec_prefix}/bin
+	%{_lib}               	lib (lib64 on 64bit systems)
+	%{_libdir}            	%{_exec_prefix}/%{_lib}
+	%{_libexecdir}        	%{_exec_prefix}/libexec
+	%{_sbindir}           	%{_exec_prefix}/sbin
+	%{_sharedstatedir}  /var/lib
+	%{_datadir}           	%{_prefix}/share
+	%{_includedir}        	%{_prefix}/include
+	%{_oldincludedir}    /usr/include
+	%{_infodir}           	/usr/share/info
+	%{_mandir}            	/usr/share/man
+	%{_localstatedir}    	/var
+	%{_initddir}          	%{_sysconfdir}/rc.d/init.d
+	%{_topdir}            	%{getenv:HOME}/rpmbuild
+	%{_builddir}         	%{_topdir}/BUILD
+	%{_rpmdir}            	%{_topdir}/RPMS
+	%{_sourcedir}         	%{_topdir}/SOURCES
+	%{_specdir}           	%{_topdir}/SPECS
+	%{_srcrpmdir}         	%{_topdir}/SRPMS
+	%{_buildrootdir}      %{_topdir}/BUILDROOT
+	%{_var}               	/var
+	%{_tmppath}           	%{_var}/tmp
+	%{_usr}               	/usr
+	%{_usrsrc}            	%{_usr}/src
+	%{_docdir}            	%{_datadir}/doc
+```
