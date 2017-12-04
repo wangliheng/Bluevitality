@@ -27,6 +27,7 @@
 │   │   │   └── Configs
 │   │   └── Xinetd
 │   │       └── Configs
+│   ├── Kernel
 │   ├── Virtual
 │   │   ├── Docker
 │   │   ├── kubernets
@@ -156,7 +157,8 @@
 │   │   │   └── Sys init Scripts
 │   │   └── 银行网点终端巡检
 │   ├── 自动化
-│   │   └── Ansible
+│   │   ├── Ansible
+│   │   └── Role
 │   ├── 软件包管理
 │   │   └── Rpmbuild
 │   │       └── Example
@@ -241,4 +243,4 @@
     │   └── Improve
     └── Tools
 
-241 directories
+243 directories
