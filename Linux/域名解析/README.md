@@ -8,9 +8,9 @@ $TTL    600
                     720000      ;主服务器一直未响应；丛服务器解析库失效时长
                     86400       ;无效主机名否定答案的统一缓存时长
 )
-@		IN		NS			www.zwtzwt.com.
-www		IN		A			172.16.10.76
-		IN		mx 19	    mail.zwtzwt.com.
+@	IN		NS			www.zwtzwt.com.
+www	IN		A			172.16.10.76
+	IN		mx 19	    mail.zwtzwt.com.
 pop3	IN		CNAME	    mail.zwtzwt.com.
 mail	IN		A			172.16.10.77
 ftp     IN		CNAME		www
