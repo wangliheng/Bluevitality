@@ -62,7 +62,8 @@
 │   │   ├── Jmeter
 │   │   └── Tcpcopy
 │   ├── 域名解析
-│   │   └── Bind View
+│   │   ├── conf
+│   │   └── View
 │   ├── 存储相关
 │   │   ├── Ceph
 │   │   ├── Glusterfs
@@ -243,4 +244,4 @@
     │   └── Improve
     └── Tools
 
-243 directories
+244 directories
