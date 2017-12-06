@@ -5,6 +5,7 @@ Ansible：
     -i Inventory文件路径（Host List），默认：/etc/ansible/hosts
     -u 以哪个用户身份运行
     -m 指定模块名（默认"command"）
+    -e 向playbook中导入变量
     -a 模块相关的参数、命令
     -v 详细模式
     -k 提示输入对端密码（使用密码登陆）
@@ -42,6 +43,13 @@ Demo：
     ansible_connection
     ansible_ssh_private_key_file
 
+变量优先级：
+    1、在命令行中定义的变量（即用-e定义的变量）优先级最高
+    2、在inventory中定义的连接变量(比如ansible_ssh_user)
+    3、大多数的其它变量(命令行转换,play中的变量,included的变量,role中的变量等)
+    4、在Inventory定义的其它变量
+    5、由系统通过gather_facts方法发现的Facts
+    6、“Role默认变量”, 这个是最默认的值,很容易丧失优先权
 ```
 #### 查看模块信息
 ```bash
@@ -102,4 +110,16 @@ Number of key(s) added: 1
 
 Now try logging into the machine, with:   "ssh '192.168.0.3'"
 and check to make sure that only the key(s) you wanted were added.
+```
+#### ansible-vault
+```bash
+ansible-vault 
+    enctypt  要加密的文件.yaml  将提示输入密码（运行前需解密或指定其密码文件，若需生成解密秘钥需加入相应选项）
+    create   创建一个需要加密的yaml文件
+    edit     用于编辑经过ansible-vault加密过的文件
+    rekey    重新修已被加密文件的密码
+    create   创建一个新文件，并直接对其进行加密
+    view     查看经过加密的文件
+    decrypt  解密文件
+
 ```
