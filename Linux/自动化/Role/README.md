@@ -44,14 +44,14 @@ lnmp/
     - mysql
     
 [root@test ~]# cat lnmp/nginx/tasks/main.yml
-me: install nginx
-   yum: name=nginx  state=present
-   notify:
-     - restart nginx
-     - restart iptables
-    #- include: delete_httpd.yml
-    #会调用、roles/nginx/handlers/main.yml文件里对应name为restart nginx和restart iptables的相应命令并执行
-    #若之前nginx服务已安装，再次执行，notify无法触发
+- name: install nginx
+  yum: name=nginx  state=present
+  notify:
+    - restart nginx
+    - restart iptables
+   #- include: delete_httpd.yml
+   #会调用、roles/nginx/handlers/main.yml文件里对应name为restart nginx和restart iptables的相应命令并执行
+   #若之前nginx服务已安装，再次执行，notify无法触发
 
 [root@test ~]# cat lnmp/nginx/handlers/main.yml
 ---
