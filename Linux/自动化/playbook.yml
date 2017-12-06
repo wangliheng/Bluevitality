@@ -1,0 +1,42 @@
+---                                   #Python 中的 dict <==> key:value 与 list <==> - value
+- hosts: webservers                   #从Inventory中抽选的主机或组
+  vars:                               #变量定义
+    http_port: 80           
+    max_clients: 200  
+    foo: test 
+  remote_user: root                   #远端的执行权限
+  tasks:                              #针对以上主机/组要执行的动作，name的值将在执行时输出
+  - name: exec shell scripts
+    shell: echo "I've got '{{ foo }}' and am not afraid to use it!"
+    when: foo is defined
+  - name: install apache              #用yum模块操作（name是输出到屏幕的信息）
+    yum: name=httpd state=installed   #安装
+  - name: write the apache config file
+    template: src=/srv/httpd.j2 dest=/etc/httpd.conf    #传输配置文件（其可在本地文件中调用变量）
+    notify:                                             #notify用于触发下面的handlers动作
+    - restart apache
+  - name: ensure apache is running
+    service: name=httpd state=started
+    when: not ansible_os_family == "RedHat" or ansible_os_family ！= "Debian"
+  - name: add several users
+    user: name={{ item.name }} state=present groups={{ item.groups }}
+    ignore_errors: True
+    with_items:
+      - { name: 'testuser1', groups: 'wheel' }
+      - { name: 'testuser2', groups: 'root' }
+  - name: Create a register to represent the status if the docker-thinpool exsited
+    shell: lsblk | grep docker-thinpool
+    register: result                  #捕捉变量的输出结果，输出捕捉内容：command: echo {{ result }}
+    ignore_errors: True
+    tags: 
+      -docker                         #执行特定tag：ansible-playbook x.yml --tags="docker,xxx1,xxx2,..."
+sudo:yes                              #当remote_user不是root时，执行此步骤时使用sudo
+  handlers:                           #与notify协调，满足特定条件时触发(与host同级)
+  - name: restart apache
+    service: name=httpd state=restarted
+  - name: transport file
+    file: path=/etc/{{ item }} mode=0600 owner=root
+    with_items:
+     - my.cnf
+     - shadow
+     - fstab
