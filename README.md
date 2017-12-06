@@ -32,7 +32,7 @@
 - [ ] chef，ansible的完整流程相关文件结构&README文档
 - [ ] Rsyslog & ~~logrotate~~，corosyc
 - [ ] ~~nodejs~~和mqtt的安装及相关设置，~~包括https，pm2，npm~~
-- [ ] DNS配置文件demo / view / dig
+- [ ] DNS下增加rndc，demo改版，增删区域的脚本
 - [ ] ~~ISCSI~~ ~~& gfs & clvm~~（仅流程），tcpcopy & ipref 的README与sh
 - [x] ~~expect~~
 - [ ] consul 分步骤按格式存储，修改RAEDME
