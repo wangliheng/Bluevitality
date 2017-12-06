@@ -37,6 +37,21 @@ drwxr-xr-x.   4 root root      41 Nov 21 02:54 virt
 #vmlinux是未压缩的内核，vmlinuz是vmlinux的压缩文件。
 [root@localhost ~]# ll /boot/vmlinuz-3.10.0-327.el7.x86_64 
 -rwxr-xr-x. 1 root root 5156528 Nov 20  2015 /boot/vmlinuz-3.10.0-327.el7.x86_64
+
+#内核的配置文件
+[root@localhost ~]# ll /boot/config-3.10.0-327.el7.x86_64 
+-rw-r--r--. 1 root root 126426 Nov 20  2015 /boot/config-3.10.0-327.el7.x86_64
+[root@localhost ~]# cat /boot/config-3.10.0-327.el7.x86_64 | head
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/x86_64 3.10.0-327.el7.x86_64 Kernel Configuration
+#
+CONFIG_64BIT=y
+CONFIG_X86_64=y
+CONFIG_X86=y
+CONFIG_INSTRUCTION_DECODER=y
+CONFIG_OUTPUT_FORMAT="elf64-x86-64"
+CONFIG_ARCH_DEFCONFIG="arch/x86/configs/x86_64_defconfig"
 ```
 #### 内核模块：/lib/modules/\<kernel-version\>/
 ```bash
