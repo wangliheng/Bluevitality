@@ -1,15 +1,17 @@
 view "South_China" {
-	match-clients { South_China; }; 
+	match-clients { South_China; };
+	recursion yes;
 	zone "example1.com" IN {
 		type master;
 		file "example1.com.zone";
-		allow-update { none; };
+		allow-update { key ddns_key; };
 		allow-transfer { 192.168.10.253 ; };
 	};
 	
 	zone "example2.com" IN  {   
 	        type slave;
 		master { 192.168.10.254; };
+		transfer-source 192.168.10.100;
 	        file "slaves/example2.com.zone" ;
 		allow-transfer { 192.168.10.253 ; };
 	};
@@ -25,6 +27,7 @@ view "South_China" {
 
 view unicom {
 	match-clients { any; };
+	recursion yes;
 	zone "localhost.localdomain" IN {
 		type master;
 		file "named.localhost";
