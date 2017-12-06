@@ -153,3 +153,23 @@ Usage: ip neigh { add | del | change | replace } { ADDR [ lladdr LLADDR ]
           | proxy ADDR } [ dev DEV ]
        ip neigh {show|flush} [ to PREFIX ] [ dev DEV ] [ nud STATE ]
 ```
+#### rule
+```bash
+[root@localhost ~]# ip route add default gw 20.0.0.1
+[root@localhost ~]# ip route add table  3  via 10.0.0.1 dev ethX
+[root@localhost ~]# ip rule  add fwmark 3  table 3 （凡是标记了3的数据使用3路由表）
+[root@localhost ~]# iptables -A PREROUTING -t mangle -i eth0 -s 192.168.0.1/24 -j MARK --set-mark 3
+
+# 因为mangle的处理是优先于 nat 和 fiter 的，所以相依数据包到达之后先打上标记之后在通过 ip rule 规则
+# 对应的数据包使用相应的路由表进行路由，最后读取路由表信息将数据包送出网关。
+
+[root@localhost ~]# ip rule help
+Usage: ip rule [ list | add | del | flush ] SELECTOR ACTION
+SELECTOR := [ not ] [ from PREFIX ] [ to PREFIX ] [ tos TOS ] [ fwmark FWMARK[/MASK] ]
+            [ iif STRING ] [ oif STRING ] [ pref NUMBER ]
+ACTION := [ table TABLE_ID ]
+          [ prohibit | unreachable ]
+          [ realms [SRCREALM/]DSTREALM ]
+          [ goto NUMBER ]
+TABLE_ID := [ local | main | default | NUMBER ]
+```
