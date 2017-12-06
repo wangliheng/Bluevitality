@@ -1,29 +1,57 @@
-zone "localhost.localdomain" IN {
-	type master;
-	file "named.localhost";
-	allow-update { none; };
-};
+view "South_China" {
+	match-clients { South_China; }; 
+	zone "example1.com" IN {
+		type master;
+		file "example1.com.zone";
+		allow-update { none; };
+		allow-transfer { 192.168.10.253 ; };
+	};
+	
+	zone "example2.com" IN  {   
+	        type slave;
+		master { 192.168.10.254; };
+	        file "slaves/example2.com.zone" ;
+		allow-transfer { 192.168.10.253 ; };
+	};
+	
+	zone “example3.com” IN {
+		type forward;
+		forwarders { 
+			8.8.8.8; 
+			114.114.114.114;
+		};
+	};
+}
 
-zone "localhost" IN {
-	type master;
-	file "named.localhost";
-	allow-update { none; };
-};
+view unicom {
+	match-clients { any; };
+	zone "localhost.localdomain" IN {
+		type master;
+		file "named.localhost";
+		allow-update { none; };
+	};
 
-zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN {
-	type master;
-	file "named.loopback";
-	allow-update { none; };
-};
-
-zone "1.0.0.127.in-addr.arpa" IN {
-	type master;
-	file "named.loopback";
-	allow-update { none; };
-};
-
-zone "0.in-addr.arpa" IN {
-	type master;
-	file "named.empty";
-	allow-update { none; };
-};
+	zone "localhost" IN {
+		type master;
+		file "named.localhost";
+		allow-update { none; };
+	};
+	
+	zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN {
+		type master;
+		file "named.loopback";
+		allow-update { none; };
+	};
+	
+	zone "1.0.0.127.in-addr.arpa" IN {
+		type master;
+		file "named.loopback";
+		allow-update { none; };
+	};
+	
+	zone "0.in-addr.arpa" IN {
+		type master;
+		file "named.empty";
+		allow-update { none; };
+	};
+}
