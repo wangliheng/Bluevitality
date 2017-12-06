@@ -1,6 +1,6 @@
-#### named.zwtzwt.com
-```
-$TTL    600
+#### Example：named.zwtzwt.com
+```txt
+$TTL    600
 @ IN SOA linux.yft.com. root.linux( 
                     2006102001  ;解析库的版本号
                     28800       ;主丛服务器周期性同步的时间间隔；time默认单位秒，也可使用1D，1H等代替
