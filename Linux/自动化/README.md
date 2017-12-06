@@ -12,7 +12,8 @@ Ansible：
     -t 将输出放在指定目录，命名为每个主机名称
     -T 超时时长
     -B 在后台运行并在num秒后kill该任务
-    
+    --check 仅检测而不执行
+    
 常用模块： 
     copy、file、cron、group、user、yum、service、script、ping、command、raw、get_url、synchronize
 
