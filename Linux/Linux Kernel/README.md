@@ -66,6 +66,16 @@ drwxr-xr-x.  2 root root      6 Nov 20  2015 updates
 drwxr-xr-x.  2 root root     91 Nov 20 06:33 vdso
 drwxr-xr-x.  2 root root      6 Nov 20  2015 weak-updates
 ```
+#### initrd-x.x.x.img
+```bash
+#initrd是“initial ramdisk”的简写，initrd映象文件是用mkinitrd创建的（这个命令是RedHat专有的）
+#initrd一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态。
+#initrd-2.4.7- 10.img主要是用于加载ext3等文件系统及scsi设备的驱动。
+[root@localhost ~]# ll /boot/initr*
+-rw-r--r--. 1 root root 43567908 Nov 20 06:36 /boot/initramfs-0-rescue-a0d4da63906a4a5f97671a27a749c0e3.img
+-rw-------. 1 root root 19605794 Nov 21 02:53 /boot/initramfs-3.10.0-327.el7.x86_64.img
+-rw-r--r--. 1 root root   602621 Nov 20 06:34 /boot/initrd-plymouth.img
+```
 #### 引导文件：/boot/grub2/grub.cfg
 ```bash
 #grub.conf是grub的主配置文件，通过它grub才能正确的找到kernel，因此系统才能正常启动...
