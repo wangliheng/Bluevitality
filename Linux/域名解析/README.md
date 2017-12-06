@@ -9,6 +9,7 @@ $ORIGIN zwtzwt.com.
                     720000      ;从服务器解析库失效时长
                     86400       ;最小默认TTL值，若第1行无$TTL则用该值
 )
+
 @	IN	NS	www.zwtzwt.com.
 www	IN	A	172.16.10.76
 ftp     IN	CNAME	www
