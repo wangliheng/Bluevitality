@@ -1,4 +1,4 @@
-#### 内核源码：/usr/src/kernels/\<kernel-version\>/
+#### 内核源码：/usr/src/kernels/\<kernel-version-release\>/
 ```bash
 # 若此目录为空，则需安装包：yum -y install kernel-headers kernel-devel
 [root@localhost ~]# ll -l /usr/src/kernels/3.10.0-693.5.2.el7.x86_64/
@@ -30,7 +30,7 @@ drwxr-xr-x.   2 root root      35 Nov 21 02:54 usr
 drwxr-xr-x.   4 root root      41 Nov 21 02:54 virt
 -rw-r-
 ```
-#### Linux Kernel：/boot/vmlinuz-\<kernel-version\>.el7.x86_64 
+#### Linux Kernel：/boot/vmlinuz-\<kernel-version-release\>.el7.x86_64 
 ```bash
 #"vm"代表 "Virtual Memory" Linux能够使用硬盘空间作为虚拟内存，因此得名"vm"
 #vmlinuz是可执行的Linux内核，位于/boot/vmlinuz，它一般是一个软链接... 
@@ -183,11 +183,11 @@ dm_mod                113292  8 dm_log,dm_mirror
 #内核模块依赖关系文件及系统信息映射文件的生成工具...
 [root@localhost ~]# depmod -b /lib/modules/3.10.0-327.el7.x86_64/   #依特定内核版本的模块生成...
 ```
-#### initrd-x.x.x.img
+#### Ramdisk：/boot/initrd-<x.x.x>.img
 ```bash
-#initrd是“initial ramdisk”的简写，initrd映象文件是用mkinitrd创建的（这个命令是RedHat专有的）
-#initrd一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态。（用于辅助内核完成根文件系统的加载）
-#initrd-2.4.7- 10.img主要是用于加载ext3等文件系统及scsi设备的驱动。
+#是"initial ramdisk"的简写，initrd映象文件是用'mkinitrd'创建的（此命令是RedHat专有的）
+#initrd一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态（用于辅助内核完成根文件系统的加载）
+#initrd-2.4.7- 10.img：主要用于加载ext3等文件系统及scsi设备的驱动，可将其理解为超小型的linux
 [root@localhost ~]# ll /boot/initr*
 -rw-r--r--. 1 root root 43567908 Nov 20 06:36 /boot/initramfs-0-rescue-a0d4da63906a4a5f97671a27a749c0e3.img
 -rw-------. 1 root root 19605794 Nov 21 02:53 /boot/initramfs-3.10.0-327.el7.x86_64.img
@@ -195,7 +195,41 @@ dm_mod                113292  8 dm_log,dm_mirror
 
 #ramdisk的2中形式：
 #    1.initrd
-#    2.initramfs
+#    2.initramfs
+
+#通常，ramdisk是在系统安装过程到最后一步时通过收集当前系统上硬件的相关信息按需创建的（使用：mkinitrd）
+#Example：
+[root@localhost ~]# rm -rf /boot/initramfs-3.10.0-327.el7.x86_64.img    #此时将无法加载根文件系统
+#根据当前主机已经存在的特定的内核版本生成特定路径下的ramdiskfs （还有命令：dracut，其与mkinitrd格式相同!）
+[root@localhost ~]# mkinitrd /boot/initramfs-$(uname -r).img $(uname -r) [--with=<module>]
+
+#Research demo
+[root@localhost boot]# mv initramfs-3.10.0-327.el7.x86_64.img  initramfs-3.10.0-327.el7.x86_64.img.gz
+[root@localhost boot]# gzip -d initramfs-3.10.0-327.el7.x86_64.img.gz 
+[root@localhost boot]# file initramfs-3.10.0-327.el7.x86_64.img 
+initramfs-3.10.0-327.el7.x86_64.img: ASCII cpio archive (SVR4 with no CRC)
+[root@localhost boot]# mkdir tmp && cd tmp
+[root@localhost tmp]# cpio -id < ../initramfs-3.10.0-327.el7.x86_64.img 
+87848 blocks
+[root@localhost tmp]# ll
+total 8
+lrwxrwxrwx.  1 root root    7 Dec  8 07:29 bin -> usr/bin
+drwxr-xr-x.  2 root root   42 Dec  8 07:29 dev
+drwxr-xr-x. 12 root root 4096 Dec  8 07:29 etc
+lrwxrwxrwx.  1 root root   23 Dec  8 07:29 init -> usr/lib/systemd/systemd
+lrwxrwxrwx.  1 root root    7 Dec  8 07:29 lib -> usr/lib
+lrwxrwxrwx.  1 root root    9 Dec  8 07:29 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 proc
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 root
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 run
+lrwxrwxrwx.  1 root root    8 Dec  8 07:29 sbin -> usr/sbin
+-rwxr-xr-x.  1 root root 3117 Dec  8 07:29 shutdown
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 sys
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 sysroot
+drwxr-xr-x.  2 root root    6 Dec  8 07:29 tmp
+drwxr-xr-x.  7 root root   61 Dec  8 07:29 usr
+drwxr-xr-x.  2 root root   27 Dec  8 07:29 var
+
 ```
 #### 引导文件：/boot/grub2/grub.cfg
 ```bash
@@ -259,4 +293,39 @@ tets
 kernel.hostname = "Linux"
 [root@localhost ~]# cat /proc/sys/kernel/hostname                      
 "Linux"
+```
+#### 内核识别的各硬件相关的属性信息：/sys
+```
+#Sysfs文件系统是一个类似于proc文件系统的特殊文件系统
+#用于将系统中的设备组织成层次结构并向用户模式程序提供详细的内核数据结构信息。
+#其实就是在用户态可通过对sys文件系统的访问来看内核态的一些驱动或设备等...
+#udev（用户空间）通过此l路径下对应的设备文件输出的信息动态的为各个设备创建所需要的设备文件到/dev
+[root@localhost sys]# tree /sys -d -L 1 
+/sys
+|-- block
+|-- bus
+|-- class
+|-- dev
+|-- devices
+|-- firmware
+|-- fs
+|-- hypervisor
+|-- kernel
+|-- module
+`-- power
+
+#udev的规则文件所在：
+[root@localhost ~]# ll /etc/udev/rules.d/
+total 8
+-rw-r--r--. 1 root root 709 Nov 20  2015 70-persistent-ipoib.rules
+-rw-r--r--. 1 root root 161 Nov 21 02:53 90-eno-fix.rules
+[root@localhost ~]# ls /usr/lib/udev/rules.d/ | head
+10-dm.rules
+11-dm-lvm.rules
+13-dm-disk.rules
+40-redhat.rules
+42-usb-hid-pm.rules
+50-udev-default.rules
+60-alias-kmsg.rules
+......（略）
 ```
