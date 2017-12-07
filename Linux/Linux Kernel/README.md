@@ -37,6 +37,18 @@ drwxr-xr-x.   4 root root      41 Nov 21 02:54 virt
 #vmlinux是未压缩的内核，vmlinuz是vmlinux的压缩文件。
 [root@localhost ~]# ll /boot/vmlinuz-3.10.0-327.el7.x86_64 
 -rwxr-xr-x. 1 root root 5156528 Nov 20  2015 /boot/vmlinuz-3.10.0-327.el7.x86_64
+[root@localhost ~]# ll /boot
+total 75628
+-rw-r--r--. 1 root root   126426 Nov 20  2015 config-3.10.0-327.el7.x86_64
+drwxr-xr-x. 2 root root       26 Nov 20 06:33 grub
+drwx------. 6 root root      104 Dec  6 23:14 grub2
+-rw-r--r--. 1 root root 43567908 Nov 20 06:36 initramfs-0-rescue-a0d4da63906a4a5f97671a27a749c0e3.img
+-rw-------. 1 root root 19605794 Nov 21 02:53 initramfs-3.10.0-327.el7.x86_64.img
+-rw-r--r--. 1 root root   602621 Nov 20 06:34 initrd-plymouth.img
+-rw-r--r--. 1 root root   252612 Nov 20  2015 symvers-3.10.0-327.el7.x86_64.gz
+-rw-------. 1 root root  2963044 Nov 20  2015 System.map-3.10.0-327.el7.x86_64  #depmpd生成的映射关系的描述
+-rwxr-xr-x. 1 root root  5156528 Nov 20 06:36 vmlinuz-0-rescue-a0d4da63906a4a5f97671a27a749c0e3
+-rwxr-xr-x. 1 root root  5156528 Nov 20  2015 vmlinuz-3.10.0-327.el7.x86_64
 
 [root@localhost ~]# uname -r        #查看内核版本信息
 3.10.0-327.el7.x86_64   
@@ -48,40 +60,6 @@ x86_64
 x86_64  
 [root@localhost ~]# uname -o        #OS名称
 GNU/Linux
-
-#查看/proc/modules
-[root@localhost ~]# lsmod | head    #内核已经装载的相关模块，大小，使用次数以及被谁使用的信息...
-Module                  Size  Used by
-snd_seq_midi           13565  0 
-snd_seq_midi_event     14899  1 snd_seq_midi
-crc32_pclmul           13113  0 
-ghash_clmulni_intel    13259  0 
-aesni_intel            69884  0 
-lrw                    13286  1 aesni_intel
-gf128mul               14951  1 lrw
-glue_helper            13990  1 aesni_intel
-ablk_helper            13597  1 aesni_intel
-
-#查看模块信息
-[root@localhost ~]# modinfo ext4    #-k <kernel>    显示指定内核模块内的模块信息...   
-filename:       /lib/modules/3.10.0-327.el7.x86_64/kernel/fs/ext4/ext4.ko   #模块路径!...
-license:        GPL
-description:    Fourth Extended Filesystem
-author:         Remy Card, Stephen Tweedie, Andrew Morton, Andreas Dilger, Theodore Ts'o and others
-alias:          fs-ext4
-alias:          ext3
-alias:          fs-ext3
-alias:          ext2
-alias:          fs-ext2
-rhelversion:    7.2
-srcversion:     DB48BDADD011DE28724EB21
-depends:        mbcache,jbd2
-intree:         Y
-vermagic:       3.10.0-327.el7.x86_64 SMP mod_unload modversions 
-signer:         CentOS Linux kernel signing key
-sig_key:        79:AD:88:6A:11:3C:A0:22:35:26:33:6C:0F:82:5B:8A:94:29:6A:B3
-sig_hashalgo:   sha256
-
 
 #内核的配置文件
 [root@localhost ~]# ll /boot/config-3.10.0-327.el7.x86_64 
@@ -138,9 +116,9 @@ drwxr-xr-x. 11 root root   4096 Nov 20 06:33 kernel
 -rw-r--r--.  1 root root   1288 Nov 20  2015 modules.block
 -rw-r--r--.  1 root root   5995 Nov 20  2015 modules.builtin
 -rw-r--r--.  1 root root   7744 Nov 20 06:36 modules.builtin.bin
--rw-r--r--.  1 root root 218218 Nov 20 06:36 modules.dep
--rw-r--r--.  1 root root 316220 Nov 20 06:36 modules.dep.bin
--rw-r--r--.  1 root root    339 Nov 20 06:36 modules.devname
+-rw-r--r--.  1 root root 218218 Nov 20 06:36 modules.dep        #描述了模块之间的依赖关系
+-rw-r--r--.  1 root root 316220 Nov 20 06:36 modules.dep.bin    #二进制方式供程序查询使用...
+-rw-r--r--.  1 root root    339 Nov 20 06:36 modules.devname
 -rw-r--r--.  1 root root    108 Nov 20  2015 modules.drm
 -rw-r--r--.  1 root root    100 Nov 20  2015 modules.modesetting
 -rw-r--r--.  1 root root   1522 Nov 20  2015 modules.networking
@@ -153,10 +131,57 @@ drwxr-xr-x.  2 root root      6 Nov 20  2015 updates
 drwxr-xr-x.  2 root root     91 Nov 20 06:33 vdso
 drwxr-xr-x.  2 root root      6 Nov 20  2015 weak-updates
 
-#注：
-#[]     N   ...
-#[M]    M   以模块方式加载(/lib/modules/\<kernel-version-release\>/)
-#[*]    Y   将模块加入内核
+#   注：
+#   []     N   ...
+#   [M]    M   以模块方式加载(/lib/modules/\<kernel-version-release\>/)
+#   [*]    Y   将模块加入内核
+
+#查看/proc/modules
+[root@localhost ~]# lsmod | head    #内核已经装载的相关模块，大小，使用次数以及被谁使用的信息...
+Module                  Size  Used by
+snd_seq_midi           13565  0 
+snd_seq_midi_event     14899  1 snd_seq_midi
+crc32_pclmul           13113  0 
+ghash_clmulni_intel    13259  0 
+aesni_intel            69884  0 
+lrw                    13286  1 aesni_intel
+gf128mul               14951  1 lrw
+glue_helper            13990  1 aesni_intel
+ablk_helper            13597  1 aesni_intel
+
+#查看模块信息
+[root@localhost ~]# modinfo ext4    #-k <kernel>    显示指定内核模块内的模块信息...   
+filename:       /lib/modules/3.10.0-327.el7.x86_64/kernel/fs/ext4/ext4.ko   #模块路径!...
+license:        GPL
+description:    Fourth Extended Filesystem
+author:         Remy Card, Stephen Tweedie, Andrew Morton, Andreas Dilger, Theodore Ts'o and others
+alias:          fs-ext4
+alias:          ext3
+alias:          fs-ext3
+alias:          ext2
+alias:          fs-ext2
+rhelversion:    7.2
+srcversion:     DB48BDADD011DE28724EB21
+depends:        mbcache,jbd2
+intree:         Y
+vermagic:       3.10.0-327.el7.x86_64 SMP mod_unload modversions 
+signer:         CentOS Linux kernel signing key
+sig_key:        79:AD:88:6A:11:3C:A0:22:35:26:33:6C:0F:82:5B:8A:94:29:6A:B3
+sig_hashalgo:   sha256
+
+#装/卸载模块
+[root@localhost ~]# modprobe ext4           #卸载：-r，指定模块的配置文件：-c 
+[root@localhost ~]# modprobe -r dm_mirror   #rmmod <xxx> <===> modprobe -r <xxx>
+[root@localhost ~]# lsmod | grep dm_mirror
+[root@localhost ~]# modprobe dm_mirror
+[root@localhost ~]# lsmod | grep dm_mirror
+dm_mirror              22135  0 
+dm_region_hash         20862  1 dm_mirror
+dm_log                 18411  2 dm_region_hash,dm_mirror
+dm_mod                113292  8 dm_log,dm_mirror
+
+#内核模块依赖关系文件及系统信息映射文件的生成工具...
+[root@localhost ~]# depmod -b /lib/modules/3.10.0-327.el7.x86_64/   #依特定内核版本的模块生成...
 ```
 #### initrd-x.x.x.img
 ```bash
