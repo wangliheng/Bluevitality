@@ -45,8 +45,14 @@ CREDITS       .gitignore              .mailmap  security
 # make config       //基于文本命令行工具，不推荐使用
 # make xconfig      //基于X11图形工具界面
 # make gconfig      //基于gtk+的图形工具界面
-
 ```
+##### 一般不需要设置太多内容，具体设置要百度
+![1](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/1.png)
+![2](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/2.png)
+![3](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/3.png)
+![4](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/4.png)
+![5](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/5.png)
+
 #### Install ....
 ```bash
 #编译内核（可能需要3个小时左右）等待编译的完成
