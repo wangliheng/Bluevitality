@@ -27,16 +27,16 @@ kvm             314739 1 kvm_intel
 DEVICE=eth0     
 TYPE=Ethernet     
 ONBOOT=yes     
-NM_CONTROLLED=yes     
-BRIDGE="br0"    <----
-BOOTPROTO=static     
+NM_CONTROLLED=no                # NetworkManager服务不支持桥接，所以原则上建议设为"no"
+BRIDGE="br0"                    # 指定本设备桥接的另一个设备名称
+BOOTPROTO=static     
 IPADDR="192.168.2.149"     
 NETMASK="255.255.255.0"     
 GATEWAY="192.168.2.2"     
  
 [root@wy ~]# vim ifcfg-br0:
-DEVICE=br0    <----
-TYPE=Bridge     
+DEVICE=br0                      # 网桥名字
+TYPE=Bridge                     # 网桥名字
 ONBOOT=yes     
 NM_CONTROLLED=yes     
 BOOTPROTO=static     
