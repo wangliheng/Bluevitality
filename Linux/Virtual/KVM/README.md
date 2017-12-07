@@ -28,8 +28,8 @@ DEVICE=eth0
 TYPE=Ethernet     
 ONBOOT=yes     
 NM_CONTROLLED=no                # NetworkManager服务不支持桥接，所以原则上建议设为"no"
-BRIDGE="br0"                    # 将本设备桥接到哪个设备 --> br0
-#BOOTPROTO=static     
+BRIDGE="br0"                    # 将本设备桥接到哪个设备 --> br0 (此配置下eth0与br0逻辑上称为1个网卡且MAC相同)
+#BOOTPROTO=static               # 或者把br0当交换机，将eth0当接入设备
 
 [root@wy ~]# vim ifcfg-br0:
 DEVICE=br0                      # 网桥名字
