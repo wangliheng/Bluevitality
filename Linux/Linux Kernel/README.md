@@ -254,4 +254,9 @@ localhost
 kernel.hostname = tets
 [root@localhost ~]# cat /proc/sys/kernel/hostname   
 tets
+[root@localhost ~]# echo 'kernel.hostname="Linux"' >> /etc/sysctl.conf 
+[root@localhost ~]# sysctl -p
+kernel.hostname = "Linux"
+[root@localhost ~]# cat /proc/sys/kernel/hostname                      
+"Linux"
 ```
