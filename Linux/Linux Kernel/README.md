@@ -235,3 +235,23 @@ Found linux image: /boot/vmlinuz-0-rescue-a0d4da63906a4a5f97671a27a749c0e3
 Found initrd image: /boot/initramfs-0-rescue-a0d4da63906a4a5f97671a27a749c0e3.img
 done
 ```
+#### 描述内核运行状态的伪文件系统：/proc  
+```bash
+#sysctl用于查看(-a)和设置(-w)内核运行时的一些参数
+[root@localhost ~]# ll /proc/1/exe 
+lrwxrwxrwx. 1 root root 0 Dec  8 05:13 /proc/1/exe -> /usr/lib/systemd/systemd
+[root@localhost ~]# ll /proc/fs
+total 0
+dr-xr-xr-x. 2 root root 0 Dec  8 06:56 ext4
+dr-xr-xr-x. 2 root root 0 Dec  8 06:56 jbd2
+dr-xr-xr-x. 2 root root 0 Dec  8 06:56 nfsd
+dr-xr-xr-x. 2 root root 0 Dec  8 06:56 xfs
+[root@localhost ~]# ll /proc/mounts 
+lrwxrwxrwx. 1 root root 11 Dec  8 06:56 /proc/mounts -> self/mounts
+[root@localhost ~]# cat /proc/sys/kernel/hostname 
+localhost
+[root@localhost ~]# sysctl -w kernel.hostname="tets"
+kernel.hostname = tets
+[root@localhost ~]# cat /proc/sys/kernel/hostname   
+tets
+```
