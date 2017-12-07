@@ -38,6 +38,51 @@ drwxr-xr-x.   4 root root      41 Nov 21 02:54 virt
 [root@localhost ~]# ll /boot/vmlinuz-3.10.0-327.el7.x86_64 
 -rwxr-xr-x. 1 root root 5156528 Nov 20  2015 /boot/vmlinuz-3.10.0-327.el7.x86_64
 
+[root@localhost ~]# uname -r        #查看内核版本信息
+3.10.0-327.el7.x86_64   
+[root@localhost ~]# uname -m        #查看内核硬件平台
+x86_64  
+[root@localhost ~]# uname -p        #查看处理器类型（架构）
+x86_64  
+[root@localhost ~]# uname -p        #查看硬件平台
+x86_64  
+[root@localhost ~]# uname -o        #OS名称
+GNU/Linux
+
+#查看/proc/modules
+[root@localhost ~]# lsmod | head    #内核已经装载的相关模块，大小，使用次数以及被谁使用的信息...
+Module                  Size  Used by
+snd_seq_midi           13565  0 
+snd_seq_midi_event     14899  1 snd_seq_midi
+crc32_pclmul           13113  0 
+ghash_clmulni_intel    13259  0 
+aesni_intel            69884  0 
+lrw                    13286  1 aesni_intel
+gf128mul               14951  1 lrw
+glue_helper            13990  1 aesni_intel
+ablk_helper            13597  1 aesni_intel
+
+#查看模块信息
+[root@localhost ~]# modinfo ext4    #-k <kernel>    显示指定内核模块内的模块信息...   
+filename:       /lib/modules/3.10.0-327.el7.x86_64/kernel/fs/ext4/ext4.ko   #模块路径!...
+license:        GPL
+description:    Fourth Extended Filesystem
+author:         Remy Card, Stephen Tweedie, Andrew Morton, Andreas Dilger, Theodore Ts'o and others
+alias:          fs-ext4
+alias:          ext3
+alias:          fs-ext3
+alias:          ext2
+alias:          fs-ext2
+rhelversion:    7.2
+srcversion:     DB48BDADD011DE28724EB21
+depends:        mbcache,jbd2
+intree:         Y
+vermagic:       3.10.0-327.el7.x86_64 SMP mod_unload modversions 
+signer:         CentOS Linux kernel signing key
+sig_key:        79:AD:88:6A:11:3C:A0:22:35:26:33:6C:0F:82:5B:8A:94:29:6A:B3
+sig_hashalgo:   sha256
+
+
 #内核的配置文件
 [root@localhost ~]# ll /boot/config-3.10.0-327.el7.x86_64 
 -rw-r--r--. 1 root root 126426 Nov 20  2015 /boot/config-3.10.0-327.el7.x86_64
@@ -80,7 +125,7 @@ Notice 3
     例如：vmlinux-2.4.20-8是未压缩内核，vmlinuz-2.4.20-8是vmlinux-2.4.20-8的压缩文件。
 ```
 
-#### 内核模块：/lib/modules/\<kernel-version\>/
+#### 内核模块：/lib/modules/\<kernel-version-release\>/
 ```bash
 #Linux内的设备驱动程序可以方便地以模块化（modularize）形式设置，并在系统运行期间可直接装载或卸载。
 [root@localhost ~]# ls -l /lib/modules/3.10.0-327.el7.x86_64/
@@ -107,16 +152,25 @@ lrwxrwxrwx.  1 root root      5 Nov 20 06:33 source -> build
 drwxr-xr-x.  2 root root      6 Nov 20  2015 updates
 drwxr-xr-x.  2 root root     91 Nov 20 06:33 vdso
 drwxr-xr-x.  2 root root      6 Nov 20  2015 weak-updates
+
+#注：
+#[]     N   ...
+#[M]    M   以模块方式加载(/lib/modules/\<kernel-version-release\>/)
+#[*]    Y   将模块加入内核
 ```
 #### initrd-x.x.x.img
 ```bash
 #initrd是“initial ramdisk”的简写，initrd映象文件是用mkinitrd创建的（这个命令是RedHat专有的）
-#initrd一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态。
+#initrd一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态。（用于辅助内核完成根文件系统的加载）
 #initrd-2.4.7- 10.img主要是用于加载ext3等文件系统及scsi设备的驱动。
 [root@localhost ~]# ll /boot/initr*
 -rw-r--r--. 1 root root 43567908 Nov 20 06:36 /boot/initramfs-0-rescue-a0d4da63906a4a5f97671a27a749c0e3.img
 -rw-------. 1 root root 19605794 Nov 21 02:53 /boot/initramfs-3.10.0-327.el7.x86_64.img
 -rw-r--r--. 1 root root   602621 Nov 20 06:34 /boot/initrd-plymouth.img
+
+#ramdisk的2中形式：
+#    1.initrd
+#    2.initramfs
 ```
 #### 引导文件：/boot/grub2/grub.cfg
 ```bash
