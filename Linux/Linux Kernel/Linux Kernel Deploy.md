@@ -62,10 +62,15 @@ CREDITS       .gitignore              .mailmap  security
 [root@localhost linux]# make modules_install
 
 #安装内核
-[root@localhost linux]# make install    #安装完成后其将自动修改"/etc/grub.conf"文件
+[root@localhost linux]# make install    
+  #make install将"自动!"完成如下：
+  1.安装完成后其将自动修改"/etc/grub.conf"文件
+  2.安装bzImage为/boot/vmlinuz-<version-release>
+  3.生成/boot/initramfs...
+  4.修改grub的配置文件...
 
-#生成新内核的ramdisk
-[root@localhost ~]# mkinitrd /boot/initramfs-<Kernel-version-release>.img <Kernel-version-release>
+#生成新内核的ramdisk（CentOS7应该不需要了）
+#[root@localhost ~]# mkinitrd /boot/initramfs-<Kernel-version-release>.img <Kernel-version-release>
 
 [root@localhost ~]# reboot
 ```
