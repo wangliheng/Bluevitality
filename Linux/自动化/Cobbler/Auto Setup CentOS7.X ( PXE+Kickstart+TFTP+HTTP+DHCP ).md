@@ -46,10 +46,11 @@ service tftp
         flags                   = IPv4
 }
 [root@localhost ~]# chmod  777 /var/lib/tftpboot
-[root@localhost ~]# systemctl start tftp.socket
-[root@localhost ~]# systemctl start tftp.service
-[root@localhost ~]# systemctl start httpd
-[root@localhost ~]# mount -t auto /dev/cdrom /mnt/cdrom/        #挂载IOS光盘
+[root@localhost ~]# systemctl start tftp.socket && systemctl enable tftp.socket
+[root@localhost ~]# systemctl start tftp.service && systemctl enable tftp.service
+[root@localhost ~]# systemctl start httpd && systemctl enable httpd
+[root@localhost ~]# systemctl start xinetd && systemctl enable xinetd
+[root@localhost ~]# mount -t auto /dev/cdrom /mnt/cdrom/                    #挂载IOS光盘
 mount: /dev/sr0 写保护，将以只读方式挂载
 [root@localhost ~]# cp /mnt/cdrom/isolinux/{vmlinuz,initrd.img} /var/lib/tftpboot/
 [root@localhost ~]# cp /usr/share/syslinux/menu.c32 /var/lib/tftpboot/
