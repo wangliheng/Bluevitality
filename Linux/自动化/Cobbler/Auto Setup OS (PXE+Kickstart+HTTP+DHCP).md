@@ -94,7 +94,7 @@ default menu.c32
     APPEND initrd=initrd.img ks=http://192.168.0.2:80/ks.cfg  [ksdevice=<interface>] [ip=dhcp] [quiet]
 [root@localhost ~]# chmod 644 /var/lib/tftpboot/pxelinux.cfg/defult
 
-#验证ks文件正确性
+#验证ks文件正确性（此处没有ks.cfg的文档，请参考本URL下的：Kickstart.cfg）
 [root@localhost ~]# ksvalidator /var/www/html/ks.cfg
 
 #注：
