@@ -45,6 +45,8 @@ service tftp
 [root@localhost ~]# systemctl start tftp.socket
 [root@localhost ~]# systemctl start tftp.service
 [root@localhost ~]# systemctl start httpd
+[root@localhost ~]# mount -t auto /dev/cdrom /mnt/cdrom/        #挂载IOS光盘
+mount: /dev/sr0 写保护，将以只读方式挂载
 [root@localhost ~]# cp /mnt/cdrom/images/pxeboot/{vmlinuz,initrd.img} /var/lib/tftpboot
 [root@localhost ~]# cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
 #CentOS6 （centos6与centos7的PXE的方式稍有不同!）
