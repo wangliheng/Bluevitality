@@ -64,16 +64,28 @@ CREDITS       .gitignore              .mailmap  security
 #编译内核（可能需要3个小时左右）等待编译的完成
 [root@localhost linux]# make -j 4
 
+  # 只编译特定子目录中的相关代码：
+  # cd /usr/src/kernels/3.10.0-693.5.2.el7.x86_64/
+  # make dir/
+  # 只编译一个特定的模块
+  # make dir/file.ko
+  
+  # make <args>
+  # make clean        清理大多数编译生成的文件（保留config文件）
+  # make mrproper     清理所有编译生成的文件，包括config，及某些备份文件，还有内核配置文件
+  # make distclean    mrproper删除的文件和编辑备份文件和一些补丁文件
+
 #编译和安装内核模块
 [root@localhost linux]# make modules_install
 
 #安装内核
-[root@localhost linux]# make install    
-  #make install将"自动!"完成如下：
-  1.安装完成后其将自动修改"/etc/grub.conf"文件
-  2.安装bzImage为/boot/vmlinuz-<version-release>
-  3.生成/boot/initramfs...
-  4.修改grub的配置文件以便生成启动时的内核菜单项...
+[root@localhost linux]# make install 
+
+  # make install将"自动!"完成如下：
+  # 1.安装完成后其将自动修改"/etc/grub.conf"文件
+  # 2.安装bzImage为/boot/vmlinuz-<version-release>
+  # 3.生成/boot/initramfs...
+  # 4.修改grub的配置文件以便生成启动时的内核菜单项...
 
 #生成新内核的ramdisk（CentOS7应该不需要了）
 #[root@localhost ~]# mkinitrd /boot/initramfs-<Kernel-version-release>.img <Kernel-version-release>
