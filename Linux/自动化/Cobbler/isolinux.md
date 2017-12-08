@@ -51,12 +51,56 @@ label rescue             #提示符此处为"rescue"，用于菜单编辑界面�
 #### anaconda
 ```bash
 # 两种配置方式：
-# 1.通过GUI进行交互式安装
-# 2.通过kickstart文件自动安装
+#       1.通过GUI进行交互式安装
+#       2.通过kickstart文件自动安装
 
-#在Linux启动时的菜单栏对选中的内核ENTER进入Boot提示附后，可设置kickstart文件：
-#光盘：boot: ks=cdrom:/Path/to/kickstart_file
-#硬盘：boot: ks=hd:/Path/to/kickstart_file
-#HTTP：boot: ks=http://Host:Port/Path/to/kickstart_file
-#FTP：boot: ks=ftp://Host:Port/Path/to/kickstart_file
+# 在Linux启动时的菜单栏对选中的内核ENTER进入Boot提示附后，可设置kickstart文件：
+#       光盘：boot: ks=cdrom:/Path/to/kickstart_file
+#       硬盘：boot: ks=hd:/Path/to/kickstart_file
+#       HTTP：boot: ks=http://Host:Port/Path/to/kickstart_file
+#       FTP：boot: ks=ftp://Host:Port/Path/to/kickstart_file
+
+# 每次当系统安装完成以后将自动在root目录下生成"anaconda-ks.cfg"文件（即使用ISO安装本系统时的一些设置的配置保存）
+[root@localhost ~]# ll anaconda-ks.cfg 
+-rw-------. 1 root root 923 11月 20 06:37 anaconda-ks.cfg
+[root@localhost ~]# cat anaconda-ks.cfg 
+#version=DEVEL
+# System authorization information
+auth --enableshadow --passalgo=sha512
+# Use CDROM installation media
+cdrom
+# Use graphical install
+graphical
+# Run the Setup Agent on first boot
+firstboot --enable
+# Keyboard layouts
+keyboard --vckeymap=cn --xlayouts='cn'
+# System language
+lang zh_CN.UTF-8
+
+# Network information
+network  --bootproto=dhcp --device=eno16777736 --onboot=off --ipv6=auto
+network  --hostname=localhost.localdomain
+
+# Root password
+rootpw --iscrypted $6$Eaehx8nCGlHIrB39$9LlCHL5FDJz3mCs9JLFeN1Z0xS93dCrnC/BW.....(略)
+# System timezone
+timezone Asia/Shanghai --isUtc
+# System bootloader configuration
+bootloader --location=mbr --boot-drive=sda
+autopart --type=lvm
+# Partition clearing information
+clearpart --none --initlabel
+
+%packages
+@^minimal
+@compat-libraries
+@core
+@security-tools
+
+%end
+
+%addon com_redhat_kdump --disable --reserve-mb='auto'
+
+%end
 ```
