@@ -41,10 +41,16 @@ CREDITS       .gitignore              .mailmap  security
 [root@localhost linux]# make mennuconfig
 
 # 注：
-# make menuconfig   //基于ncurse库编制的图形工具界面
-# make config       //基于文本命令行工具，不推荐使用
-# make xconfig      //基于X11图形工具界面
-# make gconfig      //基于gtk+的图形工具界面
+# make menuconfig   //基于ncurse库编制的图形工具界面（常用，一般是基于现有的旧配置文件进行编辑）
+# make oleconfig    //直接使用现有的./config文件
+# make config       //基于文本命令行工具，不推荐使用（基于命令行以遍历的方式编辑配置文件）
+# make xconfig      //基于QT开发环境的图形工具界面
+# make gconfig      //基于gtk+开发环境的图形工具界面（GNOME）
+# make defconfig    //基于内核为目标平台提供的默认配置进行编辑（全新安装，不需要旧的./config）
+# make allyesconfig     //全部编译进内核（生成的配置文件全部引入相关配置，常用于后期在对此./config进行部分选项剔除）
+# make allnoconfig      //全部不编译进内核
+# make localmodconfig   //直接使用现在已经装载的内核模块的配置文件
+# make yesconfig        //
 ```
 ##### 一般不需要设置太多内容，具体设置要百度
 ![1](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/1.png)
