@@ -67,7 +67,7 @@ drwxr-xr-x. 2 root root        6 11月 20 21:16 pxelinux.cfg
 -r-xr-xr-x. 1 root root  5156528 11月 20 21:15 vmlinuz
 [root@localhost ~]# chmod 777 -R /var/lib/tftpboot/pxelinux.cfg
 [root@localhost ~]# chmod 777 /var/lib/tftpboot/pxelinux.0
-[root@localhost ~]# chmo 777 /var/www/html
+[root@localhost ~]# chmod 777 /var/www/html
 [root@localhost ~]# mkdir -p /var/www/html/os
 [root@localhost ~]# cp -r /mnt/cdrom/* /var/www/html/os #Linux_ISO文件(在ks文件中标记此位置进行下载运行)
 [root@localhost ~]# vim /var/lib/tftpboot/pxelinux.cfg/default
