@@ -18,7 +18,7 @@ fi
 yum -y install epel-release 
 yum -y install gd gd-devel php-gd zlib zlib-devel openssl openssl-devel libxml2 libxml2-devel libjpeg \
 libjpeg-devel libpng libpng-devel libmcrypt php-mcrypt libmcrypt libmcrypt-devel curl-devel mhash mcrypt \
-libxslt-devel freetype-devel 
+libxslt-devel freetype-devel bzip2
 
 #检查本地安装包
 [[ -s php-5.6.30.tar.bz2 && -s libiconv-1.13.1.tar.gz ]] || exit 1
