@@ -14,7 +14,7 @@ max-lease-time 86400;
 filename="pxelinux.0";              #引导文件（它由syslinux提供：yum install syslinux）
 next-server 192.168.0.2;            #引导文件所在服务器地址
 
-subnet 0.0.0.0 netmask 0.0.0.0 {
+subnet 192.168.0.0 netmask 255.255.255.0 {
         range 192.168.0.3 192.168.0.254;
         option broadcast-address 192.168.0.255;
         option routers 192.168.0.1;
