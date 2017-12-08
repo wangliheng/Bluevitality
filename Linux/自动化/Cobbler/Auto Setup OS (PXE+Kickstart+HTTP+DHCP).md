@@ -4,7 +4,7 @@
 
 [root@localhost ~]# setenforce  0
 [root@localhost ~]# yum -y install dhcp
-[root@localhost ~]# vim /etc/dhcp/dhcpd.conf
+[root@localhost ~]# cat /etc/dhcp/dhcpd.conf
 option domain-name              "danlab.local";
 option domain-name-servers      127.0.0.1;
 default-lease-time 86400;
@@ -91,11 +91,11 @@ default menu.c32
     LABLE CentOS7
     MENU LABLE Install CentOS7 x86_64
     KERNEL vmlinuz
-    APPEND initrd=initrd.img ks=http:/Host:Port/Path/ks.cfg  ksdevice=eth0 ip=dhcp quiet
+    APPEND initrd=initrd.img ks=http://192.168.0.2:80/ks.cfg  [ksdevice=<interface>] [ip=dhcp] [quiet]
 [root@localhost ~]# chmod 644 /var/lib/tftpboot/pxelinux.cfg/defult
 
 #验证ks文件正确性
-[root@localhost ~]# ksvalidator /Path/ks.cfg
+[root@localhost ~]# ksvalidator /var/www/html/ks.cfg
 
 #注：
 #http:/Host:Port/Path/ks.cfg 中要有 'url --url="http://192.168.0.1/os/"' 使其从网络进行安装
