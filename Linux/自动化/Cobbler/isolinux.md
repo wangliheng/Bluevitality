@@ -48,7 +48,7 @@ label rescue             #提示符此处为"rescue"，用于菜单编辑界面�
   append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet  #向内核额外传递参数
 ........
 ```
-#### anaconda
+#### anaconda & kickstart
 ```bash
 # 两种配置方式：
 #       1.通过GUI进行交互式安装
@@ -103,4 +103,9 @@ clearpart --none --initlabel
 %addon com_redhat_kdump --disable --reserve-mb='auto'
 
 %end
+```
+#### 检查ks文件语法
+```bash 
+[root@localhost ~]# yum -y install system-config-kickstart
+[root@localhost ~]# ksvalidator ~/anaconda-ks.cfg
 ```
