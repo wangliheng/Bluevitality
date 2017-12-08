@@ -66,6 +66,7 @@ cd nginx-1.12.1/
 --pid-path=${NGINX_HOME:-'/usr/local/nginx'}/nginx.pid \
 --with-http_stub_status_module \
 --with-http_gzip_static_module \
+----with-http_realip_module \
 --with-pcre=../pcre-8.41 \
 --with-openssl=../openssl-1.0.2l \
 --with-http_ssl_module
