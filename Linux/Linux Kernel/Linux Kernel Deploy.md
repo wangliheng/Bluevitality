@@ -1,7 +1,7 @@
 #### 准备开发环境
 ```bash
 [root@localhost ~]# yum -y groupinstall "development tools"
-[root@localhost ~]# yum -y install ncurses-devel bc
+[root@localhost ~]# yum -y install ncurses ncurses-devel gcc bc
 ```
 #### 根据当前的旧内核配置文件配置新内核
 ```bash
