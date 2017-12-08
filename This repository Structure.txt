@@ -7,7 +7,7 @@
 ├── Linux
 │   ├── Cluster
 │   │   ├── DRBD
-│   │   │   ├── drbd.d
+│   │   │   ├── conf
 │   │   │   ├── Softs
 │   │   │   └── 一些资料
 │   │   ├── HAproxy
@@ -159,8 +159,9 @@
 │   │   └── 银行网点终端巡检
 │   ├── 自动化
 │   │   ├── Ansible
-│   │   ├── Role
-│   │   └── 一些资料
+│   │   │   ├── Role
+│   │   │   └── 一些资料
+│   │   └── Cobbler
 │   ├── 软件包管理
 │   │   └── Rpmbuild
 │   │       └── Example
@@ -245,4 +246,4 @@
     │   └── Improve
     └── Tools
 
-245 directories
+246 directories
