@@ -79,9 +79,9 @@ Uploading CentOS-7-x86_64-Minimal-1708.iso to /root/CentOS-7-x86_64-Minimal-1708
 总用量 811008
 -rw-r--r--. 1 root root 830472192 11月 21 23:44 CentOS-7-x86_64-Minimal-1708.iso
 
-#centos6:	
+#Centos6:	
 #[root@localhost ~]# cp /mnt/isolinux/isolinux.cfg /mnt/isolinux/pxelinux.cfg/default
-#centos7:	
+#Centos7:	
 [root@localhost ~]# vim /var/lib/tftpboot/pxelinux.cfg/defult
 default menu.c32
     prompt 0
