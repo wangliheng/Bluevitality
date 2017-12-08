@@ -126,8 +126,8 @@ echo "export PATH=${PHP_BIN_HOME}:${PHP_SBIN_HOME}:$PATH" >> /etc/profile
 source /etc/profile
 
 #PHP-FPM
-/etc/init.d/php-fpm
-echo "/etc/init.d/php-fpm" >> /etc/rc.local
+/etc/init.d/php-fpm -c /etc/php.ini -y /etc/php-fpm.conf
+echo "/etc/init.d/php-fpm -c /etc/php.ini -y /etc/php-fpm.conf" >> /etc/rc.local
 
 echo "Script Execution Time： $SECONDS"
 
