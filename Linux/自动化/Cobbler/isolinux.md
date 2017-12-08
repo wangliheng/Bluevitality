@@ -5,7 +5,7 @@
 4. 加载initrd文件.....
 5. 装载anaconda应用程序，调用其GUI进行安装(文本窗口"tui"基于：curses)
 
-#### 安装光盘内的：/ISOLinux/ 下的文件
+#### 安装光盘内的：/ISOLinux 下的文件
 ```bash
 [root@localhost ~]# mkdir -p /mnt/cdrom
 [root@localhost ~]# mount -t auto /dev/cdrom /mnt/cdrom
