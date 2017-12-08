@@ -1,10 +1,12 @@
-CentOS7的安装启动流程：
-1.先读光盘的取MBR：/isolinux/boot.cat
-2.加载引导文件：/isolinux/isolinux.bin & isolinux.cfg
-3.加载光盘内核：/isolinux/vmlinuz  ( 向内核传递参数：append initrd=initrd.img ... )
-4.加载initrd文件.....
-5.装载anaconda应用程序，调用其GUI进行安装(文本窗口"tui"基于：curses)
+#### CentOS7的安装启动流程
+1. 先读光盘的取MBR：/isolinux/boot.cat
+2. 加载引导文件：/isolinux/isolinux.bin & isolinux.cfg
+3. 加载光盘内核：/isolinux/vmlinuz  ( 向内核传递参数：append initrd=initrd.img ... )
+4. 加载initrd文件.....
+5. 装载anaconda应用程序，调用其GUI进行安装(文本窗口"tui"基于：curses)
 
+#### 安装光盘内的：/ISOLinux/ 下的文件
+```bash
 [root@localhost ~]# mkdir -p /mnt/cdrom
 [root@localhost ~]# mount -t auto /dev/cdrom /mnt/cdrom
 mount: /dev/sr0 写保护，将以只读方式挂载
@@ -39,9 +41,10 @@ drwxr-xr-x. 2 root root  4096 9月   5 21:40 repodata
 -rwxr-xr-x. 1 root root  5877760 8月  23 05:21 vmlinuz       #用于光盘引导安装的Linux内核所在
 [root@localhost isolinux]# cat isolinux.cfg
 ........
-label rescue                                                 #提示符此处为"rescue"，用于菜单编辑界面的调用:boot: rescue initrd=initrd.img
-  menu indent count 5                                                                   #
-  menu label ^Rescue a CentOS system                                                    #菜单
-  kernel vmlinuz                                                                        #指明内核文件
-  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet      #向内核额外附加信息（传递参数!）
+label rescue             #提示符此处为"rescue"，用于菜单编辑界面的调用:boot: rescue initrd=initrd.img
+  menu indent count 5                                                               #
+  menu label ^Rescue a CentOS system                                                #菜单
+  kernel vmlinuz                                                                    #指明内核文件
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet  #向内核额外传递参数
 ........
+```
