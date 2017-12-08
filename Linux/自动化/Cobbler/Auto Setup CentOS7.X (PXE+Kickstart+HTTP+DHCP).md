@@ -52,7 +52,7 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 [root@localhost ~]# cp /mnt/cdrom/isolinux/{vmlinuz,initrd.img} /var/lib/tftpboot/
 [root@localhost ~]# cp /usr/share/syslinux/menu.c32 /var/lib/tftpboot/
 [root@localhost ~]# cp /usr/share/syslinux/chain.c32 /var/lib/tftpboot/
-[root@localhost ~]# cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
+[root@localhost ~]# cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot     #相当于bootloader
 [root@localhost ~]# mkdir -p /var/lib/tftpboot/pxelinux.cfg
 [root@localhost ~]# ll /var/lib/tftpboot/
 总用量 42752
