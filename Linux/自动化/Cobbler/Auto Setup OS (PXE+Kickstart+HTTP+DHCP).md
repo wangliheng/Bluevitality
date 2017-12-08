@@ -1,6 +1,7 @@
 #### 配置 DHCP 提供 PXE 引导文件地址...
 ```bash
 # PXE：预引导执行环境（允许客户端启动后通过网络对DHCP指定的TFTP地址进行引导文件的加载）
+# 注： DHCP服务器上的网卡地址需要手工指定（固定）...
 
 [root@localhost ~]# setenforce  0
 [root@localhost ~]# yum -y install dhcp
