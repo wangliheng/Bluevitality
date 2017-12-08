@@ -52,7 +52,7 @@ CREDITS       .gitignore              .mailmap  security
 # make localmodconfig   //直接使用现在已经装载的内核模块的配置文件
 # make yesconfig        //
 ```
-##### 一般不需要设置太多内容，具体设置要百度
+##### 一般不需要设置太多内容，具体说明去百度
 ![1](./Images/1.png)
 ![2](./Images/2.png)
 ![3](./Images/3.png)
