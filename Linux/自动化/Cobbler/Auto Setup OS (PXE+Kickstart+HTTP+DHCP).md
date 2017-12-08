@@ -71,11 +71,12 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 drwxr-xr-x. 2 root root       19 12月  9 01:58 pxelinux.cfg
 -rwxr-xr-x. 1 root root  5877760 12月  9 01:59 vmlinuz
 #上传Linux_ISO文件
+[root@localhost ~]# mkdir -p /var/www/html/os
 sftp> put CentOS-7-x86_64-Minimal-1708.iso
 Uploading CentOS-7-x86_64-Minimal-1708.iso to /root/CentOS-7-x86_64-Minimal-1708.iso
   100% 811008KB  57929KB/s 00:00:14
-[root@localhost ~]# cd /var/www/html/
-[root@localhost html]# ll
+[root@localhost ~]# cd /var/www/html/os
+[root@localhost os]# ll
 总用量 811008
 -rw-r--r--. 1 root root 830472192 11月 21 23:44 CentOS-7-x86_64-Minimal-1708.iso
 
