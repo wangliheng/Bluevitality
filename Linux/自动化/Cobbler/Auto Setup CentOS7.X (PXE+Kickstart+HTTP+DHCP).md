@@ -22,7 +22,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
         option broadcast-address 192.168.0.255;
         option routers 192.168.0.1;
 }
-[root@localhost ~]# systemctl start dhcpd
+[root@localhost ~]# systemctl start dhcpd && systemctl enable dhcpd
 [root@localhost ~]# netstat -atupnl | grep dhcp
 udp        0      0 0.0.0.0:67              0.0.0.0:*                           1563/dhcpd          
 udp        0      0 0.0.0.0:19992           0.0.0.0:*                           1563/dhcpd          
