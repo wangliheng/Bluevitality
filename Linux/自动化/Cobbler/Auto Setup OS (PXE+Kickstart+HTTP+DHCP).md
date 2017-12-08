@@ -50,6 +50,7 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 [root@localhost ~]# cp /mnt/cdrom/images/pxeboot/{vmlinuz,initrd.img} /var/lib/tftpboot
 [root@localhost ~]# cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
 #CentOS6 （centos6与centos7的PXE的方式稍有不同!）
+# [root@localhost ~]# mkdir -p /var/lib/tftpboot/pxelinux.cfg
 # [root@localhost ~]# cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
 # [root@localhost ~]# cp /mnt/cdrom/images/pxeboot/vmlinuz /var/lib/tftpboot/
 # [root@localhost ~]# cp /mnt/cdrom/images/pxeboot/initrd.img /var/lib/tftpboot/
@@ -57,6 +58,7 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 # [root@localhost ~]# cp /mnt/cdrom/isolinux/vesamenu.c32 /var/lib/tftpboot/
 
 #CentOS7
+[root@localhost ~]# mkdir -p /var/lib/tftpboot/pxelinux.cfg
 [root@localhost ~]# cp /usr/share/syslinux/{chain.c32,mboot.c32,menu.c32,memdisk} /var/lib/tftpboot/
 [root@localhost ~]# ll /var/lib/tftpboot/
 总用量 53212
@@ -76,7 +78,7 @@ Uploading CentOS-7-x86_64-Minimal-1708.iso to /root/CentOS-7-x86_64-Minimal-1708
 [root@localhost html]# ll
 总用量 811008
 -rw-r--r--. 1 root root 830472192 11月 21 23:44 CentOS-7-x86_64-Minimal-1708.iso
-[root@localhost ~]# mkdir -p /var/lib/tftpboot/pxelinux.cfg
+
 #centos6:	
 #[root@localhost ~]# cp /mnt/isolinux/isolinux.cfg /mnt/isolinux/pxelinux.cfg/default
 #centos7:	
