@@ -73,27 +73,19 @@ drwxr-xr-x. 2 root root       19 12月  9 01:58 pxelinux.cfg
 -rwxr-xr-x. 1 root root  5877760 12月  9 01:59 vmlinuz
 [root@localhost ~]# chmod 777 -R /var/lib/tftpboot/pxelinux.cfg
 [root@localhost ~]# chmod 777 pxelinux.0
-#上传Linux_ISO文件
 [root@localhost ~]# mkdir -p /var/www/html/os
-sftp> put CentOS-7-x86_64-Minimal-1708.iso
-Uploading CentOS-7-x86_64-Minimal-1708.iso to /root/CentOS-7-x86_64-Minimal-1708.iso
-  100% 811008KB  57929KB/s 00:00:14
-[root@localhost ~]# cd /var/www/html/os
-[root@localhost os]# ll
-总用量 811008
--rw-r--r--. 1 root root 830472192 11月 21 23:44 CentOS-7-x86_64-Minimal-1708.iso
+[root@localhost ~]# cp -r /mnt/cdrom/* /var/www/html/os #Linux_ISO文件(在ks文件中标记此位置进行下载运行)
 
 #Centos6:	
 #[root@localhost ~]# cp /mnt/isolinux/isolinux.cfg /mnt/isolinux/pxelinux.cfg/default
 #Centos7:	
 [root@localhost ~]# vim /var/lib/tftpboot/pxelinux.cfg/default
-default menu.c32
-    prompt 0
-    timeout 30
-    MENU TITLE CentOS7 PXE Menu
-    
-    LABLE CentOS7
-    MENU LABLE Install CentOS7 x86_64
+default ks
+prompt 0
+timeout 30
+MENU TITLE CentOS7 PXE Menu
+
+LABEL ks
     KERNEL vmlinuz
     APPEND initrd=initrd.img ks=http://192.168.0.2:80/ks.cfg  [ksdevice=<interface>] [ip=dhcp] [quiet]
 [root@localhost ~]# chmod 644 /var/lib/tftpboot/pxelinux.cfg/defult
