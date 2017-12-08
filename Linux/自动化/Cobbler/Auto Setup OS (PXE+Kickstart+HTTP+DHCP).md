@@ -86,7 +86,7 @@ Uploading CentOS-7-x86_64-Minimal-1708.iso to /root/CentOS-7-x86_64-Minimal-1708
 #Centos6:	
 #[root@localhost ~]# cp /mnt/isolinux/isolinux.cfg /mnt/isolinux/pxelinux.cfg/default
 #Centos7:	
-[root@localhost ~]# vim /var/lib/tftpboot/pxelinux.cfg/defult
+[root@localhost ~]# vim /var/lib/tftpboot/pxelinux.cfg/default
 default menu.c32
     prompt 0
     timeout 30
