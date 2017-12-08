@@ -5,6 +5,7 @@
 
 [root@localhost ~]# setenforce  0
 [root@localhost ~]# yum -y install dhcp
+[root@localhost ~]# systemctl stop firewalld && systemctl disable firewalld
 [root@localhost ~]# cat /etc/dhcp/dhcpd.conf
 option domain-name              "danlab.local";
 option domain-name-servers      127.0.0.1;
