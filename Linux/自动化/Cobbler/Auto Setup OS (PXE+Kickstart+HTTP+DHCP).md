@@ -71,6 +71,8 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 -rw-r--r--. 1 root root    26764 12月  9 02:01 pxelinux.0
 drwxr-xr-x. 2 root root       19 12月  9 01:58 pxelinux.cfg
 -rwxr-xr-x. 1 root root  5877760 12月  9 01:59 vmlinuz
+[root@localhost ~]# chmod 777 -R /var/lib/tftpboot/pxelinux.cfg
+[root@localhost ~]# chmod 777 pxelinux.0
 #上传Linux_ISO文件
 [root@localhost ~]# mkdir -p /var/www/html/os
 sftp> put CentOS-7-x86_64-Minimal-1708.iso
