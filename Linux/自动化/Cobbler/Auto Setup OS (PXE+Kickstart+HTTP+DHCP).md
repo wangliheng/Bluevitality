@@ -91,7 +91,7 @@ default menu.c32
 [root@localhost ~]# chmod 644 /var/lib/tftpboot/pxelinux.cfg/defult
 
 #验证ks文件正确性
-[root@localhost ~]# ksvalidator http:/Host:Port/Path/ks.cfg
+[root@localhost ~]# ksvalidator /Path/ks.cfg
 
 #注：
 #http:/Host:Port/Path/ks.cfg 中要有 'url --url="http://192.168.0.1/os/"' 使其从网络进行安装
