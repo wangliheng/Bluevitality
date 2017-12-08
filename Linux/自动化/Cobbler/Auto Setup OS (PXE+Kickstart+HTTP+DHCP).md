@@ -96,3 +96,5 @@ default menu.c32
 #注：
 #http:/Host:Port/Path/ks.cfg 中要有 'url --url="http://192.168.0.1/os/"' 使其从网络进行安装
 ```
+#### Client端
+`开启网卡的PXE功能....`
