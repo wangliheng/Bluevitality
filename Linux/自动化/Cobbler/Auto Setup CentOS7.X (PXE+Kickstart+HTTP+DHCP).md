@@ -4,6 +4,8 @@
 # 注： DHCP服务器上的网卡地址需要手工指定（固定）...
 
 [root@localhost ~]# setenforce  0
+[root@localhost ~]# cat /etc/sysconfig/selinux | grep SELINUX=
+SELINUX=disabled
 [root@localhost ~]# yum -y install dhcp
 [root@localhost ~]# systemctl stop firewalld && systemctl disable firewalld
 [root@localhost ~]# cat /etc/dhcp/dhcpd.conf
