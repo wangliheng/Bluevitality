@@ -48,3 +48,15 @@ label rescue             #提示符此处为"rescue"，用于菜单编辑界面�
   append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet  #向内核额外传递参数
 ........
 ```
+#### anaconda
+```bash
+# 两种配置方式：
+# 1.通过GUI进行交互式安装
+# 2.通过kickstart文件自动安装
+
+#在Linux启动时的菜单栏对选中的内核ENTER进入Boot提示附后，可设置kickstart文件：
+#光盘：boot: ks=cdrom:/Path/to/kickstart_file
+#硬盘：boot: ks=hd:/Path/to/kickstart_file
+#HTTP：boot: ks=http://Host:Port/Path/to/kickstart_file
+#FTP：boot: ks=ftp://Host:Port/Path/to/kickstart_file
+```
