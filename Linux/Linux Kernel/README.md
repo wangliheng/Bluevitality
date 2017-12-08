@@ -132,9 +132,9 @@ drwxr-xr-x.  2 root root     91 Nov 20 06:33 vdso
 drwxr-xr-x.  2 root root      6 Nov 20  2015 weak-updates
 
 #   注：
-#   []     N   ...
-#   [M]    M   以模块方式加载(/lib/modules/\<kernel-version-release\>/)
-#   [*]    Y   将模块加入内核
+#   []       ...
+#   [M]      以模块方式加载(/lib/modules/\<kernel-version-release\>/)
+#   [*]      将模块加入内核
 
 #查看/proc/modules
 [root@localhost ~]# lsmod | head    #内核已经装载的相关模块，大小，使用次数以及被谁使用的信息...
