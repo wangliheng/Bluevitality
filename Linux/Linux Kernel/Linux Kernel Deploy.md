@@ -53,11 +53,11 @@ CREDITS       .gitignore              .mailmap  security
 # make yesconfig        //
 ```
 ##### 一般不需要设置太多内容，具体设置要百度
-![1](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/1.png)
-![2](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/2.png)
-![3](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/3.png)
-![4](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/4.png)
-![5](https://github.com/bluevitality/Bluevitality/blob/master/Linux/Linux%20Kernel/Images/5.png)
+![1](./Images/1.png)
+![2](./Images/2.png)
+![3](./Images/3.png)
+![4](./Images/4.png)
+![5](./Images/5.png)
 
 #### Install ....
 ```bash
