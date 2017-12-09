@@ -39,7 +39,7 @@
 - [ ] consul 分步骤按格式存储，修改RAEDME
 - [ ] hadoop，storm，spark，zookeeper，Kafka，reducemap，hdfs
 - [ ] Openstack，kubernets，ELK，Openvswitch，ceph，KVM的NET模式demo
-- [ ] LDAP，nsswitch，pam
+- [ ] LDAP，nsswitch
 - [ ] OpenVPN
 - [ ] Squit & Varnish
 - [X] ~~VNC~~ & ~~NTP~~
