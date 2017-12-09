@@ -1,7 +1,8 @@
 # 工作，学习，记录
 
 - [ ] BASH 与 Python 的不断完善 （ 完善VIM的IDE环境 ）
-- [ ] sed/awk的大纲笔记，Git备忘优化排版，优化例子，CentOS 7 的启动流程不断优化的md
+- [ ] sed/awk的大纲笔记，Git备忘优化排版，优化例子
+- [ ] GRUB2，U盘版编译内核+BusyBox的Linux，CentOS7启动流程不断归纳细化的md
 - [ ] 抽时间，快速复习一遍.....
 - [ ] ~~LVM~~, ~~LVM的镜像~~/条带 ~~mdadm的README~~
 - [x] ~~Quota的配置流程记录（加注释）~~
