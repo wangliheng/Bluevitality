@@ -33,7 +33,7 @@ COPYING       .gitattributes          lib       scripts
 CREDITS       .gitignore              .mailmap  security
 
 #将旧的配置拷贝至当前目录（目前还不适用于这个最新的版本）
-[root@localhost linux]# cp /boot/config-3.10.0-327.el7.x86_64 ./config  
+[root@localhost linux]# cp /boot/config-3.10.0-327.el7.x86_64 ./.config  
 ```
 #### 修改内核配置文件
 ```bash
