@@ -27,7 +27,7 @@ SYSLOGD_OPTIONS="-m 0 -r"     #-r
 ```
 #### Rsyslog Modules ...
 ```bash
-[root@localhost /]# grep "###" /etc/rsyslog.conf 
+[root@localhost /]# grep "###" /etc/rsyslog.conf        #配置分段...
 #### MODULES ####
 #### GLOBAL DIRECTIVES ####
 #### RULES ####
@@ -35,7 +35,7 @@ SYSLOGD_OPTIONS="-m 0 -r"     #-r
 # ### end of the forwarding rule ###
 [root@localhost /]# rpm -ql rsyslog | grep '/usr/lib64'
 /usr/lib64/rsyslog
-/usr/lib64/rsyslog/imdiag.so                #以"i"开头的是与输入相关的模块，如：过滤工具
+/usr/lib64/rsyslog/imdiag.so                            #以"i"开头的是与输入相关的模块，如：过滤工具
 /usr/lib64/rsyslog/imfile.so
 /usr/lib64/rsyslog/imjournal.so
 /usr/lib64/rsyslog/imklog.so
