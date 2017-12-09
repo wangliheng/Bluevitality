@@ -25,3 +25,40 @@
 # See rsyslogd(8) for more details
 SYSLOGD_OPTIONS="-m 0 -r"     #-r
 ```
+#### Rsyslog Modules ...
+```bash
+[root@localhost /]# rpm -ql rsyslog | grep '/usr/lib64'
+/usr/lib64/rsyslog
+/usr/lib64/rsyslog/imdiag.so                #以"i"开头的是与输入相关的模块，如：过滤工具
+/usr/lib64/rsyslog/imfile.so
+/usr/lib64/rsyslog/imjournal.so
+/usr/lib64/rsyslog/imklog.so
+/usr/lib64/rsyslog/immark.so
+/usr/lib64/rsyslog/impstats.so
+/usr/lib64/rsyslog/imptcp.so
+/usr/lib64/rsyslog/imtcp.so
+/usr/lib64/rsyslog/imudp.so
+/usr/lib64/rsyslog/imuxsock.so
+/usr/lib64/rsyslog/lmnet.so
+/usr/lib64/rsyslog/lmnetstrms.so
+/usr/lib64/rsyslog/lmnsd_ptcp.so
+/usr/lib64/rsyslog/lmregexp.so
+/usr/lib64/rsyslog/lmstrmsrv.so
+/usr/lib64/rsyslog/lmtcpclt.so
+/usr/lib64/rsyslog/lmtcpsrv.so
+/usr/lib64/rsyslog/lmzlibw.so
+/usr/lib64/rsyslog/mmanon.so
+/usr/lib64/rsyslog/mmcount.so
+/usr/lib64/rsyslog/omjournal.so             #以"o"开头的是与输出相关的模块...
+/usr/lib64/rsyslog/ommail.so
+/usr/lib64/rsyslog/omprog.so
+/usr/lib64/rsyslog/omruleset.so
+/usr/lib64/rsyslog/omstdout.so
+/usr/lib64/rsyslog/omtesting.so
+/usr/lib64/rsyslog/omuxsock.so
+/usr/lib64/rsyslog/pmaixforwardedfrom.so
+/usr/lib64/rsyslog/pmcisconames.so
+/usr/lib64/rsyslog/pmlastmsg.so
+/usr/lib64/rsyslog/pmrfc3164sd.so
+/usr/lib64/rsyslog/pmsnare.so
+```
