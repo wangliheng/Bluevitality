@@ -63,6 +63,8 @@ CREDITS       .gitignore              .mailmap  security
 ```bash
 #编译内核（可能需要3个小时左右）等待编译的完成
 [root@localhost linux]# make -j 4
+  
+  # make bzImage -j N ...
 
   # 只编译特定子目录中的相关代码：
   # cd /usr/src/kernels/3.10.0-693.5.2.el7.x86_64/
