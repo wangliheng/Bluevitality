@@ -57,7 +57,7 @@ $InputTCPServerRun 514
 /usr/lib64/rsyslog/lmzlibw.so
 /usr/lib64/rsyslog/mmanon.so
 /usr/lib64/rsyslog/mmcount.so
-/usr/lib64/rsyslog/omjournal.so             #以"o"开头的是与输出相关的模块...
+/usr/lib64/rsyslog/omjournal.so                         #以"o"开头的是与输出相关的模块...
 /usr/lib64/rsyslog/ommail.so
 /usr/lib64/rsyslog/omprog.so
 /usr/lib64/rsyslog/omruleset.so
