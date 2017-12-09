@@ -18,12 +18,14 @@
 ```
 #### 远程服务器接收日志
 ```bash
-[root@localhost ~]# cat /etc/sysconfig/rsyslog    
-# Options for rsyslogd
-# Syslogd options are deprecated since rsyslog v3.
-# If you want to use them, switch to compatibility mode 2 by "-c 2"
-# See rsyslogd(8) for more details
-SYSLOGD_OPTIONS="-m 0 -r"     #-r
+[root@localhost /]# grep -A 2 '# Provides' /etc/rsyslog.conf 
+# Provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+--
+# Provides TCP syslog reception
+$ModLoad imtcp
+$InputTCPServerRun 514
 ```
 #### Rsyslog Modules ...
 ```bash
