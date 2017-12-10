@@ -2,7 +2,6 @@
 ├── Bourne-Again Shell
 │   ├── Bash History
 │   ├── Dialog
-│   ├── VIM IDE
 │   └── 收集的...（备忘）
 ├── Linux
 │   ├── Cluster
@@ -242,10 +241,11 @@
 │   │       ├── imgs
 │   │       └── scikit_learn
 │   └── 爬虫项目
-└── Tmp
-    ├── Chrome Bookmarks
-    ├── English
-    │   └── Improve
-    └── Tools
+├── Tmp
+│   ├── Chrome Bookmarks
+│   ├── English
+│   │   └── Improve
+│   └── Tools
+└── Vim
 
 248 directories
