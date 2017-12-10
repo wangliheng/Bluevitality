@@ -71,26 +71,62 @@ DAEMON_OPTS="-p thread_pools=3 -p thread_pool_min=50 -p thread_pool_max=2000"
 ```
 #### VCL 内置的公共变量
 ```txt
+VCL内置的公共变量可用在不同的VCL函数中，下面根据使用的不同阶段进行介绍
 
+请求/响应报文所在阶段对应的varnish变量：
+            
+                    -------req.xxx------>         -------breq.xxx------> 
+            [clinet]                     [varnish]                     [backend server]
+                    <------resp.xxx------         <-------bresp.xxx----- 
+        
+当请求到达时，可以使用以下公共变量：
+    req.backend             指定对应的后端主机
+    server.ip               服务器 IP
+    client.ip               客户端 IP
+    req.quest               请求类型，如 GET、HEAD 等...
+    req.url                 请求的URL地址
+    req.proto               客户端发起请求的 HTTP 协议版本
+    req.http.header         表示对应请求中的 HTTP 头部信息
+    req.restarts            表示重启次数，默认最大值为 4
+    req.http.Cookie         客户端请求报文中Cookie首部的值
+    req.http.User-Agent     客户端浏览器类型
+    req.http.host           客户端主机名称
+
+Varnish在向后端主机请求时，可使用以下公共变量:
+    bereq.http.HEADERS      表示对应请求中 HTTP 头部信息
+    bereq.request           请求方法
+    bereq.url               请求的url
+    bereq.proto             请求的协议版本
+    bereq.backend           指明要调用的后端主机
+
+Varnish在向后端主机请求返回响应时，可使用以下公共变量:
+    beresp.requset          指定请求类型，例如 GET、HEAD 等
+    beresp.url              表示请求地址
+    beresp.backend.name     BE主机的主机名；
+    beresp.status           响应的状态码；
+    beresp.proto            表示backend server HTTP 协议版本
+    beresp.http. HEADERS    从backend server 响应报文指定首部
+    beresp.ttl              表示缓存的生存周期，cache 保留时间（s）
+
+
+从 cache 或后端主机获取内容后，可使用以下公共变量:
+    obj.status              返回内容的请求状态码，例如 200、302、504 等
+    obj.cacheable           返回的内容是否可以缓存
+    obj.valid               是否有效的 HTTP 请求
+    obj.response            返回内容的请求状态信息
+    obj.proto               返回内容的 HTTP 版本
+    obj.hits                此对象从缓存中命中的次数
+    obj.ttl                 返回内容的生存周期，也就是缓存时间，单位秒
+    obj.lastuse             返回上次请求到现在的时间间隔，单位秒
+
+
+对客户端应答时，可以使用以下公共变量
+
+resp.status 返回给客户端的 HTTP 代码状态
+resp.proto  返回给客户端的 HTTP 协议版本
+resp.http.header    返回给客户端的 HTTP 头部消息
+resp.response   返回给客户端的 HTTP 头部状态
 ```
-
-VCL文件：
-
-vcl 4.0;                          #版本兼容性
-
-backend default { 
-    
-    .host = "172.16.252.205";     #定义后端主机
-    .port = "80";
-    
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .probe = check;
-}
-
-
-
 
 增加varnishncsa的demo(日志形式输出共享内存中的log)
 
