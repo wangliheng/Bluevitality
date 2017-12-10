@@ -31,6 +31,19 @@ VCL：
         /usr/lib/systemd/system/varnishlog.service      日志服务
         /usr/lib/systemd/system/varnishncsa.service     日志持久的服务
 ```
+#### Varnish 处理 HTTP 请求的过程描述
+```txt
+1，Receive 状态（vcl_recv）：
+    即请求处理的入口状态，依 VCL 规则判断该请求应 pass（vcl_pass） 或 pipe（vcl_pipe），还是进入 lookup（本地查询） 
+2，Lookup 状态：
+    进入该状态后会在 hash 表中查找数据，若找到则进入 hit（vcl_hit）状态否则进入 miss（vcl_miss）状态 
+3，Pass（vcl_pass）状态：
+    在此状态下会直接进入后端请求，即进入 fetch（vcl_fetch）状态 
+4，Fetch（vcl_fetch）状态：
+    在 fetch 状态下对请求进行后端获取，发送请求，获得数据，并根据设置是否进行本地存储... 
+5，Deliver（vcl_deliver）状态：
+    将获取到的数据发给客户端，而后完成本次请求
+```
 #### varnish.params
 ```txt
 RELOAD_VCL=1                                    #自动重新装载缓存策略，1表示自动装载
@@ -55,19 +68,6 @@ VARNISH_GROUP=varnish
 
 #运行时参数，线程池数量，每个线程池的线程数及最大请求处理数量（-p 可指定添加运行参数及对应值）
 DAEMON_OPTS="-p thread_pools=3 -p thread_pool_min=50 -p thread_pool_max=2000"
-```
-#### Varnish 处理 HTTP 请求的过程描述
-```txt
-1，Receive 状态（vcl_recv）：
-    即请求处理的入口状态，依 VCL 规则判断该请求应 pass（vcl_pass） 或 pipe（vcl_pipe），还是进入 lookup（本地查询） 
-2，Lookup 状态：
-    进入该状态后会在 hash 表中查找数据，若找到则进入 hit（vcl_hit）状态否则进入 miss（vcl_miss）状态 
-3，Pass（vcl_pass）状态：
-    在此状态下会直接进入后端请求，即进入 fetch（vcl_fetch）状态 
-4，Fetch（vcl_fetch）状态：
-    在 fetch 状态下对请求进行后端获取，发送请求，获得数据，并根据设置是否进行本地存储... 
-5，Deliver（vcl_deliver）状态：
-    将获取到的数据发给客户端，而后完成本次请求
 ```
 #### VCL 内置的公共变量
 ```txt
