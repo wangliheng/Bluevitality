@@ -108,7 +108,6 @@ Varnish在向后端主机请求返回响应时，可使用以下公共变量:
     beresp.http. HEADERS    从backend server 响应报文指定首部
     beresp.ttl              表示缓存的生存周期，cache 保留时间（s）
 
-
 从 cache 或后端主机获取内容后，可使用以下公共变量:
     obj.status              返回内容的请求状态码，例如 200、302、504 等
     obj.cacheable           返回的内容是否可以缓存
@@ -119,13 +118,11 @@ Varnish在向后端主机请求返回响应时，可使用以下公共变量:
     obj.ttl                 返回内容的生存周期，也就是缓存时间，单位秒
     obj.lastuse             返回上次请求到现在的时间间隔，单位秒
 
-
-对客户端应答时，可以使用以下公共变量
-
-resp.status 返回给客户端的 HTTP 代码状态
-resp.proto  返回给客户端的 HTTP 协议版本
-resp.http.header    返回给客户端的 HTTP 头部消息
-resp.response   返回给客户端的 HTTP 头部状态
+对客户端应答时，可使用以下公共变量:
+    resp.status             返回给客户端的 HTTP 代码状态
+    resp.proto              返回给客户端的 HTTP 协议版本
+    resp.http.header        返回给客户端的 HTTP 头部消息
+    resp.response           返回给客户端的 HTTP 头部状态
 ```
 
 增加varnishncsa的demo(日志形式输出共享内存中的log)
