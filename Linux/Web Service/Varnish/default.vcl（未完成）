@@ -1,4 +1,14 @@
-vcl 4.0;                                                    #版本兼容性
+vcl 4.0;                                                    #版本兼容性，提供向后兼容
+
+import directors;                                           #导入模块
+
+probe check {                                               #健康检查参数
+    .url = "/";                                             #检查路径
+    .window = 8;                                            #检查次数
+    .threshold = 4;                                         #最小健康次数
+    .interval = 2s;                                         #检查频率2s/次
+    .timeout = 1s;                                          #超时时长
+}
 
 backend default {                                           #定义后端主机
     
@@ -8,123 +18,37 @@ backend default {                                           #定义后端主机
     .connect_timeout = 0.5s;
     .first_byte_timeout = 20s;
     .between_bytes_timeout = 5s;
-    .probe = check;
+    .probe = check;                                         #调用上面定义的 check 进行健康检查
 }
 
-
-vcl 4.0;
-import directors; 导入模块
-probe check { 健康检查参数
-    .url = "/"; 检查的路径
-    .window = 8; 检查次数
-    .threshold = 4; 最小健康次数
-    .interval = 2s; 检查频率2秒一次
-    .timeout = 1s; 超时时长
-}
-backend default { 定义后端主机
-       .host = "172.16.252.205";
-       .port = "80";
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .max_connections = 50;
-    .probe = check;
-}
 backend pic {
+    
     .host = "172.16.253.145";
     .port = "80";
+    
     .connect_timeout = 0.5s;
     .first_byte_timeout = 20s;
     .between_bytes_timeout = 5s;
-    .max_connections = 50;
     .probe = check;
 }
+
 sub vcl_init {
-    new grouphost = directors.round_robin();
-    grouphost.add_backend(default);
-    grouphost.add_backend(pic);
+    new grouphost = directors.round_robin();                #调度方式？（暂时不确定，还有：new grouphos = directors.hash();）
+    grouphost.add_backend(default);                         #还有grouphost.add_backend(default，1);？？？
+    grouphost.add_backend(pic);                             #还有grouphost.add_backend(pic，1);？？？
 }
+
 sub vcl_recv {
-    set req.backend_hint = grouphost.backend();
+    set req.backend_hint = grouphost.backend();             #还有set req.backend_hint = grouphost.backend(req.http.cookie);
 ｝
 
 
-
-
-vcl 4.0;
-import directors; 导入模块
-probe check { 健康检查参数
-    .url = "/"; 检查的路径
-    .window = 8; 检查次数
-    .threshold = 4; 最小健康次数
-    .interval = 2s; 检查频率2秒一次
-    .timeout = 1s; 超时时长
-}
-backend default { 定义后端主机
-       .host = "172.16.252.205";
-       .port = "80";
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .max_connections = 50;
-    .probe = check;
-}
-backend pic {
-    .host = "172.16.253.145";
-    .port = "80";
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .max_connections = 50;
-    .probe = check;
-}
-sub vcl_init {
-    new grouphost = directors.hash();
-    grouphost.add_backend(default，1);
-    grouphost.add_backend(pic，1);
-}
-sub vcl_recv {
-    set req.backend_hint = grouphost.backend(req.http.cookie);
-｝
-
-# configure
-vcl 4.0;
-import directors;
-probe check {
-    .url = "/";
-    .window = 8;
-    .threshold = 4;
-    .interval = 2s;
-    .timeout = 1s;
-}
-backend default {
-    .host = "172.16.252.205";
-    .port = "80";
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .max_connections = 50;
-    .probe = check;
-}
-backend pic {
-    .host = "172.16.253.145";
-    .port = "80";
-    .connect_timeout = 0.5s;
-    .first_byte_timeout = 20s;
-    .between_bytes_timeout = 5s;
-    .max_connections = 50;
-    .probe = check;
-}
-sub vcl_init {
-    new grouphost = directors.round_robin();
-    grouphost.add_backend(default);
-    grouphost.add_backend(pic);
-}
 acl purgers {
     "localhost";
     "127.0.0.1";
     "172.16.253.190";
 }
+
 sub vcl_recv {
     set req.backend_hint = grouphost.backend();
     if (req.url ~ "(?i)^/admin") {
@@ -156,6 +80,7 @@ sub vcl_recv {
         }
     }
 }
+
 sub vcl_backend_response {
     if (beresp.http.cache-control !~ "s-maxage") {
         if (bereq.url ~ "(?i)\.(jpg|jpeg|gif|png|css|js)$") {
