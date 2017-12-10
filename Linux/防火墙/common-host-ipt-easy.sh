@@ -1,8 +1,8 @@
 #!/bin/bash
-#this is a server firewall 
+#this is a server firewall
 
 # function: a server firewall
-# version:1.1 
+# version:1.1
 
 #define variable PATH
 
@@ -41,9 +41,8 @@ $IPT -A INPUT -p tcp --tcp-flags ACK,PSH PSH -j DROP
 $IPT -A INPUT -p tcp --tcp-flags ACK,URG URG -j DROP
 
 
-
 #setting access rules
-#one,ip access rules,allow all the ips of 
+#one,ip access rules,allow all the ips of
 $IPT -A INPUT -s 10.0.10.0/24 -p all -j ACCEPT
 $IPT -A INPUT -s 10.0.0.0/24 -p all -j ACCEPT
 
@@ -70,8 +69,8 @@ $IPT -A INPUT   -p tcp  --dport 22 -j ACCEPT
 $IPT -A INPUT   -p tcp  --dport 80 -j ACCEPT
 
 #snmp
-$IPT -A INPUT -s 10.0.0.0/24 -p UDP  --dport 161 -j ACCEPT 
-$IPT -A INPUT -s 10.0.10.0/24 -p UDP  --dport 161 -j ACCEPT 
+$IPT -A INPUT -s 10.0.0.0/24 -p UDP  --dport 161 -j ACCEPT
+$IPT -A INPUT -s 10.0.10.0/24 -p UDP  --dport 161 -j ACCEPT
 
 #rsync
 $IPT -A INPUT -s 10.0.0.0/24 -p tcp -m tcp --dport 873   -j ACCEPT
