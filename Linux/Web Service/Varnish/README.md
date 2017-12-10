@@ -218,6 +218,3 @@ VARNISH_STORAGE="malloc,256M"
 VARNISH_USER=varnish
 VARNISH_GROUP=varnish
 ```
-增加varnishncsa的demo(日志形式输出共享内存中的log)
-
-增加varnishtop,varnishstat
