@@ -124,4 +124,30 @@ Varnish在向后端主机请求返回响应时，可使用以下公共变量:
     resp.http.header        返回给客户端的 HTTP 头部消息
     resp.response           返回给客户端的 HTTP 头部状态
 ```
+#### Cache-Control
+```txt
+Cache-Control   = "Cache-Control" ":" 1#cache-directive
+    cache-directive = cache-request-directive
+         | cache-response-directive
+    cache-request-directive =
+           "no-cache"                          
+         | "no-store" (backup)                          
+         | "max-age" "=" delta-seconds         
+         | "max-stale" [ "=" delta-seconds ]  
+         | "min-fresh" "=" delta-seconds      
+         | "no-transform"                      
+         | "only-if-cached"                   
+         | cache-extension                   
+     cache-response-directive =
+           "public"                               
+         | "private" [ "=" <"> 1#field-name <"> ] 
+         | "no-cache" [ "=" <"> 1#field-name <"> ]
+         | "no-store"                            
+         | "no-transform"                         
+         | "must-revalidate"                     
+         | "proxy-revalidate"                    
+         | "max-age" "=" delta-seconds            
+         | "s-maxage" "=" delta-seconds           
+         | cache-extension 
+```
 ![varinish](http://img.blog.csdn.net/20170627200700477?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ3llMTk4OV8wMjI2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
