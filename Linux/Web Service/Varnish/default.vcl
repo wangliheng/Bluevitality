@@ -104,9 +104,9 @@ sub vcl_recv {
         return(pass);                                       	#不进行缓存查找，（直接通过backend_fetch来请求后端）
     }	
     if (req.method == "PRI") {					#varnish do not support SPDY or HTTP/2.0
-        return (synth(405););					#未识别的新方法交由synth处理
-    }	
-    if (req.restarts == 0){                                 	#为第1次请求本主机的C端在向后端主机请求时添加"X-Forward-For"首部（排除rewrite）
+        return (synth(405));					#未识别的新方法交由synth处理
+    }
+    if (req.restarts == 0) {                                 	#为第1次请求本主机的C端在向后端主机请求时添加"X-Forward-For"首部（排除rewrite）
         if (req.http.X-Forward-For) {                      
 	        set req.http.X-Forward-For = req.http.X-Forward-For + "," +client.ip;
         } else {
