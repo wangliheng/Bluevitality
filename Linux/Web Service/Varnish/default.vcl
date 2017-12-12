@@ -101,7 +101,7 @@ sub vcl_recv {
     }
     */
     if (req.url ~ "^/login" || req.url ~ "^/admin") {       	#测试或管理页面不进行缓存处理（不区分大小写："(?i)^/login"）
-        return(pass)                                        	#不进行缓存查找，（直接通过backend_fetch来请求后端）
+        return(pass);                                       	#不进行缓存查找，（直接通过backend_fetch来请求后端）
     }	
     if (req.method == "PRI") {                              	#varnish don't support SPDY or HTTP/2.0
         return (synth(405));                                	#未识别的新方法交由synth处理
@@ -163,7 +163,7 @@ sub vcl_backend_fetch {						#从后台服务器取回数据后,视情况是否�
         unset beresp.http.Expires;  
         return (deliver);  
     }  
-    if (beresp.ttl > 0s) {					#仅当该请求可缓存时才设置beresp.grace，若该请求不能被缓存则不设置beresp.grace  
+    if (beresp.ttl > 0s) {			#仅当该请求可缓存时才设置beresp.grace，若该请求不能被缓存则不设置beresp.grace  
         set beresp.grace = 1m;  
     }    
     if (beresp.ttl <= 0s || beresp.http.Set-Cookie || beresp.http.Vary == "*") {  
