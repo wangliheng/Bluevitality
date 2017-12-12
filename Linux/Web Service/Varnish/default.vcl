@@ -256,7 +256,7 @@ sub vcl_miss {							#未命中（动作：fetch/pass）
 }
 
 sub vcl_fini {  
-	return (ok);  
+    return (ok);  
 }
 
 
