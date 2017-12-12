@@ -30,6 +30,15 @@ VCL：
         /usr/lib/systemd/system/varnish.service         服务 daemon
         /usr/lib/systemd/system/varnishlog.service      日志服务
         /usr/lib/systemd/system/varnishncsa.service     日志持久的服务
+
+Varnish分为master和child进程：
+    Master读配置文件调用合适的存储类型，创建/读入相应的缓存文件，接着初始化管理该存储空间的结构体并fork和监控child
+    Child在初始化过程中将前面打开的存储文件整个mmap到内存中，此时创建并初始化空闲结构体挂到存储管理结构体以待分配
+    Child进程分配若干线程进行工作，主要包括管理线程和很多worker线程，可分为：
+        Accept： 接受请求，将请求挂在overflow队列上；
+        Work：   有多个，负责从w队列上摘除请求，对请求进行处理，直到完成，然后处理下个请求
+        Epoll：  一个请求处理称为一个session，在session周期内，处理完请求后会交给Epoll处理，监听是否还有事件发生
+        Expire： 对于缓存的object，根据过期时间组织成二叉堆，该线程周期检查该堆的根，处理过期的文件
 ```
 #### Varnish 处理 HTTP 请求的过程描述
 ```txt
