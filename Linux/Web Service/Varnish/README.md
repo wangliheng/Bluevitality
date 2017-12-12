@@ -102,7 +102,8 @@ Varnish在向后端主机请求时，可使用以下公共变量:
 Varnish在向后端主机请求返回响应时，可使用以下公共变量:
     beresp.requset          指定请求类型，例如 GET、HEAD 等
     beresp.url              表示请求地址
-    beresp.backend.name     BE主机的主机名；
+    beresp.backend          指明要调用的后端主机
+    beresp.backend.name     BE主机的主机名；
     beresp.status           响应的状态码；
     beresp.proto            表示backend server HTTP 协议版本
     beresp.http. HEADERS    从backend server 响应报文指定首部
