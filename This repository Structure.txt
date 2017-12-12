@@ -50,7 +50,6 @@
 │   │   │   ├── Setup 5.6.30
 │   │   │   ├── Setup 7.1.5
 │   │   │   └── 汇总
-│   │   ├── Squid
 │   │   ├── Tomcat
 │   │   │   ├── Directory contents
 │   │   │   ├── Redis - Session - Manager
@@ -242,10 +241,11 @@
 │   │       ├── imgs
 │   │       └── scikit_learn
 │   └── 爬虫项目
-└── Tmp
-    ├── Chrome Bookmarks
-    ├── English
-    │   └── Improve
-    └── Tools
+├── Tmp
+│   ├── Chrome Bookmarks
+│   ├── English
+│   │   └── Improve
+│   └── Tools
+└── Vim
 
 248 directories
