@@ -52,9 +52,9 @@
 │   │   │   └── 汇总
 │   │   ├── Tomcat
 │   │   │   ├── Directory contents
-│   │   │   ├── JMX
-│   │   │   ├── Redis - Session - Manager
+│   │   │   ├── Session -Redis
 │   │   │   ├── Setup 8.0.30
+│   │   │   ├── Setup JMX
 │   │   │   └── 资料
 │   │   └── Varnish
 │   │       └── 资料
