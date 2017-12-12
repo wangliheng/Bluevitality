@@ -51,15 +51,16 @@ backend pic {
 }
 
 sub vcl_init {
-    new grouphost = directors.round_robin();                #调度方式？（暂时不确定，还有：new grouphos = directors.hash();）
+    new grouphost = directors.round_robin();                #创建后端主机组，基于round_robin策略进行调度
     grouphost.add_backend(default);                         #还有grouphost.add_backend(default，1);？？？
     grouphost.add_backend(pic);                             #还有grouphost.add_backend(pic，1);？？？
+
+    /*
+    new img_cluster = directors.hash();
+    img_cluster.add_backend(image1);
+    img_cluster.add_backend(image2);
+    */
 }
-
-sub vcl_recv {
-    set req.backend_hint = grouphost.backend();             #还有set req.backend_hint = grouphost.backend(req.http.cookie);
-｝
-
 
 acl purgers {
     "localhost";
@@ -68,10 +69,35 @@ acl purgers {
 }
 
 sub vcl_recv {
-    set req.backend_hint = grouphost.backend();
-    if (req.url ~ "(?i)^/admin") {
+
+    set req.backend_hint = grouphost.backend();             #还有set req.backend_hint = grouphost.backend(req.http.cookie);
+
+    if (req.url ~ "test.html") {                            #测试页面不缓存
+	    return(pass);
+    }
+    
+    if (req.url ~ "^/admin.*") {
         return(pass);
     }
+    
+    if (req.restarts == 0){                                 #为第1次请求本主机的C端在向后端主机发生时添加HTTP头部"X-Forward-For"
+        if (req.http.X-Forward-For) {                      
+	        set req.http.X-Forward-For = req.http.X-Forward-For + "," +client.ip;
+        } else {
+	        set req.http.X-Forward-For = client.ip;
+        }
+    }
+    
+    if (req.request != "GET" &&                             #将不理解的HTTP方法直接交给后端服务器处理
+        req.request != "HEAD" &&  
+        req.request != "PUT" &&  
+        req.request != "POST" &&  
+        req.request != "TRACE" &&  
+        req.request != "OPTIONS" &&  
+        req.request != "DELETE") {  
+            return (pipe);  
+    }  
+    
     if (req.method == "PURGE"){
         if (client.ip !~ purgers) {
             return (synth(444,"Not enough authority to " + client.ip));
@@ -86,32 +112,60 @@ sub vcl_recv {
         ban("req.http.host == " + req.http.host + " && req.url == " + req.url);
         return(synth(200,"Ban Added"));
     }
-/*  if (req.http.User-Agent ~ "(?i)curl") {
+    
+    /*  
+    if (req.http.User-Agent ~ "(?i)curl") {
         return (synth(405,"No good"));
     }
-*/
-    if (req.restarts ==0) {
-        if (req.http.X-Forwarded-For) {
-            set req.http.X-Forwarded-For = req.http.X-Forwarded-For + "," + client.ip;
-        } else {
-            set req.http.X-Forwarded-For = client.ip;
-        }
+    */
+    retuen(lookup)
+}
+
+sub vcl_pass {  
+    return (pass);  
+}
+
+sub vcl_hash {  
+    hash_data(req.url);  
+    if (req.http.host) {  
+        hash_data(req.http.host);  
+    } else {  
+        hash_data(server.ip);  
+    }  
+    if(req.http.Accept-Encoding){                           ##持压缩的要增加,防止发送给不支持压缩的浏览器压缩的内容  
+         hash_data(req.http.Accept-Encoding);  
     }
+    return (hash);  
+}
+
+sub vcl_hit {   
+    return (deliver);  
+}
+
+sub vcl_miss {  
+    return (fetch);  
 }
 
 sub vcl_backend_response {
-    if (beresp.http.cache-control !~ "s-maxage") {
-        if (bereq.url ~ "(?i)\.(jpg|jpeg|gif|png|css|js)$") {
-            unset beresp.http.Set_Cookie;
-            set beresp.ttl = 7200s;
-        }
+    if (bereq.url ~ "\.(jpg|jpeg|gif|png)$") {
+	    set beresp.ttl = 6000s;
+    }
+    if (bereq.url ~ "\.(html|css|js)$") {
+	    set beresp.ttl = 6000s;
+    }
+    if (beresp.http.Set-Cookie) {
+	    return(deliver);
     }
 }
 
 sub vcl_deliver {
     if (obj.hits>0) {
-        set resp.http.X-Cache = "HIT from " + server.ip;
+        set resp.http.X-Cache = "HIT from "  + server.ip;
     } else {
         set resp.http.X-Cache = "MISS from " + server.ip;
     }
+    
+    unset resp.http.Vary;
+    unset resp.http.X-Powered-By;
+    unset resp.http.X-AspNet-Version;
 }
