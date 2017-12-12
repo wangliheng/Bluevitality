@@ -69,7 +69,7 @@ VARNISH_GROUP=varnish
 #运行时参数，线程池数量，每个线程池的线程数及最大请求处理数量（-p 可指定添加运行参数及对应值）
 DAEMON_OPTS="-p thread_pools=3 -p thread_pool_min=50 -p thread_pool_max=2000"
 ```
-#### VCL 内置的公共变量
+#### VCL 内置的部分公共变量
 ```txt
 VCL内置的公共变量可用在不同的VCL函数中，下面根据使用的不同阶段进行介绍
 
