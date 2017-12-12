@@ -1,3 +1,15 @@
+/*
+    vcl_recv：      实现安全策略，仅处理可识别的http方法且只缓存get/head，不缓存用户特有数据（据客户端请求作出缓存策略）
+    vcl_fetch：     根据服务端的响应作出的策略缓存
+    vcl_pipe:       用于将请求直接发往后端主机；
+    vcl_hash:       自定义hash生成时的数据来源
+    vcl_pass:       用于将请求直接传递至后端主机；
+    vcl_hit:        从缓存中查找到缓存对象时要执行的操作；
+    vcl_miss:       从缓存中款查找到缓存对象时要执行的操作；
+    vcl_deliver:    将用户请求的内容响应给客户端时用到的方法；
+    vcl_error:      在varnish端合成错误响应时的缓存策略；
+*/
+
 vcl 4.0;                                                    #版本兼容性，提供向后兼容
 
 import directors;                                           #导入模块
@@ -18,7 +30,7 @@ backend default {                                           #定义后端主机
     .connect_timeout = 0.5s;
     .first_byte_timeout = 20s;
     .between_bytes_timeout = 5s;
-    .probe = check;                                         #调用上面定义的 check 进行健康检查
+    .probe = check;
 }
 
 backend pic {
@@ -29,7 +41,13 @@ backend pic {
     .connect_timeout = 0.5s;
     .first_byte_timeout = 20s;
     .between_bytes_timeout = 5s;
-    .probe = check;
+    .probe = {
+        .url = "/test.jpg";
+        .timeout = 0.3 s; 
+        .window = 8;
+        .threshold = 3;
+        .initial = 3;
+    }
 }
 
 sub vcl_init {
