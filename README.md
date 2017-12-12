@@ -30,7 +30,7 @@
 - [ ] python的：~~jinja生成配置文件的demo（过滤器，流程控制，对象，宏）~~，~~sqlalchemy的常规demo~~，disutils项目打包成模块的demo，sockerserver
 - [ ] tcpdump，wireshark 的md
 - [x] ~~nodejs安装及配置流程说明~~
-- [ ] chef，ansible的完整流程相关文件结构&README文档
+- [ ] chef，~~ansible的完整流程相关文件结构&README文档~~
 - [ ] Rsyslog的模板规则及模块demo & Rsyslog+LogAnalyzer+MySQL & ~~logrotate~~，corosyc
 - [ ] demo（模板改用新版本形式：https://www.cnblogs.com/itcomputer/p/6241421.html ） Rsyslog调用日志并使用模板处理
 - [ ] ~~nodejs~~和mqtt的安装及相关设置，~~包括https，pm2，npm~~
@@ -40,9 +40,9 @@
 - [ ] consul 分步骤按格式存储，修改RAEDME
 - [ ] hadoop，storm，spark，zookeeper，Kafka，reducemap，hdfs
 - [ ] Openstack，kubernets，ELK，Openvswitch，ceph，KVM的NET模式demo
-- [ ] LDAP，nsswitch
+- [ ] LDAP，~~nsswitch~~
 - [ ] OpenVPN
-- [ ] Squit & Varnish
+- [X] ~~Varnish~~
 - [X] ~~VNC~~ & ~~NTP~~
 - [ ] RabbitMQ
 - [ ] Zxarps
