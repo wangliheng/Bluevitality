@@ -1,5 +1,5 @@
 
-#F5自动运行并分屏输出
+# F5自动运行并分屏输出（本配置段在写入~/.vimrc前需要先创建文件：mkdir ~/.vim）
 function! Setup_ExecNDisplay()
   execute "w"
   execute "silent !chmod +x %:p"

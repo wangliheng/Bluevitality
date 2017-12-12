@@ -241,11 +241,10 @@
 │   │       ├── imgs
 │   │       └── scikit_learn
 │   └── 爬虫项目
-├── Tmp
-│   ├── Chrome Bookmarks
-│   ├── English
-│   │   └── Improve
-│   └── Tools
-└── Vim
+└── Tmp
+    ├── Chrome Bookmarks
+    ├── English
+    │   └── Improve
+    └── Tools
 
-248 directories
+247 directories
