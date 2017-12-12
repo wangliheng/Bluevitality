@@ -2,7 +2,8 @@
 ├── Bourne-Again Shell
 │   ├── Bash History
 │   ├── Dialog
-│   └── 收集的...（备忘）
+│   ├── Vim
+│   └── 收集的资料（备忘）
 ├── Linux
 │   ├── Cluster
 │   │   ├── DRBD
@@ -241,11 +242,10 @@
 │   │       ├── imgs
 │   │       └── scikit_learn
 │   └── 爬虫项目
-├── Tmp
-│   ├── Chrome Bookmarks
-│   ├── English
-│   │   └── Improve
-│   └── Tools
-└── Vim
+└── Tmp
+    ├── Chrome Bookmarks
+    ├── English
+    │   └── Improve
+    └── Tools
 
 248 directories
