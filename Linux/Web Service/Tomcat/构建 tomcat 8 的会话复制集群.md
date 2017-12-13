@@ -90,7 +90,6 @@
 #### 创建输出会话用于测试的index.js页面到后端各tomcat的webapps下
 ```bash
 [root@localhost ~]# cat /usr/local/tomcat/webapps/index.jsp
-<%= session.getId() %>
 <%@  page language="java" %>
 <html>
   <head><title>test.node1</title></head>
