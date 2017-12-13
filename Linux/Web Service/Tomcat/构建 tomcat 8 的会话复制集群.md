@@ -15,7 +15,7 @@
                         port="45564"
                         frequency="500"
                         dropTime="3000"/>           <!-- 5s/次心跳，30s后剔除 -->
-                <!-- 自身如何接受传递来的会话 -->
+                <!-- 自身如何接受传递来的会话 (注意不要使用address=auto，要指定具体的网卡名字)-->
                 <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
                         address="auto"
                         port="4000"
@@ -91,4 +91,21 @@
 ```bash
 [root@localhost ~]# cat /usr/local/tomcat/webapps/index.jsp
 <%= session.getId() %>
+<%@  page language="java" %>
+<html>
+  <head><title>test.node1</title></head>
+  <body>    <h1><font color="red">"此处替换为当前所在的主机名或域名"</font></h1>
+    <table align="centre" border="1">
+      <tr>
+        <td>Session ID</td>
+    <% session.setAttribute("test.org","test.org"); %>
+        <td><%= session.getId() %></td>
+      </tr>
+      <tr>
+        <td>Created on</td>
+        <td><%= session.getCreationTime() %></td>
+     </tr>
+    </table>
+</body>
+</html>
 ```
