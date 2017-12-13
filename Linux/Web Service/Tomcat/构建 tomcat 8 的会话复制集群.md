@@ -87,7 +87,7 @@
 11-Oct-2017 10:25:25.007 INFO [Tribes-Task-Receiver[Catalina-Channel]-1] org.apache.catalina.tribes.io.BufferPool.getBufferPool Created a buffer pool with max size:104857600 bytes of type: org.apache.catalina.tribes.io.BufferPool15Impl
 11-Oct-2017 10:25:25.974 INFO [Membership-MemberAdded.] org.apache.catalina.ha.tcp.SimpleTcpCluster.memberAdded Replication member added:org.apache.catalina.tribes.membership.MemberImpl[tcp://{172, 16, 0, 104}:4000,{172, 16, 0, 104},4000, alive=1006, securePort=-1, UDP Port=-1, id={5 52 67 -61 66 126 73 -8 -108 76 20 81 -92 58 27 108 }, payload={}, command={}, domain={}, ]
 ```
-#### 创建输出会话用于测试的index.js页面到后端各tomcat的webapps下
+#### 创建输出会话用于测试的index.js页面到后端各tomcat的webapps下 （测试可用，前端 Nginx/httpd）
 ```bash
 [root@localhost ~]# cat /usr/local/tomcat/webapps/index.jsp
 <%@  page language="java" %>
