@@ -10,7 +10,7 @@
 - [ ] keepalived配置文件注释完成，haproxy脚本，lvs完善，drbd，heartbeat
 - [x] ~~Supervisor，xinetd 的demo与readme~~，~~Flask相关的gunicorn和manage的md或sh~~ systemd的@与.timer.target的说明
 - [x] ~~mutt+mstp的脚本~~
-- [ ] ~~tomcat 安装脚本~~、redis实现tomcat集群会话共享，~~jmx监控~~及zabbix监控tomcat，JVM优化，多实例，jar与jmap的demo
+- [ ] ~~tomcat 安装脚本~~、redis实现~~tomcat集群会话共享~~，~~jmx监控~~ ~~及zabbix监控tomcat~~，JVM优化，多实例，~~jar与jmap的demo~~
 - [x] ~~memcahed的README & 安装脚本~~
 - [ ] ~~mysql~~，~~mysql主从~~，5.6自带的半同步插件.sh，~~GTID~~，~~Mysqldump / xtrabackup~~ / lvm快照备份db脚本
 - [ ] ~~nginx~~、~~Nginx4层LB的demo~~，mysql多实例
