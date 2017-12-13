@@ -3,7 +3,30 @@
 [root@localhost bin]# jps                       #查看java进程
 98162 Jps
 97983 Bootstrap 
-[root@localhost bin]# jmap -heap 97983          #查看JVM设置与堆状态...（没放war，报了错）
+[root@localhost ~]# jstack 97983                #查看特定java进程的堆栈信息（-l 附加输出锁相关的信息）
+2017-12-14 09:16:44
+Full thread dump OpenJDK 64-Bit Server VM (25.151-b12 mixed mode):
+
+"Attach Listener" #29 daemon prio=9 os_prio=0 tid=0x00007f1864000a30 nid=0x5ef waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"ajp-nio-8009-Acceptor-0" #27 daemon prio=5 os_prio=0 tid=0x00007f18a422ce40 nid=0x59a runnable [0x00007f1886e32000]
+   java.lang.Thread.State: RUNNABLE
+        at sun.nio.ch.ServerSocketChannelImpl.accept0(Native Method)
+        at sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:422)
+        at sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:250)
+        - locked <0x00000000e1222bd0> (a java.lang.Object)
+        at org.apache.tomcat.util.net.NioEndpoint$Acceptor.run(NioEndpoint.java:682)
+        at java.lang.Thread.run(Thread.java:748)
+
+"ajp-nio-8009-ClientPoller-1" #26 daemon prio=5 os_prio=0 tid=0x00007f18a422b9d0 nid=0x599 runnable [0x00007f1886f33000]
+   java.lang.Thread.State: RUNNABLE
+        at sun.nio.ch.EPollArrayWrapper.epollWait(Native Method)
+        at sun.nio.ch.EPollArrayWrapper.poll(EPollArrayWrapper.java:269)
+        at sun.nio.ch.EPollSelectorImpl.doSelect(EPollSelectorImpl.java:93)
+        at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:86)
+..............................（略）
+[root@localhost bin]# jmap -heap 97983          #查看JVM设置与堆状态...（没放war，报了错）此命令非常有用!....
 Attaching to process ID 21711, please wait...
 Debugger attached successfully.
 Server compiler detected.
