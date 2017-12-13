@@ -71,16 +71,23 @@
 [root@localhost bin]# ./catalina.sh configtest              #测试server.xml配置正确性... 
 [root@localhost bin]# cd /usr/local/tomcat/webapps/ROOT
 [root@localhost ROOT]# cat index.jsp                        #编辑session测试页面：index.jsp
-<%@ page contentType="text/html; charset=GBK" %> 
- <%@ page import="java.util.*" %> 
- <html><head><title>Cluster Test</title></head> 
- <body> 
- <% 
-   //HttpSession session = request.getSession(true); 
-   System.out.println(session.getId());
-   out.println("<br> SESSION ID:" + session.getId()+"<br>");
- %>
-10 </body>
+<%@  page language="java" %>
+<html>
+  <head><title>test.node1</title></head>
+  <body>    <h1><font color="red">"此处替换为当前所在的主机名或域名"</font></h1>
+    <table align="centre" border="1">
+      <tr>
+        <td>Session ID</td>
+    <% session.setAttribute("test.org","test.org"); %>
+        <td><%= session.getId() %></td>
+      </tr>
+      <tr>
+        <td>Created on</td>
+        <td><%= session.getCreationTime() %></td>
+     </tr>
+    </table>
+</body>
+</html>
 [root@localhost bin]# ./startup.sh 
 ```
 #### Testing....
