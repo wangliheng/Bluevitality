@@ -14,3 +14,4 @@ Download URL：http://repo1.maven.org/maven2/de/javakaffee/msm
 ```
 #### memcached-session-manager-tc8-1.8.3
 #### memcached-session-manager-1.8.3
+#### javolution-5.4.3.1
