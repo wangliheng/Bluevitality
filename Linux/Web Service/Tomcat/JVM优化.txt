@@ -1,6 +1,5 @@
-#测试环境 Tomcat8 以下的变量定义添加在96行之下，具体参数百度
-
-
+#### 测试环境 Tomcat8 以下的变量定义添加在96行之下，具体百度
+```
 JAVA_OPTS="
 $JAVA_OPTS
 -server 
@@ -18,3 +17,5 @@ $JAVA_OPTS
 -XX:NewRatio=4 
 -XX:SurvivorRatio=8
 -XX:+AggressiveOpts"
+```
+![JVM](资料/JVM.png)
