@@ -52,9 +52,9 @@
 [root@localhost lib]# 设置 context 中 manager 使用的类为：de.javakaffee.web.msm.MemcachedBackupSessionManager
 [root@localhost lib]# vim /usr/local/tomcat/conf/server.xml
 <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
-    <!-- 在Host段或Context段内部增加如下 <Manage> 段的内容...  -->
+    <!-- 在Host段或Context段内部增加如下 <Manage> 段的内容...(建议不要放在host段，经测试有问题!!...)  -->
     <!-- 若将其放在 <Context> 段中时，docbase="" 要使用绝对路径!  -->
-    <Context>
+    <Context path="/test" docBase="/usr/local/tomcat/webapps/test" reloadable="true">
       ...
       <!-- memcachedNodes 至少需要2个，另一个作为备机 -->
       <!-- memcachedNodes="memcached主机标识:memcahed主机地址,memcached主机标识:memcahed主机地址..." -->
@@ -68,9 +68,10 @@
         />
     </Context>
 </Host>
-[root@localhost bin]# ./catalina.sh configtest              #测试server.xml配置正确性... 
-[root@localhost bin]# cd /usr/local/tomcat/webapps/         #ROOT下也cp一份?
-[root@localhost ROOT]# cat index.jsp                        #编辑session测试页面：index.jsp
+[root@localhost bin]# ./catalina.sh configtest                  #测试server.xml配置正确性... 
+[root@localhost bin]# mkdir -p /usr/local/tomcat/webapps/test/WEB-INF/{classes,lib} #此步骤不能省略
+[root@localhost bin]# cd /usr/local/tomcat/webapps/test         #         
+[root@localhost test]# cat index.jsp                            #编辑session测试页面：index.jsp
 <%@  page language="java" %>
 <html>
   <head><title>test.node1</title></head>
@@ -88,7 +89,7 @@
     </table>
 </body>
 </html>
-[root@localhost bin]# ./startup.sh 
+[root@localhost test]# /usr/local/tomcat/bin/startup.sh 
 ```
 #### Testing....
 ```txt
