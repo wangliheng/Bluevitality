@@ -57,7 +57,7 @@
     <description>
        Welcome to Tomcat
     </description>
-    <distributable/> <!-- 在web-app容器中加入<distributable/>元素即可，表示其支持会话管理器进行分布式 -- >
+    <distributable/> <!-- 在web-app容器中加入<distributable/>元素即可，表示其支持会话管理器进行分布式 -->
 </web-app>
 ```
 #### 检查运行状态
