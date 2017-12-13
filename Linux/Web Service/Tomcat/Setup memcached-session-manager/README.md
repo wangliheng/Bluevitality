@@ -89,6 +89,7 @@
     </table>
 </body>
 </html>
+[root@localhost test]# rm -rf /usr/local/tomcat/work/Catalina/localhost/* 
 [root@localhost test]# /usr/local/tomcat/bin/startup.sh 
 ```
 #### Testing....
