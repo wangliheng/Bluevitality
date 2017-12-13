@@ -69,8 +69,8 @@
     </Context>
 </Host>
 [root@localhost bin]# ./catalina.sh configtest              #测试server.xml配置正确性... 
-[root@localhost bin]# cd /usr/local/tomcat/webapps/ROOT
-[root@localhost ROOT]# cat index.jsp                        #编辑session测试页面：index.jsp
+[root@localhost bin]# cd /usr/local/tomcat/webapps/         #ROOT下也cp一份?
+[root@localhost ROOT]# cat index.jsp                        #编辑session测试页面：index.jsp
 <%@  page language="java" %>
 <html>
   <head><title>test.node1</title></head>
