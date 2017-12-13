@@ -7,7 +7,7 @@
 加入旧报文：        File  >  Merge
 查找数据包：        Ctrl+F：  <正则|MAC|主机名>
 为规则设置颜色：    View >  Coloring rules  >  Edit  > 
-设置时间格式：        View  >  Time display Format
+设置时间格式：         View  >  Time display Format
 为IP地址备注：        报文右键  >  Manually Resolve Address > 名字
 标记报文：        选择报文  >  Ctrl+M （前后切换：Shift+Ctrl N/B，标记的报文数量在抓包统计信息：Summary中显示）
 跟踪数据流：        报文右键  >   <Follw tcp Stream | Follw udp Stream | Follw sslStream>
@@ -82,7 +82,10 @@ Wireshark中以下含义相同：
     and        &&    
     or        ||
 
-------------------------------------------------------------------------------------------- tcpdump 缺少设置接口为混杂模式的demo（ip命令可以）
+------------------------------------------------------------------------------------------- tcpdump
+[root@localhost ~]# ifconfig <interface> promisc        #设置网卡为混杂模式
+[root@localhost ~]# ifconfig <interface> -promisc       #取消网卡的混杂模式
+
 参数：
     -A        内容以ASCII显示
     -X        内容以16进制（hex）与ASCII格式显示
@@ -109,7 +112,7 @@ Wireshark中以下含义相同：
     tcpdump -i eth0 host ! 211.161.223.70 and ! 211.161.223.71 and dst port 80
     tcpdump -i eth0 ' \( tcp port ! 22 \) and  src host 192.168.1.1 and dst net 192.168.2.0/24 '
     tcpdump udp port 123 -nn -X
-    tcpdump tcp -i eth1 -t -s 0 -c 100 and dst port ! 22 and src net 192.168.1.0/24 -w ./target.cap    "cap格式由wireshark处理"
+    tcpdump tcp -i eth1 -t -s 0 -c 100 and dst port ! 22 and src net 192.168.1.0/24 -w ./target.cap  "cap由wireshark处理"
     tcpdump -i eth0 src host 192.168.10.1 and udp port !80
     tcpdump 'icmp[icmptype] != icmp-echo and icmp[icmptype] != icmp-echoreply'
     tcpdump 'tcp[tcpflags] & (tcp-syn|tcp-fin) != 0 and not src and dst net localnet'
