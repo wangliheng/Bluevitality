@@ -31,9 +31,9 @@
                 <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor"/>
         </Channel>
         <Valve className="org.apache.catalina.ha.tcp.ReplicationValve" filter=""/>
-        <!-- 可实现基于JVMroute绑定后端tom实例（相当于标记1个会话创建者的标识） -- >
+        <!-- 可实现基于JVMroute绑定后端tom实例（相当于标记1个会话创建者的标识） -->
         <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
-        <!-- 可实现新增的webapp在集群间的同步创建，自动部署，及会话同步（一般不开启）-- >
+        <!-- 可实现新增的webapp在集群间的同步创建，自动部署，及会话同步（一般不开启）-->
         <Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
                 tempDir="/tmp/war-temp/"
                 deployDir="/tmp/war-deploy/"
