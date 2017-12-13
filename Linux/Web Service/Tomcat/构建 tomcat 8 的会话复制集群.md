@@ -14,7 +14,7 @@
                         address="228.0.0.4"
                         port="45564"
                         frequency="500"
-                        dropTime="3000"/>           <!-- 5s/次心跳，30s后剔除 -- >
+                        dropTime="3000"/>           <!-- 5s/次心跳，30s后剔除 -->
                 <!-- 自身如何接受传递来的会话 -->
                 <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
                         address="auto"
