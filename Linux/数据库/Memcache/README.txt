@@ -11,8 +11,8 @@ memcached是一种不互相通信的分布式，其协议简单，基于libevent
 -c 最大并发，默认是1024；
 -P 保存的pid文件。   
 
-启动：    /usr/bin/memcached -d  -m 128 -n 20 -f 1.2 -l 192.168.10.225 -p 11211 -c 2048 -vv -u nobody -P /tmp/memcached.pid
-连接：    telnet [IP] [Port]
+启动：/usr/bin/memcached -d -m 128 -n 20 -f 1.2 -l 172.16.0.1 -p 11211 -c 2048 -vv -u nobody -P /tmp/mem.pid
+连接：telnet [IP] [Port]
 
 例子：
 set runoob 0 900 9   设置key为runoob | flag=0（flag用于存储关于键值对的额外信息）|此键值对的有效期为900秒|数据存储的字节数为9
@@ -91,4 +91,4 @@ evictions：        LRU释放的对象数目
 reclaimed：        已过期的数据条目来存储新数据的数目
 
 Memcached stats items用于显示各个slab中item的数目和存储时长（最后一次访问距现在的秒数）。
-flush_all命令用于用于清理缓存中的所有key<=>value，键值对
+flush_all 命令用于用于清理缓存中的所有key<=>value，键值对
