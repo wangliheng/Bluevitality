@@ -1,8 +1,8 @@
 #### 三个配置文件
 ```txt
-haresources   定义集群资源，v1版使用，v2版兼容(v2版使用CRM)，v3版使用Pacemake...
-ha.cf         集群成员之间的高可用及心跳设置
-authkeys      成员认证
+/etc/ha.d/haresources   定义集群资源，v1版使用，v2版兼容(v2版使用CRM)，v3版使用Pacemake...
+/etc/ha.d/ha.cf         集群成员之间的高可用及心跳设置
+/etc/ha.d/authkeys      成员认证
 ```
 主备节点都需要安装Heartbeat软件...
 依次安装libnet和heartbeat源码包，服务安装完毕后在备份节点使用`scp`把主节点配置文件传输到备份节点
