@@ -1,5 +1,4 @@
 #### Notice
----
 1. 所有的集群成员都需要 NTP 的时间同步
 2. 修改各集群成员主机名  
  `~]# vim /etc/sysconfig/network`  
