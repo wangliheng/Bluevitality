@@ -1,6 +1,6 @@
 #### 三个配置文件
 ```txt
-/etc/ha.d/haresources   定义集群资源，v1版使用，v2版兼容(v2版使用CRM)，v3版使用Pacemake...
+/etc/ha.d/haresources   定义集群资源，v1版使用haresources，v2版兼容v1(v2版使用CRM)，v3版使用Pacemake...
 /etc/ha.d/ha.cf         集群成员之间的高可用及心跳设置
 /etc/ha.d/authkeys      成员认证
 ```
