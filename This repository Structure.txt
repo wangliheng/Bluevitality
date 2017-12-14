@@ -16,7 +16,7 @@
 │   │   │   ├── Setup 1.6.7
 │   │   │   └── 一些资料
 │   │   ├── Heartbeat
-│   │   │   ├── conf
+│   │   │   ├── conf - version1.x
 │   │   │   └── Setup 3.0.6
 │   │   ├── Keepalive
 │   │   │   ├── Check Scripts
