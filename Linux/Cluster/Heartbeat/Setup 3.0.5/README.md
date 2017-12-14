@@ -28,7 +28,7 @@ LIBS='/lib64/libuuid.so.1'
 [root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# cd ~
 
 [root@localhost ~]# tar -zxf resource-agents-3.9.6.tar.gz && cd resource-agents-3.9.6
-[root@localhost resource-agents-3.9.6]# export CFLAGS="$CFLAGS -I /usr/local/heartbeat/include -L /usr/local/heartbeat/lib"
+[root@localhost resource-agents-3.9.6]# export CFLAGS="$CFLAGS -I/usr/local/heartbeat/include -L/usr/local/heartbeat/lib"
 [root@localhost resource-agents-3.9.6]# ./autogen.sh
 [root@localhost resource-agents-3.9.6]# ./configure --prefix=/usr/local/heartbeat
 [root@localhost resource-agents-3.9.6]# ln -s  /usr/local/heartbeat/lib/* /lib/ 
