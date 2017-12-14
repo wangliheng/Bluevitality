@@ -14,6 +14,9 @@ make wget docbook-dtds docbook-style-xsl asciidoc libuuid-devel
 
 [root@localhost ~]# tar -jxf 0a7add1d9996.tar.bz2 && cd Reusable-Cluster-Components-glue--0a7add1d9996/
 [root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# ./autogen.sh   #看到 Now run ./configure 表示自动生成完成
+[root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# useradd ha
+[root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# CLUSTER_USER="ha"
+[root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# CLUSTER_GROUP=${CLUSTER_USER}
 [root@localhost Reusable-Cluster-Components-glue--0a7add1d9996]# ./configure  --prefix=/usr/local/heartbeat \
 --with-daemon-user=${CLUSTER_USER} \
 --with-daemon-group=${CLUSTER_GROUP} \
@@ -37,7 +40,8 @@ LIBS='/lib64/libuuid.so.1'
 [root@localhost ~]# tar -jxf 958e11be8686.tar.bz2 && cd Heartbeat-3-0-958e11be8686/
 [root@localhost Heartbeat-3-0-958e11be8686]# ./bootstrap
 [root@localhost Heartbeat-3-0-958e11be8686]# export CFLAGS="$CFLAGS -I/usr/local/heartbeat/include -L/usr/local/heartbeat/lib"
-[root@localhost Heartbeat-3-0-958e11be8686]# ./configure --prefix=/usr/local/heartbeat --enable-fatal-warnings=no \ LIBS='/lib64/libuuid.so.1'
+[root@localhost Heartbeat-3-0-958e11be8686]# ./configure --prefix=/usr/local/heartbeat --enable-fatal-warnings=no \
+LIBS='/lib64/libuuid.so.1'
 #若出现如下警告：
   CC_WARNINGS              = " -Wall -Wmissing-prototypes -Wmissing-declarations...........(略)
   Mangled CFLAGS           = " -I /usr/local/heartbeat/include -L /usr/local/hea...........(略)
