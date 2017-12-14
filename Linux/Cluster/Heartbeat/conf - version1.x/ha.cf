@@ -14,7 +14,7 @@ udpport 694
 #ucast eth0 192.168.1.2 694
 
 #采用网卡eth0的Udp多播来心跳并指定端口为694，一般在备节点不止一台时使用（Bcast、ucast、mcast分别代表广播、单播、多播，是心跳的三种方式） 
-#mcast eth0 225.0.0.1 694 1 0
+#mcast eth0 225.0.0.1 694 1 0     #启用网卡的多播功能：ip link set <interface> multicast on
 
 #指定心跳使用的串行设备，用于双机使用串口线连接的场合（若双机用以太网连接则应关闭该选项） 
 #serial /dev/ttyS0
