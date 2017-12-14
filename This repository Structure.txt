@@ -6,6 +6,7 @@
 │   └── 收集的资料（备忘）
 ├── Linux
 │   ├── Cluster
+│   │   ├── Corosync
 │   │   ├── DRBD
 │   │   │   ├── conf
 │   │   │   ├── Softs
@@ -15,6 +16,8 @@
 │   │   │   ├── Setup 1.6.7
 │   │   │   └── 一些资料
 │   │   ├── Heartbeat
+│   │   │   ├── conf
+│   │   │   └── Setup 3.0.6
 │   │   ├── Keepalive
 │   │   │   ├── Check Scripts
 │   │   │   └── 一些资料
@@ -251,4 +254,4 @@
     │   └── Improve
     └── Tools
 
-251 directories
+254 directories
