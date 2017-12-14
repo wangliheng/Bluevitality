@@ -2,7 +2,7 @@
 - NTP 同步完成
 - 在执行脚本前修改 HOSTNAME 变量，/etc/hosts ...
 - SSH 公钥互信
-#### 安装流程
+#### 安装流程 ( 仅适用于 CentOS 7 但测试还未通过 )
 ```bash
 # Download URL: http://linux-ha.org/wiki/Download 
 # 参考： http://blog.csdn.net/shudaqi2010/article/details/77072589
