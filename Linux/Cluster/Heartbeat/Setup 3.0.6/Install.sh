@@ -31,10 +31,6 @@ cd Heartbeat
 
 
 
-
-
-
-
 set -ex
 
 #身份检查
