@@ -18,10 +18,10 @@
 │   │   ├── Heartbeat
 │   │   │   ├── conf - version1.x
 │   │   │   └── Setup 3.0.5
-│   │   ├── Keepalive
+│   │   ├── LVS + Keepalive
 │   │   │   ├── Check Scripts
-│   │   │   └── 一些资料
-│   │   ├── LVS
+│   │   │   ├── LVS
+│   │   │   └── 资料
 │   │   ├── Pacemaker
 │   │   └── RHCS
 │   ├── Daemon Manage
