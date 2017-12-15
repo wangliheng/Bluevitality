@@ -1,5 +1,6 @@
 #### 特点
 ```txt
+编译Redis时不需要configure，直接Make即可（将在当前的make目录生成可使用的src子目录）...
 支持两种数据持久化，可将内存中数据保持在磁盘，重启的时可再次加载
 不仅支持简单的key-value类型数据，同时还提供list，set，zset，hash等数据结构的存储...
 支持数据的备份，即Master-Slave模式
@@ -29,4 +30,9 @@ Redis的所有操作都是原子性的，还支持对几个操作全并后的原
         appendfsync everysec    #每秒都调用fsync刷新到AOF文件，很快但可能会丢失一秒内的数据
         appendfsync no          #依靠OS进行刷新，redis不主动刷新AOF，这样最快但安全性最差
     
+```
+#### check
+```txt
+redis-check-dump    检测RDB备份文件
+redis-check-aof     检测AOF备份文件
 ```
