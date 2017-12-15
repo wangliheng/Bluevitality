@@ -36,3 +36,15 @@ Redis的所有操作都是原子性的，还支持对几个操作全并后的原
 redis-check-dump    检测RDB备份文件
 redis-check-aof     检测AOF备份文件
 ```
+#### 部署
+```bash
+$ wget http://download.redis.io/releases/redis-2.8.17.tar.gz
+$ tar xzf redis-2.8.17.tar.gz
+$ cd redis-2.8.17
+$ make   #redis-2.8.17目录下会出现编译后的redis服务程序redis-server 用于测试的客户端程序redis-cli。位于安装目录src下
+#启动服务：
+$ cd src
+$ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777    
+#指定主服务器：--slaveof 127.0.0.1 8888     默认S端服务端口：6379
+
+```
