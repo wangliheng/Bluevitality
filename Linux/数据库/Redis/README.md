@@ -47,4 +47,9 @@ $ cd src
 $ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777    
 #指定主服务器：--slaveof 127.0.0.1 8888     默认S端服务端口：6379
 
+#isExists=`grep 'vm.overcommit_memory' /etc/sysctl.conf | wc -l`
+#if [ "$isExists" != "1" ]; then
+#	echo "vm.overcommit_memory = 1">>/etc/sysctl.conf
+#	sysctl -p
+#fi
 ```
