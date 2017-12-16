@@ -105,7 +105,8 @@
 │   │   ├── Open Ldap
 │   │   ├── Oracle
 │   │   └── Redis
-│   │       └── conf
+│   │       ├── conf
+│   │       └── Setup 3.2.11
 │   ├── 服务发现
 │   │   ├── Consul
 │   │   │   └── 软件
@@ -255,4 +256,4 @@
     │   └── Improve
     └── Tools
 
-255 directories
+256 directories
