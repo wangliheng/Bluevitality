@@ -14,7 +14,6 @@ fi
 make install
 
 
-
 cd $p
 tar -zxf redis-3.2.11.tar.gz  
 cd redis-3.2.11
@@ -24,14 +23,19 @@ if [ $NUM -gt 1 ];then
 else
     make
 fi
-make install
+
+make PREFIX=/usr/local/redis install
+
+cd /usr/local/redis
+
+mkdir /usr/local/redis/etc/ -p
+cp redis.conf /usr/local/redis/etc/ 
+cp /usr/local/redis/bin/{redis-benchmark,redis-cli,redis-server} /usr/bin/
 
 
-
-
-
-
-
+#修改配置
+sed -i 's/daemonize no/daemonize yes/' /usr/local/redis/etc/redis.conf
+sed -i 's/pidfile .*/pidfile .\/redis.pid/' /usr/local/redis/etc/redis.conf
 
 isExists=`grep 'vm.overcommit_memory' /etc/sysctl.conf | wc -l`
 if [ "$isExists" != "1" ]; then
@@ -39,21 +43,6 @@ if [ "$isExists" != "1" ]; then
 	sysctl -p
 fi
 
-if [ ! -d /var/run/redis ]; then
-	mkdir -m 0777 -p /var/run/redis
-	chown -R redis:redis /var/run/redis
-fi
-
-
-# 修改配置文件
-cp $redis/redis.conf .
-sed -i 's/daemonize no/daemonize yes/' redis.conf
-sed -i 's/pidfile .*/pidfile .\/redis.pid/' redis.conf
-
-# 创建启动和停止文件
-cat > start.sh << EOF
-#!/bin/bash
-./$redis/src/redis-server ./redis.conf
-EOF
-chmod +x start.sh
+#启动
+redis-server /usr/local/redis/etc/redis.conf
 
