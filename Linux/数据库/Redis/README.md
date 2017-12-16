@@ -36,50 +36,37 @@ redis-check-dump    #检测RDB备份文件
 redis-check-aof     #检测AOF备份文件
 ```
 #### 部署
-```bash
-$ wget http://download.redis.io/releases/redis-2.8.17.tar.gz
-$ tar xzf redis-2.8.17.tar.gz
-$ cd redis-2.8.17
-$ make   #redis-2.8.17目录下会出现编译后的redis服务程序 redis-server 用于测试的客户端 redis-cli。位于安装目录：src
-#启动服务：
-$ cd src
-$ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777    
-#指定主服务器：--slaveof 127.0.0.1 8888  默认S端服务端口：6379
-
-#isExists=`grep 'vm.overcommit_memory' /etc/sysctl.conf | wc -l`
-#if [ "$isExists" != "1" ]; then
-#	echo "vm.overcommit_memory = 1">>/etc/sysctl.conf
-#	sysctl -p
-#fi
-
-常用命令：
-    1 ping  ping我们的主机能否链接 链接是否存活
-    2 echo  命令 echo demo直接输出
-    3 select 选择数据库 select [0-16个] 数据库
-    4 quit exit 退出链接
-    5 dbsize    返回数据库的键的个数
-    6 info  返回服务器相关信息
-    7 config get ...  返回服务配置信息
-    8 flushdb  清空当前数据库所有键值
-    9 flushall  删除所有数据库中所有的键
-    
+```txt
 [root@localhost redis-3.2.11]# redis-server -h
 Usage: ./redis-server [/path/to/redis.conf] [options]
        ./redis-server - (read config from stdin)
        ./redis-server -v or --version
        ./redis-server -h or --help
        ./redis-server --test-memory <megabytes>
-
 Examples:
        ./redis-server (run the server with default conf)
        ./redis-server /etc/redis/6379.conf
        ./redis-server --port 7777
        ./redis-server --port 7777 --slaveof 127.0.0.1 8888
        ./redis-server /etc/myredis.conf --loglevel verbose
-
 Sentinel mode:
        ./redis-server /etc/sentinel.conf --sentinel
-
+       
+常用的管理命令
+    1 ping  测试服务器是否在线，若在线则返回PONG
+    2 echo  与SHELL的echo类似
+    3 select 选择数据库 select [0-16个] 数据库
+    4 quit 退出链接
+    5 dbsize  返回数据库的键的个数
+    6 info  返回服务器状态相关的信息...（使用INFO XXX 可查看其列出的具体信息...）
+    7 KILL 指明IP+PORT可以直接关闭对应的连接上来的Client
+    8 flushdb  清空当前数据库所有键值
+    9 flushall  删除所有数据库中所有的键
+    10 bgsave  用异步方式手动将数据快照存储到磁盘
+    11 config get ...  返回配置信息
+    12 config set ...  设置配置信息
+    13 config rewrite  将在内存中修改的配置回写至配置文件...
+    14 shutdown  把所有数据的同步到磁盘之后安全的关闭服务（参数：nosave/save）
 ```
 
 #### 设置主从
