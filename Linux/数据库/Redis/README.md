@@ -3,10 +3,9 @@
 编译Redis时不需要configure，直接Make即可（将在当前的make目录生成可使用的src子目录）...
 支持两种数据持久化，可将内存中数据保持在磁盘并在重启的时再次加载...
 不仅支持简单的key:value型数据，同时还提供list，set，zset，hash等丰富的数据结构的存储及操作方式...
-支持数据的备份，即 "Master/Slave" 模式
-一般读速度：110000/s,写速度：81000/s
-Redis的所有操作都是原子性的，还支持对几个操作全并后的原子性执行
-还支持 publish/subscribe：发布/订阅通知, key过期等特性...
+支持数据的备份，即 "Master/Slave" 模式，一般情况下其读：110000/s，写：81000/s
+Redis的所有操作都是原子性的，还支持对几个操作全并后的原子性执行（事物）
+还支持 publish/subscribe：发布/订阅通知, key过期，事物模拟等特性...
 ```
 #### 数据的两种持久化方式
 ```txt
@@ -56,13 +55,13 @@ $ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777
 常用命令：
     1 ping  ping我们的主机能否链接 链接是否存活
     2 echo  命令 echo demo直接输出
-    3 select 选择数据库 select 0-16个数据库
-    4 quit  exit 退出链接
+    3 select 选择数据库 select [0-16个] 数据库
+    4 quit exit 退出链接
     5 dbsize    返回数据库的键的个数
     6 info  返回服务器相关信息
-    7 config get    返回服务配置信息
-    8 flush db  清空数据库
-    9 flushall  删除所有数据库中所有的键
+    7 config get ...  返回服务配置信息
+    8 flushdb  清空当前数据库所有键值
+    9 flushall  删除所有数据库中所有的键
     
 [root@localhost redis-3.2.11]# redis-server -h
 Usage: ./redis-server [/path/to/redis.conf] [options]
