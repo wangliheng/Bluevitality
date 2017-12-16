@@ -31,10 +31,10 @@ Redis的所有操作都是原子性的，还支持对几个操作全并后的原
         appendfsync no          #依靠OS进行刷新，redis不主动刷新AOF，这样最快但安全性最差
     
 ```
-#### check
+#### redis-check-* 命令
 ```txt
-redis-check-dump    检测RDB备份文件
-redis-check-aof     检测AOF备份文件
+redis-check-dump    #检测RDB备份文件
+redis-check-aof     #检测AOF备份文件
 ```
 #### 部署
 ```bash
