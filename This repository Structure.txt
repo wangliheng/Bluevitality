@@ -72,7 +72,7 @@
 │   ├── 存储相关
 │   │   ├── Ceph
 │   │   ├── Glusterfs
-│   │   ├── ISCSI
+│   │   ├── ISCSI + GFS2 + CLVM
 │   │   │   ├── GFS + CLVM
 │   │   │   ├── Setup
 │   │   │   └── 一些资料

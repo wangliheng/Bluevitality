@@ -25,6 +25,7 @@ else
 fi
 
 make PREFIX=/usr/local/redis install
+#redis目录下会出现编译后的redis服务程序 redis-server 用于测试的客户端 redis-cli。位于安装目录：src
 
 cd /usr/local/redis
 
