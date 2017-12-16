@@ -53,6 +53,17 @@ $ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777
 #	sysctl -p
 #fi
 
+常用命令：
+    1 ping  ping我们的主机能否链接 链接是否存活
+    2 echo  命令 echo demo直接输出
+    3 select 选择数据库 select 0-16个数据库
+    4 quit  exit 退出链接
+    5 dbsize    返回数据库的键的个数
+    6 info  返回服务器相关信息
+    7 config get    返回服务配置信息
+    8 flush db  清空数据库
+    9 flushall  删除所有数据库中所有的键
+    
 [root@localhost redis-3.2.11]# redis-server -h
 Usage: ./redis-server [/path/to/redis.conf] [options]
        ./redis-server - (read config from stdin)
@@ -69,6 +80,7 @@ Examples:
 
 Sentinel mode:
        ./redis-server /etc/sentinel.conf --sentinel
+
 ```
 
 #### 设置主从
@@ -79,5 +91,4 @@ Sentinel mode:
 另外一种方法是调用 SLAVEOF 命令， 输入主服务器的 IP 和端口， 然后同步就会开始：
     127.0.0.1:6379> SLAVEOF 192.168.1.1 10086
     OK
-
 ```
