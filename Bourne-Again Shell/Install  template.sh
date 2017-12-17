@@ -22,17 +22,6 @@ fi
 #depend
 yum -y install epel-release gcc gcc-c++ cmake openssl openssl-devel net-tools vim
 
-#erase old file and config ...
-rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
-
-#目录
-mkdir -p $..../etc
-
-#using local
-[ -s stunel-4.33.tar.gz ] || exit 1
-......
-......
-
 #并行编译
 function make_and_install () {
     NUM=$( awk '/processor/{N++};END{print N}' /proc/cpuinfo )
@@ -43,6 +32,17 @@ function make_and_install () {
     fi
     make install
 }
+
+#erase old file and config ...
+rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
+
+#目录
+mkdir -p $..../etc
+
+#using local
+[ -s stunel-4.33.tar.gz ] || exit 1
+......
+......
 
 #关闭SELINUX与防火墙
 function disable_sec() {
