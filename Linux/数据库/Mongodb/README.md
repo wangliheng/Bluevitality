@@ -40,17 +40,17 @@ MongoDB将数据存储为"文档"，数据结构由 key:value 组成，"文档"�
 #### mongod 启动参数
 ```txt
 ************************************* 基本配置*********************************************
---quiet	# 安静输出
---port arg	# 指定服务端口号，默认端口27017
+--quiet	        # 安静输出
+--port arg	    # 指定服务端口号，默认端口27017
 --bind_ip arg	# 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
 --logpath arg	# 指定MongoDB日志文件，注意是指定文件不是目录
 --logappend	# 使用追加的方式写日志
 --pidfilepath arg	# PID File 的完整路径，如果没有设置，则没有PID文件
 --keyFile arg	# 集群的私钥的完整路径，只对于Replica Set 架构有效
 --unixSocketPrefix arg	# UNIX域套接字替代目录,(默认为 /tmp)
---fork	# 以守护进程的方式运行MongoDB，创建服务器进程
---auth	# 启用验证
---cpu	# 定期显示CPU的CPU利用率和iowait
+--fork	        # 以守护进程的方式运行MongoDB，创建服务器进程
+--auth	        # 启用验证
+--cpu	        # 定期显示CPU的CPU利用率和iowait
 --dbpath arg	# 指定数据库路径
 --diaglog arg	# diaglog选项 0=off 1=W 2=R 3=both 7=W+some reads
 --directoryperdb	# 设置每个数据库将被保存在一个单独的目录
