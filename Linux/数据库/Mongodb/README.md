@@ -21,19 +21,19 @@ mongodb使用js语法操作，在其集合中的每个文档都可有自己独�
 ```txt
 #导入/导出可以是本地也可以是远程服务器
 #在本地执行导出远程mongodb服务器的数据：
-        mongoexport：	mongoimport：
-        -d	  库		     -type [csv/json]	 #默认json
-        -c	  集合     -file 			         #文件路径
-        -f	  列名		   -f	  		           #导入的数据存于哪些列
-        -q	  条件		   --headrline	      #跳过第一行
-        -o    导出名				
-        --csv EXCEl
+    mongoexport：    mongoimport：
+    -d	  库         -type [csv/json] #默认json
+    -c	  集合       -file            #文件路径
+    -f	  列名       -f	  		      #导入的数据存于哪些列
+    -q	  条件       --headrline	  #跳过第一行
+    -o    导出名				
+    --csv EXCEl
 
 导出：mongoexport -d 库名 -c 集合 -f 列1，列2 -q '{name:{$lte:1000}}' -o ./dump.json
 导入：mongoimport -d 库名 -c 集合 --type csv --headrline -f 列1，列2 --file ./dump.csv
 
-二进制导出：mongodump -d 库 [-c 表] -f 列1,列2 			       #默认导出到mongo的dump目录（包括数据及索引信息）
-二进制导入：mondorestore -d 库 --directoryperdb dump/库 	#--directoryperdb指定备份的二进制文件所在路径
+二进制导出：mongodump -d 库 [-c 表] -f 列1,列2  #默认导出到mongo的dump目录（包括数据及索引信息）
+二进制导入：mondorestore -d 库 --directoryperdb dump/库  #--directoryperdb指定备份的二进制文件所在路径
 ```
 #### mongotop 命令
 ```bash
