@@ -108,6 +108,137 @@ port = 27017
 fork = true
 auth = true
 ```
+#### 用户的创建与认证
+```javascript
+#验证：mongo -u mongo_admin -p mongo_passowrd --authenticationDatabase <db_name>
+> db.createUser( { "user" : "mongo_admin",                                                 #创建用户...
+...                 "pwd": "mongo_passowrd", "customData" : { employeeId: 12345 },         #
+...                  "roles" : [ { role: "root", db: "admin" },"readWrite" ] } )           #
+Successfully added user: {
+        "user" : "mongo_admin",
+        "customData" : {
+                "employeeId" : 12345
+        },
+        "roles" : [
+                {
+                        "role" : "root",
+                        "db" : "admin"
+                },
+                "readWrite"
+        ]
+}
+
+
+
+> use admin                                       #入库认证
+switched to db admin                              #
+> db.auth("mongo_admin","mongo_passowrd")         #
+1                                                 #
+                                                  #
+
+```
+#### mongo shell
+```javascript
+
+> db.version()
+2.6.12
+> show dbs                                  #查看所有数据库
+admin  (empty)              
+local  0.078GB              
+> use admin;                                #使用特定数据库
+switched to db admin
+> use admin;
+switched to db admin
+> show collections;                         #显示当前数据库中的集合
+system.indexes      
+system.users        
+system.version      
+> show users;                               #显示用户
+> db.foo.find( { a : 1 } )                  #查找当前数据库的foo集合下属性a的值为1的对象
+> db.stats();                               #显示当前db状态
+{
+        "db" : "admin",
+        "collections" : 4,
+        "objects" : 12,
+        "avgObjSize" : 117.33333333333333,
+        "dataSize" : 1408,
+        "storageSize" : 32768,
+        "numExtents" : 4,
+        "indexes" : 3,
+        "indexSize" : 24528,
+        "fileSize" : 67108864,
+        "nsSizeMB" : 16,
+        "dataFileVersion" : {
+                "major" : 4,
+                "minor" : 5
+        },
+        "extentFreeList" : {
+                "num" : 0,
+                "totalSize" : 0
+        },
+        "ok" : 1
+}
+
+> db.getName();                                 #查看当前使用的数据库
+> db.dropDatabase();                            #删除当前使用数据库
+> db.cloneDatabase(“127.0.0.1”);                #将指定机器上的数据库的数据克隆到当前库
+        
+> db.help();                                    #输出数据库相关的子命令及帮助 / object.help()
+DB methods:
+   db.adminCommand(nameOrDocument) - switches to 'admin' db, and runs comman..........
+   db.auth(username, password)
+   db.cloneDatabase(fromhost)
+   db.commandHelp(name) returns the help for the command
+   db.copyDatabase(fromdb, todb, fromhost)
+   ..............(略)
+
+
+db.exam.remove({"_id":{$exists:true}});         #清空exam 表中的所有数据
+db.exam.find();                                 #查找exam表中的20条记录
+db.exam.find().limit(10);                       #查找exam表中的10条记录    
+db.exam.drop();                                 #删除此表
+db.exam.remove({});                             #清空exam 表中的所有数据  
+db.createCollection("event");                   #建立 event 表        
+
+> db.集合名.save({a:1});                 #插入
+> show dbs;                             #显示所有库及其容量
+> show tables;                          #查看表（集合）
+> db.dropDatabase();                    #删除当前库
+> use runoob;                           #连到指定库（若不存在则创建，若库内无键值则不予显示需向其中插入数据后查看）
+> db                                    #显示当前库对象或集合
+> db.集合名.insert({"n":"1"})
+> db.集合名.insert(                     #插入文档（若集合不存在则直接创建）
+{	title: 'MongoDB 教程', 	
+	description: 'MongoDB是一个Nosql数据库，此段信息存储在runoob库的col集合中',
+	by: '菜鸟教程',
+	url: 'http://www.runoob.com',
+	tags: ['mongodb', 'database', 'NoSQL'],
+	likes: 100
+});
+> 变量名=({title: 'MongoDB 教程'});                          #也可将数据定义为变量
+> db.集合.insert(变量名)                                     #执行变量插入操作
+> db.集合.insert({_id:1,name:wy});					#增一篇
+> db.集合.insert([{_id:2,name:wy1},{_id:3,name:wy2},{_id:4,name=wy3}]);   #增多篇（使用数组的形式）
+> db.集合.insert({_id:1,name:wy,经历:[小学，初中，高中，大学]});            #增嵌套（文档可任意深度）
+> db.集合.remove({name:wy});                                      #删除指定表中名字为wy的文档
+> db.集合.remove();                                               #删除所有
+> db.集合.remove({name:wy,true});                                 #默认删除所有匹配的条件
+> db.集合.update({name:wy},{name:new});                           #将wy改为new【此操作将原内容全部修改，需更新时指定所有新内容】
+> db.集合.update({name:wy},{$set:{name:new}});                    #仅将表中的wy改为new，其他不变
+> db.集合.find().count();                                         #查看集合内行数
+
+$set:{}                 #修改某列的值
+$unset:{}		#删除某列的值
+$rename:{}		#修改列名
+$incr:{}		#增长
+		
+#update默认仅更改一行，即使表达式匹配多行：
+db.集合名.update({name:wy},{$set:{name:宇},$unset:{学历:专},$rename:{别名:wy},$inc:{age:1}});	
+#允许更改多行数据
+db.集合名.update({name:wy},{$set:{name:宇},$unset:{学历:专},$rename:{别名:wy},$inc:{age:1}},{multi:true});
+#若不存在则增加		
+db.集合名.update({name:wy},{$set:{name:宇},$unset:{学历:专},$rename:{别名:wy},$inc:{age:1}},{upsert:true});		
+```
 #### mongotop 命令
 ```bash
 #可查看MongoDB实例花销在读或写上的时间，它提供集合级别的统计数据，而mongostat提供数据库级别的统计数据。默认每秒刷新/次
