@@ -19,14 +19,14 @@ if ! id ${USERNAME} &> /dev/null ; then
     useradd -M -g ${USERNAME} ${USERNAME:?'Undefined ...'} -s /sbin/nologin
 fi
 
-#目录
-mkdir -p $..../etc
-
 #depend
 yum -y install epel-release gcc gcc-c++ cmake openssl openssl-devel net-tools vim
 
 #erase old file and config ...
 rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录...}
+
+#目录
+mkdir -p $..../etc
 
 #using local
 [ -s stunel-4.33.tar.gz ] || exit 1
