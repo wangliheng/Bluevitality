@@ -24,8 +24,8 @@ mongodb使用js语法操作，在其集合中的每个文档都可有自己独�
     mongoexport：    mongoimport：
     -d	  库         -type [csv/json] #默认json
     -c	  集合       -file            #文件路径
-    -f	  列名       -f	  		  #导入的数据存于哪些列
-    -q	  条件       --headrline #跳过第一行
+    -f	  列名       -f	  	      #导入的数据存于哪些列
+    -q	  条件       --headrline      #跳过第一行
     -o    导出名				
     --csv EXCEl
 
