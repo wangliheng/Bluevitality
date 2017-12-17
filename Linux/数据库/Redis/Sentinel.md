@@ -43,7 +43,7 @@ Sentinel mode:
 #启动 Sentinel 实例必须指定相应的配置文件
 #系统会使用配置文件来保存 Sentinel 的当前状态， 并在 Sentinel 重启时通过载入配置文件来进行状态还原。
 ```
-#### sentinel
+#### 配置文件 sentinel.conf
 ```txt
 [root@localhost redis-3.2.11]# cat sentinel.conf    #monitor可出现多次（监控多个主从复制架构）
 sentinel monitor mymaster 127.0.0.1 6379 2          #被监视的主节点（将其判为失效至少要2个Sentinel同意才故障转移）
