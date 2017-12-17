@@ -17,7 +17,7 @@ mongodb使用js语法操作，在其集合中的每个文档都可有自己独�
 修改密码：	 use dbname ; db.changeUserPassword('username','passowrd');
 入库认证：	 use dbname ; db.auth('username','passowrd');
 ```
-#### mongoexport & mongoimport / 导出与导入
+#### mongoexport & mongoimport ： 导出与导入
 ```txt
 #导入/导出可以是本地也可以是远程服务器
 #在本地执行导出远程mongodb服务器的数据：
