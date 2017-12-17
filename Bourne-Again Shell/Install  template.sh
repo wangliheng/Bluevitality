@@ -34,13 +34,15 @@ rm -rf {配置目录,安装目录,解压目录,启动文件目录,其他目录..
 ......
 
 #并行编译
-NUM=$( awk '/processor/{N++};END{print N}' /proc/cpuinfo )
-if [ $NUM -gt 1 ];then
-    make -j $NUM
-else
-    make
-fi
-make install
+function make_and_install () {
+    NUM=$( awk '/processor/{N++};END{print N}' /proc/cpuinfo )
+    if [ $NUM -gt 1 ];then
+        make -j $NUM
+    else
+        make
+    fi
+    make install
+}
 
 #关闭SELINUX与防火墙
 function disable_sec() {
