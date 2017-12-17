@@ -93,7 +93,7 @@
 │   │   ├── Memcache
 │   │   │   └── Setup 1.4.24
 │   │   ├── Mongodb
-│   │   │   └── 一些资料
+│   │   │   └── 资料
 │   │   ├── Mysql
 │   │   │   ├── Configs
 │   │   │   ├── Galera
