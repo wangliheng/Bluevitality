@@ -12,8 +12,8 @@ mongodb使用js语法操作，在其集合中的每个文档都可有自己独�
     local：  存储仅限于本地单台服务器的任意集合 （永不被复制）
     config： 当用于分片设置时此库在内部使用（保存分片相关信息 ）
 
-添加用户：	 db.addUser('name','pass','true/false');		#帐号密码以及是否只读（若要生效需启动时加入--auth选项）
-删除用户：	 use dbname ; db.removeUser('username');		#若在adimin库中添加用户则是超级管理员权限
+添加用户：	 db.addUser('name','pass','true/false'); #帐号密码以及是否只读（若要生效需启动时加入--auth选项）
+删除用户：	 use dbname ; db.removeUser('username'); #若在adimin库中添加用户则是超级管理员权限
 修改密码：	 use dbname ; db.changeUserPassword('username','passowrd');
 入库认证：	 use dbname ; db.auth('username','passowrd');
 ```
@@ -21,18 +21,18 @@ mongodb使用js语法操作，在其集合中的每个文档都可有自己独�
 ```txt
 #导入/导出可以是本地也可以是远程服务器
 #在本地执行导出远程mongodb服务器的数据：
-        mongoexport：	    mongoimport：
-        -d	  库		        -type [csv/json]	 #默认json
-        -c	  集合           -file 			    #文件路径
-        -f	  列名		   -f	  		        #导入的数据存于哪些列
-        -q	  条件		   --headrline	        #跳过第一行
+        mongoexport：	mongoimport：
+        -d	  库		     -type [csv/json]	 #默认json
+        -c	  集合     -file 			         #文件路径
+        -f	  列名		   -f	  		           #导入的数据存于哪些列
+        -q	  条件		   --headrline	      #跳过第一行
         -o    导出名				
         --csv EXCEl
 
 导出：mongoexport -d 库名 -c 集合 -f 列1，列2 -q '{name:{$lte:1000}}' -o ./dump.json
 导入：mongoimport -d 库名 -c 集合 --type csv --headrline -f 列1，列2 --file ./dump.csv
 
-二进制导出：mongodump -d 库 [-c 表] -f 列1,列2 			  #默认导出到mongo的dump目录（包括数据及索引信息）
+二进制导出：mongodump -d 库 [-c 表] -f 列1,列2 			       #默认导出到mongo的dump目录（包括数据及索引信息）
 二进制导入：mondorestore -d 库 --directoryperdb dump/库 	#--directoryperdb指定备份的二进制文件所在路径
 ```
 #### mongotop 命令
