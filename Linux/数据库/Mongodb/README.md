@@ -290,3 +290,5 @@ q t|r|w     当Mongodb接收到太多的命令而数据库被锁住无法执行�
 conn        当前连接数
 time        时间戳
 ```
+![img1](资料/mongoshell1.PNG)
+![img2](资料/mongoshell2.PNG)
