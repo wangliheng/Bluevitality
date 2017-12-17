@@ -106,7 +106,6 @@
 │   │   ├── Oracle
 │   │   └── Redis
 │   │       ├── conf
-│   │       ├── Sentinel
 │   │       ├── Setup 3.2.11
 │   │       └── 资料
 │   ├── 服务发现
@@ -258,4 +257,4 @@
     │   └── Improve
     └── Tools
 
-258 directories
+257 directories
