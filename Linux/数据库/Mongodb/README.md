@@ -111,9 +111,9 @@ auth = true
 #### 用户的创建与认证
 ```javascript
 #验证：mongo -u mongo_admin -p mongo_passowrd --authenticationDatabase <db_name>
-> db.createUser( { "user" : "mongo_admin",                                                 #创建用户...
-...                 "pwd": "mongo_passowrd", "customData" : { employeeId: 12345 },         #
-...                  "roles" : [ { role: "root", db: "admin" },"readWrite" ] } )           #
+> db.createUser( { "user": "mongo_admin",                                                 #创建用户
+...                "pwd": "mongo_passowrd", "customData" : { employeeId: 12345 },         #
+...                "roles" : [ { role: "root", db: "admin" },"readWrite" ] } )            #
 Successfully added user: {
         "user" : "mongo_admin",
         "customData" : {
@@ -128,11 +128,9 @@ Successfully added user: {
         ]
 }
 
-
-
-> use admin                                       #入库认证
+> use admin                                       #
 switched to db admin                              #
-> db.auth("mongo_admin","mongo_passowrd")         #
+> db.auth("mongo_admin","mongo_passowrd")         #入库认证
 1                                                 #
                                                   #
 
