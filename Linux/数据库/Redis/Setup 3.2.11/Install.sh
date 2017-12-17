@@ -47,3 +47,5 @@ fi
 #启动
 redis-server /usr/local/redis/etc/redis.conf
 
+$ ./redis-server /etc/myredis.conf --loglevel verbose --port 7777   
+
