@@ -3,12 +3,37 @@
 在高负载的情况下添加更多的节点，可保证服务器性能，旨在为WEB应用提供可扩展的高性能数据存储解决方案
 MongoDB将数据存储为一个文档，数据结构由键值 key:value 组成。MongoDB的文档类似于JSON对象。字段值可以包含其他文档
 单个实例可容纳多个独立数据库，每个都有自己的集合和权限，不同的数据库也放置在不同的文件中
+mongodb的默认数据库为"db"（存在data目录）单个实例可容纳多个独立数据库，每个都有自己的集合和权限，不同的库可放置在不同文件
+mongodb使用js语法操作，在其集合中的每个文档都可有自己独特的结构，是树形结构数据库，而传统数据库关联复杂
+其没有结构的限制，甚至可嵌套
 
 保留库：
     admin：  从权限角度看是"root"。将用户添加到此库则其继承所有库权限。特定服务端命令只能从此库运行，如列所有库或关闭服务
     local：  存储仅限于本地单台服务器的任意集合 （永不被复制）
     config： 当用于分片设置时此库在内部使用（保存分片相关信息 ）
 
+添加用户：	 db.addUser('name','pass','true/false');		#帐号密码以及是否只读（若要生效需启动时加入--auth选项）
+删除用户：	 use dbname ; db.removeUser('username');		#若在adimin库中添加用户则是超级管理员权限
+修改密码：	 use dbname ; db.changeUserPassword('username','passowrd');
+入库认证：	 use dbname ; db.auth('username','passowrd');
+```
+#### mongoexport & mongoimport / 导出与导入
+```txt
+#导入/导出可以是本地也可以是远程服务器
+#在本地执行导出远程mongodb服务器的数据：
+        mongoexport：	    mongoimport：
+        -d	  库		        -type [csv/json]	 #默认json
+        -c	  集合           -file 			    #文件路径
+        -f	  列名		   -f	  		        #导入的数据存于哪些列
+        -q	  条件		   --headrline	        #跳过第一行
+        -o    导出名				
+        --csv EXCEl
+
+导出：mongoexport -d 库名 -c 集合 -f 列1，列2 -q '{name:{$lte:1000}}' -o ./dump.json
+导入：mongoimport -d 库名 -c 集合 --type csv --headrline -f 列1，列2 --file ./dump.csv
+
+二进制导出：mongodump -d 库 [-c 表] -f 列1,列2 			  #默认导出到mongo的dump目录（包括数据及索引信息）
+二进制导入：mondorestore -d 库 --directoryperdb dump/库 	#--directoryperdb指定备份的二进制文件所在路径
 ```
 #### mongotop 命令
 ```bash
