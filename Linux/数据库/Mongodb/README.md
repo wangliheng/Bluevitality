@@ -11,7 +11,7 @@ MongoDB将数据存储为"文档"，数据结构由 key:value 组成，"文档"�
 
 保留库：
     admin：  从权限角度看是"root"。将用户添加到此库则其继承所有库权限。特定服务端命令只能从此库运行，如列所有库或关闭服务
-    local：  存储仅限于本地单台服务器的任意集合 （永不被复制）
+    local：  存储仅限于本地单台服务器的任意集合 （永不被复制）其包括副本集所有的元数据及存储oplog的集合：oplog.rs
     config： 当用于分片设置时此库在内部使用（保存分片相关信息 ）
 
 添加用户：	 db.addUser('name','pass','true/false'); #帐号密码以及是否只读（若要生效需启动时加入--auth选项）
@@ -197,14 +197,14 @@ db.exam.drop();                                 #删除此表
 db.exam.remove({});                             #清空exam 表中的所有数据  
 db.createCollection("event");                   #建立 event 表        
 
-> db.集合名.save({a:1});                 #插入
-> show dbs;                             #显示所有库及其容量
-> show tables;                          #查看表（集合）
-> db.dropDatabase();                    #删除当前库
-> use runoob;                           #连到指定库（若不存在则创建，若库内无键值则不予显示需向其中插入数据后查看）
-> db                                    #显示当前库对象或集合
+> db.集合名.save({a:1});			     #插入
+> show dbs;                             	#显示所有库及其容量
+> show tables;                          	#查看表（集合）
+> db.dropDatabase();                    	#删除当前库
+> use runoob;                           	#连到指定库（若不存在则创建，若库内无键值则不予显示需向其中插入数据后查看）
+> db                                    	#显示当前库对象或集合
 > db.集合名.insert({"n":"1"})
-> db.集合名.insert(                     #插入文档（若集合不存在则直接创建）
+> db.集合名.insert(                     	      #插入文档（若集合不存在则直接创建）
 {	title: 'MongoDB 教程', 	
 	description: 'MongoDB是一个Nosql数据库，此段信息存储在runoob库的col集合中',
 	by: '菜鸟教程',
