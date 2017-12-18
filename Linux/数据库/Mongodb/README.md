@@ -134,7 +134,7 @@ switched to db admin                              #
                                                   #
 
 ```
-#### mongo shell
+#### mongo shell 命令行常用命令举例
 ```javascript
 
 > db.version()
