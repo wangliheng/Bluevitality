@@ -8,6 +8,11 @@ alter system set log_archive_Dest=’/oradata/dg’;
 alter database archivelog
 archive log list;
 #(此时若主库的归档设置成功，则将出现automatic archival enabled;archive destination /oradata/dg 提示信息)
-
-
 ```
+***
+#### 从库只需要安装数据库软件，数据从主库传输后完成
+```
+备注：（若采用主库的克隆，则无需关心该步骤）
+```
+***
+#### ADG备注说明
