@@ -83,29 +83,42 @@ alter database add standby logfile group 7 ('/oradata/dg/redo_dg_024.log') size 
 ```
 #### 参数设置
 ```bash
+create pfile from spfile; 
+
 alter system set db_unique_name='dbprimary' scope=spfile;
 alter system set log_archive_config='DG_CONFIG=(dbprimary,dbstandby)';
-alter system set log_archive_dest_1='LOCATION=/oradata/dg/ db_unique_name=dbstandby valid_for=(ALL_LOGFILES,ALL_ROLES)' scope=spfile;
-alter system set log_archive_dest_2='SERVICE=dbprimary LGWR ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=dbprimary' scope=spfile;
+alter system set log_archive_dest_1='LOCATION=/oradata/dg db_unique_name=dbprimary valid_for=(ALL_LOGFILES,ALL_ROLES)' scope=spfile;
+alter system set log_archive_dest_2='SERVICE=dbstanddy LGWR ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=dbstandby' scope=spfile;
 alter system set log_archive_dest_state_1=enable;
 alter system set log_archive_dest_state_2=enable;
 alter system set log_archive_max_processes=5 scope=spfile;
 alter system set remote_login_passwordfile='EXCLUSIVE' scope=spfile;
-alter system set FAL_CLIENT='dbstandby' scope=spfile;   
-alter system set fal_server='dbprimary' scope=spfile;
+alter system set FAL_CLIENT='dbprimary' scope=spfile;   
+alter system set fal_server='dbstandby' scope=spfile;
 alter system set log_archive_format='%t_%s_%r.arc'  scope=spfile;
 alter system set standby_file_management='AUTO' scope=spfile;
-```
 
-#### 密码文件和控制文件的创建传输
+create spfile from pfile; 
+
+```
+#### 传输主库数据到备库 
+##### 
+备库执行：
+mkdir -p /oradata/dg;
+chown oracle:oinstall /oradata/dg;
+转到主库
+scp -l 8192 -rp /oradata/ oracle@172.18.44.26:/oradata; 
+scp -l 8192 -rp $ORACLE_BASE/oradata/$ORACLE_SID/ oracle@172.18.44.26:$ORACLE_BASE/oradata
+##### 密码文件和控制文件的创建传输
 ```bash
 #一般数据库默认就有密码文件，存放在$ORACLE_HOME/dbs/orapw$ORACLE_SID, 如果没有,执行如下操作即可
- sql>ho orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=oracle;
+ #sql>ho orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID entries=5 force=y password=oracle;
+ sql>orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID entries=5 force=y password=oracle;
 #REMOTE_LOGIN_PASSWORDFILE值是否为 EXCLUSIVE
  sql>alter system set remote_login_passwordfile=exclusive scope=spfile;   
  
 #密码文件需要scp到从库        
-scp $ORACLE_HOME/dbs/orapw$ORACLE_SID oracle@172.18.44.26:$ORACLE_HOME/dbs 
+scp $ORACLE_HOME/dbs/orapw$ORACLE_SID oracle@172.18.44.26:$ORACLE_HOME/dbs/orapw$ORACLE_SID 
 
 #创建备份库需要的控制文件并传输到备库
 #shutdown immediate
@@ -166,6 +179,8 @@ DBSTANDBY =
 [oracle@primary admin]cd $ORACLE_HOME/network/admin/
 [oracle@primary admin]scp -r ./* oracle@172.18.44.26:$ORACLE_HOME/network/admin/
 ```
+
+
 
 ## 备库执行
 ```bash
